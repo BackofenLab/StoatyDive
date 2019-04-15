@@ -40,7 +40,6 @@ parser.add_argument(
     "-b", "--input_bam",
     metavar='*.bai',
     required=True,
-    nargs="+",
     help="List of paths to the read bam files used for the peakcalling.")
 
 # optional arguments
@@ -84,11 +83,13 @@ def get_line_count(file):
 ##   MAIN   ##
 ##############
 
-# Generate Coverage files
-coverage_files = ["{}/rep{}_coverage.tsv".format(args.output_folder, i+1) for i in range(0, len(args.input_bam))]
-for i in range(0, len(args.input_bam)):
-    sb.Popen("bedtools coverage -a {} -b {} -d -s > {}".format(args.input_bed, args.input_bam[i], coverage_files[i]),
-             shell=True).wait()
+outfilename = args.input_bam.split("/")
+outfilename = outfilename[len(outfilename)-1]
+outfilename = outfilename.strip(".bam")
+
+# Generate Coverage file
+coverage_file_name = "{}/{}.tsv".format(args.output_folder, outfilename)
+sb.Popen("bedtools coverage -a {} -b {} -d -s > {}".format(args.input_bed, args.input_bam, coverage_file_name), shell=True).wait()
 
 peaks_file = open(args.input_bed, "r")
 num_peaks = get_line_count(peaks_file)
@@ -102,88 +103,94 @@ prob_success_peaks = [-1] * num_peaks
 num_bp_peaks = [-1] * num_peaks
 
 # Evaluate peak profiles for each replicate
-for file in coverage_files:
-    coverage_file = open(file, "r")
-    num_coverage_lines = get_line_count(coverage_file)
-    coverage_file.close()
 
-    coverage_file = open(file, "r")
+coverage_file = open(coverage_file_name, "r")
+num_coverage_lines = get_line_count(coverage_file)
+coverage_file.close()
 
-    peak_counter = -1
-    peak_cov_list = []
+coverage_file = open(coverage_file_name, "r")
 
-    # Calcualte mean and variance of peak coverage profiles
-    line_count = 0
-    for line in coverage_file:
-        line_count += 1
-        data = line.strip("\n").split("\t")
-        bp = int(data[7])
-        cov = int(data[8])
+peak_counter = -1
+peak_cov_list = []
 
-        if(bp == 1):
-            if( peak_counter != -1 ):
-                #mean_coverage_peaks[peak_counter] = numpy.mean(peak_cov_list)
-                #variance_coverage_peaks[peak_counter] = numpy.std(peak_cov_list)
-                # The fit is the alternative version of the NB. But I get the expected number of successes and the
-                # probability of success.
+# Calcualte mean and variance of peak coverage profiles
+line_count = 0
+for line in coverage_file:
+    line_count += 1
+    data = line.strip("\n").split("\t")
+    bp = int(data[len(data)-2])
+    cov = int(data[len(data)-1])
 
-                if ( not all(v == 0 for v in peak_cov_list) ):
-                    nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
-                    mean_coverage_peaks[peak_counter] = nb_fit["size"]
-                    prob_success_peaks[peak_counter] = nb_fit["prob"]
-                    variance_coverage_peaks[peak_counter] = (nb_fit["size"] * (1-nb_fit["prob"])) / (nb_fit["prob"] * nb_fit["prob"])
-                else:
-                    mean_coverage_peaks[peak_counter] = 0.0
-                    variance_coverage_peaks[peak_counter] = 0.0
-                    prob_success_peaks[peak_counter] = 0.0
-            peak_cov_list = []
-            peak_cov_list.append(cov)
-            peak_counter += 1
-        else:
-            peak_cov_list.append(cov)
-            num_bp_peaks[peak_counter] = bp
+    if(bp == 1):
+        if( peak_counter != -1 ):
+            #mean_coverage_peaks[peak_counter] = numpy.mean(peak_cov_list)
+            #variance_coverage_peaks[peak_counter] = numpy.std(peak_cov_list)
+            # The fit is the alternative version of the NB. But I get the expected number of successes and the
+            # probability of success.
 
-            if ( line_count == num_coverage_lines ):
+            if ( not all(v == 0 for v in peak_cov_list) ):
                 nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
                 mean_coverage_peaks[peak_counter] = nb_fit["size"]
                 prob_success_peaks[peak_counter] = nb_fit["prob"]
-                variance_coverage_peaks[peak_counter] = (nb_fit["size"] * (1 - nb_fit["prob"])) / (
-                nb_fit["prob"] * nb_fit["prob"])
+                variance_coverage_peaks[peak_counter] = (nb_fit["size"] * (1-nb_fit["prob"])) / (nb_fit["prob"] * nb_fit["prob"])
+            else:
+                mean_coverage_peaks[peak_counter] = 0.0
+                variance_coverage_peaks[peak_counter] = 0.0
+                prob_success_peaks[peak_counter] = 0.0
+        peak_cov_list = []
+        peak_cov_list.append(cov)
+        peak_counter += 1
+    else:
+        peak_cov_list.append(cov)
+        num_bp_peaks[peak_counter] = bp
 
-    coverage_file.close()
+        if ( line_count == num_coverage_lines ):
+            nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
+            mean_coverage_peaks[peak_counter] = nb_fit["size"]
+            prob_success_peaks[peak_counter] = nb_fit["prob"]
+            variance_coverage_peaks[peak_counter] = (nb_fit["size"] * (1 - nb_fit["prob"])) / (
+            nb_fit["prob"] * nb_fit["prob"])
 
-    # Filter our peaks that are completly uncovered
-    filtered_mean_coverage_peaks = []
-    filtered_variance_coverage_peaks = []
-    filtered_prob_success_peaks = []
-    filtered_num_bp_peaks = []
-    filtered_num_peaks = 0
+coverage_file.close()
 
-    for i in range(0, len(mean_coverage_peaks)):
-        if ( mean_coverage_peaks[i] > 0 ):
-            filtered_mean_coverage_peaks.append(mean_coverage_peaks[i])
-            filtered_variance_coverage_peaks.append(variance_coverage_peaks[i])
-            filtered_prob_success_peaks.append(prob_success_peaks[i])
-            filtered_num_bp_peaks.append(num_bp_peaks[i])
-            filtered_num_peaks += 1
+# Filter our peaks that are completly uncovered
+filtered_mean_coverage_peaks = []
+filtered_variance_coverage_peaks = []
+filtered_prob_success_peaks = []
+filtered_num_bp_peaks = []
+filtered_num_peaks = 0
 
-    varcoeff_coverage_peaks = [-1] * filtered_num_peaks
+for i in range(0, len(mean_coverage_peaks)):
+    if ( mean_coverage_peaks[i] > 0 ):
+        filtered_mean_coverage_peaks.append(mean_coverage_peaks[i])
+        filtered_variance_coverage_peaks.append(variance_coverage_peaks[i])
+        filtered_prob_success_peaks.append(prob_success_peaks[i])
+        filtered_num_bp_peaks.append(num_bp_peaks[i])
+        filtered_num_peaks += 1
 
-    print("[NOTE] {} peaks are covered.".format(filtered_num_peaks))
+varcoeff_coverage_peaks = [-1] * filtered_num_peaks
 
-    # Calcualte Variantioncoefficient of peak coverage profile
-    for i in range(0, filtered_num_peaks):
-        #varcoef = filtered_variance_coverage_peaks[i]/filtered_mean_coverage_peaks[i]
-        # if ( filtered_prob_success_peaks[i] < 0 ):
-        #     print(filtered_mean_coverage_peaks[i])
+print("[NOTE] {} peaks are covered.".format(filtered_num_peaks))
 
-        varcoef = 1 / math.sqrt(filtered_mean_coverage_peaks[i] * (1 - filtered_prob_success_peaks[i]))
+# Calcualte Variantioncoefficient of peak coverage profile
+for i in range(0, filtered_num_peaks):
+    #varcoef = filtered_variance_coverage_peaks[i]/filtered_mean_coverage_peaks[i]
+    # if ( filtered_prob_success_peaks[i] < 0 ):
+    #     print(filtered_mean_coverage_peaks[i])
 
-        if ( math.isnan(varcoef) ):
-            print(varcoef)
+    varcoef = 1 / math.sqrt(filtered_mean_coverage_peaks[i] * (1 - filtered_prob_success_peaks[i]))
 
-        norm_varvoef = varcoef / math.sqrt(num_bp_peaks[i]-1) # Taking the estimation of the standard deviation into account
-        varcoeff_coverage_peaks[i] = norm_varvoef
+    if ( math.isnan(varcoef) ):
+        print(varcoef)
+
+    norm_varvoef = varcoef / math.sqrt(num_bp_peaks[i]-1) # Taking the estimation of the standard deviation into account
+    varcoeff_coverage_peaks[i] = norm_varvoef
+
+# Make vase plot of variationkoefficients
+f = plt.figure()
+plt.violinplot(varcoeff_coverage_peaks)
+plt.ylabel('Variationcoefficient of the Read Coverage')
+f.savefig(args.output_folder + "/VC_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
 # testset = numpy.random.negative_binomial(10, .8, 10000)
 # f = plt.figure()
@@ -191,10 +198,3 @@ for file in coverage_files:
 # f.savefig(args.output_folder + "/test1.pdf", bbox_inches='tight')
 #
 # print(fnb.fit_nbinom(testset))
-
-# Make vase plot of variationkoefficients
-f = plt.figure()
-plt.violinplot(varcoeff_coverage_peaks)
-plt.ylabel('Variationcoefficient of the Read Coverage')
-f.savefig(args.output_folder + "/Variationcoefficient_Distribution.pdf", bbox_inches='tight')
-
