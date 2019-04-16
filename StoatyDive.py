@@ -1,12 +1,12 @@
 
 import argparse
-import logging
 import subprocess as sb
 import matplotlib.pyplot as plt
 import os
 import numpy
 import math
 import fit_nbinom as fnb
+import sys
 
 #########################
 ##   NECESSARY TOOLS   ##
@@ -59,15 +59,13 @@ parser.add_argument(
     action="store_true")
 
 args = parser.parse_args()
-if args.debug:
-    logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
-else:
-    logging.basicConfig(format="%(filename)s - %(levelname)s - %(message)s")
-logging.info("Parsed arguments:")
-if args.output_folder:
-    logging.info("outfile: enabled writing to file")
-    logging.info("outfile: '{}'".format(args.output_folder))
-logging.info("")
+
+# Check if peak file is in bed6 format
+bedfile = open(args.input_bed, "r")
+firstline = bedfile.readline()
+if ( len(firstline.strip("\n").split("\t")) <  6 ):
+    sys.exit("[ERROR] Peakfile has to be in bed6 format!")
+bedfile.close()
 
 ##############
 ##   FUNC   ##
@@ -127,7 +125,6 @@ for line in coverage_file:
             #variance_coverage_peaks[peak_counter] = numpy.std(peak_cov_list)
             # The fit is the alternative version of the NB. But I get the expected number of successes and the
             # probability of success.
-
             if ( not all(v == 0 for v in peak_cov_list) ):
                 nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
                 mean_coverage_peaks[peak_counter] = nb_fit["size"]
@@ -145,11 +142,16 @@ for line in coverage_file:
         num_bp_peaks[peak_counter] = bp
 
         if ( line_count == num_coverage_lines ):
-            nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
-            mean_coverage_peaks[peak_counter] = nb_fit["size"]
-            prob_success_peaks[peak_counter] = nb_fit["prob"]
-            variance_coverage_peaks[peak_counter] = (nb_fit["size"] * (1 - nb_fit["prob"])) / (
-            nb_fit["prob"] * nb_fit["prob"])
+            if (  not all(v == 0 for v in peak_cov_list) ):
+                nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
+                mean_coverage_peaks[peak_counter] = nb_fit["size"]
+                prob_success_peaks[peak_counter] = nb_fit["prob"]
+                variance_coverage_peaks[peak_counter] = (nb_fit["size"] * (1 - nb_fit["prob"])) / (
+                nb_fit["prob"] * nb_fit["prob"])
+            else:
+                mean_coverage_peaks[peak_counter] = 0.0
+                variance_coverage_peaks[peak_counter] = 0.0
+                prob_success_peaks[peak_counter] = 0.0
 
 coverage_file.close()
 
@@ -186,10 +188,18 @@ for i in range(0, filtered_num_peaks):
     norm_varvoef = varcoef / math.sqrt(num_bp_peaks[i]-1) # Taking the estimation of the standard deviation into account
     varcoeff_coverage_peaks[i] = norm_varvoef
 
+# Normalize all VC so that the scale goes from 0 to 1 only
+one = numpy.max(varcoeff_coverage_peaks)
+
+for i in range(0, len(varcoeff_coverage_peaks)):
+    varcoeff_coverage_peaks[i] = varcoeff_coverage_peaks[i]/one
+
+print("[NOTE] Generate Plot")
+
 # Make vase plot of variationkoefficients
 f = plt.figure()
 plt.violinplot(varcoeff_coverage_peaks)
-plt.ylabel('Variationcoefficient of the Read Coverage')
+plt.ylabel('Normalized Variationcoefficient of the Peak Profiles')
 f.savefig(args.output_folder + "/VC_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
 # testset = numpy.random.negative_binomial(10, .8, 10000)
