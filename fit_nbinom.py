@@ -45,6 +45,15 @@ def fit_nbinom(X, initial_params=None):
             - N*(gammaln(r)) \
             + N*r*np.log(p) \
             + np.sum(X*np.log(1-(p if p < 1 else 1-infinitesimal)))
+
+        if ( np.isnan(result) ):
+            return 0.0
+        if ( np.isinf(result) ):
+            if ( result < 0 ):
+                return -100000
+            else:
+                return 100000
+
         return -result
 
     def log_likelihood_deriv(params, *args):
@@ -71,6 +80,7 @@ def fit_nbinom(X, initial_params=None):
         initial_params = np.array([r0, p0])
 
     bounds = [(infinitesimal, None), (infinitesimal, 1)]
+
     # fmin_l_bfgs_b
     optimres = optim(log_likelihood,
                      x0=initial_params,
