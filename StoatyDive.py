@@ -107,7 +107,7 @@ peaks_file.close()
 print("[NOTE] {} peaks will be evaluated.".format(num_peaks))
 
 # Dictionaries for the algorithm.
-mean_coverage_peaks_dict = dict()
+size_r_peaks_dict = dict()
 prob_success_peaks_dict = dict()
 variance_coverage_peaks_dict = dict()
 num_bp_peaks_dict = dict()
@@ -136,16 +136,16 @@ for line in coverage_file:
     # If the bp == 1 do the negative binomial estimation an start a new peak entry.
     if(bp == 1):
         if( peak_counter != -1 ):
-            # The fit is the alternative version of the NB. But I get the expected number of successes and the
-            # probability of success. At least one value needs to be greater than zero, else the estimation
+            # The fit is the alternative version of the NB. But I get the number of successes (r) and the
+            # probability of success (p). At least one value needs to be greater than zero, else the estimation
             # makes no sense.
             if ( not all(v == 0 for v in peak_cov_list) ):
                 nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
-                mean_coverage_peaks_dict[peak_counter] = nb_fit["size"]
+                size_r_peaks_dict[peak_counter] = nb_fit["size"]
                 prob_success_peaks_dict[peak_counter] = nb_fit["prob"]
                 variance_coverage_peaks_dict[peak_counter] = (nb_fit["size"] * (1-nb_fit["prob"])) / (nb_fit["prob"] * nb_fit["prob"])
             else:
-                mean_coverage_peaks_dict[peak_counter] = 0.0
+                size_r_peaks_dict[peak_counter] = 0.0
                 prob_success_peaks_dict[peak_counter] = 0.0
                 variance_coverage_peaks_dict[peak_counter] = 0.0
         peak_cov_list = []
@@ -160,11 +160,11 @@ for line in coverage_file:
         if ( line_count == num_coverage_lines ):
             if (  not all(v == 0 for v in peak_cov_list) ):
                 nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
-                mean_coverage_peaks_dict[peak_counter] = nb_fit["size"]
+                size_r_peaks_dict[peak_counter] = nb_fit["size"]
                 prob_success_peaks_dict[peak_counter] = nb_fit["prob"]
                 variance_coverage_peaks_dict[peak_counter] = (nb_fit["size"] * (1 - nb_fit["prob"])) / (nb_fit["prob"] * nb_fit["prob"])
             else:
-                mean_coverage_peaks_dict[peak_counter] = 0.0
+                size_r_peaks_dict[peak_counter] = 0.0
                 prob_success_peaks_dict[peak_counter] = 0.0
                 variance_coverage_peaks_dict[peak_counter] = 0.0
 
@@ -177,15 +177,15 @@ varcoeff_coverage_peaks_dict = dict()
 for i in range(0, num_peaks):
 
     # The mean coverage has to be greater than zero or else the VC is not defined.
-    if (mean_coverage_peaks_dict[i] > 0):
-        varcoef = 1 / math.sqrt(mean_coverage_peaks_dict[i] * (1 - prob_success_peaks_dict[i]))
+    if (size_r_peaks_dict[i] > 0):
+        varcoef = 1 / math.sqrt(size_r_peaks_dict[i] * (1 - prob_success_peaks_dict[i]))
 
         # Just a safety condition.
         if ( math.isnan(varcoef) ):
             print(varcoef)
 
-        # Because the standard deviation (variance) was estimated, I have to correct the VC based on the changed number
-        # of the degrees of freedom.
+        # Because the expected number of successes (mean) were estimated, I have to correct the VC based on the
+        # changed number of the degrees of freedom.
         varcoeff_coverage_peaks_dict[i] = varcoef / math.sqrt(num_bp_peaks_dict[i]-1)
 
         filtered_num_peaks += 1
@@ -222,9 +222,10 @@ out_tab_file_name = args.output_folder + "/VC_tab_{}_tmp.bed".format(outfilename
 out_tab_file = open(out_tab_file_name, "w")
 for i in range(0, num_peaks):
     coords = coordinates_dict[i]
-    out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t.\t{}\t{}\n".format(coords[0], coords[1], coords[2],
+    out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t.\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
                                                              i, varcoeff_coverage_peaks_dict[i],
-                                                             num_bp_peaks_dict[i], mean_coverage_peaks_dict[i]))
+                                                             num_bp_peaks_dict[i], size_r_peaks_dict[i],
+                                                             prob_success_peaks_dict[i]))
 out_tab_file.close()
 
 # Sort the tabular file.
