@@ -48,6 +48,11 @@ parser.add_argument(
     metavar='*.bai',
     required=True,
     help="Path to the read bam file used for the peakcalling in bed or bam format.")
+parser.add_argument(
+    "-c", "--chr_file",
+    metavar='*.txt',
+    required=True,
+    help="Path to the chromosome length file.")
 
 # optional arguments
 parser.add_argument(
@@ -55,6 +60,15 @@ parser.add_argument(
     metavar='path/',
     default=os.getcwd(),
     help="Write results to this path.")
+parser.add_argument(
+    "--length_norm",
+    metavar='bool',
+    default="true",
+    help="Set length normalizatiuon to false or true. If true, StoatyDive will expand every peak to the maximal length.")
+parser.add_argument(
+    "--seed",
+    metavar='int',
+    help="Set seed for the optimization scheme.")
 
 ######################
 ##   CHECKS INPUT   ##
@@ -95,10 +109,102 @@ outfilename = outfilename[len(outfilename)-1]
 outfilename = outfilename.strip(".bam")
 outfilename = outfilename.strip(".bed")
 
+extended_peak_file_name = "{}/peaks_extended.bed".format(args.output_folder)
+
+# Extend the peaks to the maximal length if the parameter is set to true.
+if ( args.length_norm == "true" ):
+
+    # Find maximal peak length
+    peaks_file = open(args.input_bed, "r")
+    max_peak_len = 0
+    for line in peaks_file:
+        data = line.strip("\n").split("\t")
+        start = data[1]
+        end = data[2]
+        length = int(end) - int(start)
+        if ( length > max_peak_len ):
+            max_peak_len = length
+    peaks_file.close()
+
+    # Read in chromosome sizes
+    chr_sizes_dict = dict()
+    chr_sizes_file = open(args.chr_file, "r")
+    for line in chr_sizes_file:
+        data = line.strip("\n").split("\t")
+        if ( data[0] not in chr_sizes_dict ):
+            chr_sizes_dict[data[0]] = int(data[1])
+    chr_sizes_file.close()
+
+    # Define new coorindate for peaks. Extend to maximal length.
+    peaks_file = open(args.input_bed, "r")
+    extended_peak_file = open(extended_peak_file_name, "w")
+
+    for line in peaks_file:
+        data = line.strip("\n").split("\t")
+        start = int(data[1])
+        end = int(data[2])
+        peak_length = end - start
+        extention_left = numpy.round((max_peak_len-peak_length)/2)
+        extentions_right = numpy.round((max_peak_len-peak_length)/2)
+
+        # Check if extention left and right make up the max_peak_length, if not,
+        # then add randomly either to left or right some extra bases. This happends
+        # becuase of the rounding.
+        if ( (extention_left + extentions_right + peak_length) < max_peak_len ):
+            # Set seed if seed is provided.
+            if ( args.seed ):
+                numpy.random.seed(int(args.seed))
+
+            if ( numpy.random.randint(low=2, size=1) == 0 ):
+                extention_left +=  max_peak_len - (extention_left + extentions_right)
+            else:
+                extentions_right += max_peak_len - (extention_left + extentions_right)
+
+        # Check if extension goes beyond the borders of the chromosome.
+        beyond_left = "false"
+        if ( (start - extention_left) < 0 ):
+            beyond_left = "true"
+        beyond_right = "false"
+        if ((end + extentions_right) > chr_sizes_dict[data[0]]):
+            beyond_right = "true"
+
+        if ( beyond_left == "true" and beyond_right == "false" ):
+            extentions_right += extention_left-start
+            extention_left = start
+
+        if ( beyond_left == "false" and beyond_right == "true" ):
+            extention_left += (end + extentions_right) - chr_sizes_dict[data[0]]
+            extentions_right = chr_sizes_dict[data[0]] - end
+
+        if ( beyond_left == "true" and beyond_right == "true" ):
+            extention_left = start
+            extentions_right = chr_sizes_dict[data[0]] - end
+
+        start = start - extention_left
+        end = end + extentions_right
+
+        # A last checkup if peak length is maximum length.
+        if ( (end - start) != max_peak_len and not (beyond_left == "true" and beyond_left == "true") ):
+            print("[ERROR] Max length of peak not reached.")
+            print(data)
+            print(start)
+            print(end)
+            print(end - start)
+            print(max_peak_len)
+
+        # Write extended peak to file.
+        extended_peak_file.write("{}\t{}\t{}\t{}\n".format(data[0], int(start), int(end), "\t".join(data[3:])))
+
+    peaks_file.close()
+    extended_peak_file.close()
+
+else:
+    sb.Popen("cp {} {}".format(args.input_bed, extended_peak_file_name), shell=True).wait()
+
 # Generate Coverage file with bedtools
 coverage_file_name = "{}/{}_coverage.tsv".format(args.output_folder, outfilename)
-sb.Popen("bedtools coverage -a {} -b {} -d -s > {}".format(args.input_bed, args.input_bam, coverage_file_name), shell=True).wait()
-
+sb.Popen("bedtools coverage -a {} -b {} -d -s > {}".format(extended_peak_file_name, args.input_bam,
+                                                           coverage_file_name), shell=True).wait()
 # Get the number of peaks from the peak file.
 peaks_file = open(args.input_bed, "r")
 num_peaks = get_line_count(peaks_file)
