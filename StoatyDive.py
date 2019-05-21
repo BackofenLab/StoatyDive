@@ -106,8 +106,7 @@ def get_line_count(file):
 # Get the outfile name from the input read file.
 outfilename = args.input_bam.split("/")
 outfilename = outfilename[len(outfilename)-1]
-outfilename = outfilename.strip(".bam")
-outfilename = outfilename.strip(".bed")
+outfilename = outfilename.replace(".bam", "").replace(".bed", "")
 
 extended_peak_file_name = "{}/peaks_extended.bed".format(args.output_folder)
 
@@ -218,6 +217,7 @@ prob_success_peaks_dict = dict()
 variance_coverage_peaks_dict = dict()
 num_bp_peaks_dict = dict()
 coordinates_dict = dict()
+strand_dict = dict()
 
 # Get the number of lines of the coverage file of bedtools.
 coverage_file = open(coverage_file_name, "r")
@@ -238,6 +238,7 @@ for line in coverage_file:
     data = line.strip("\n").split("\t")
     bp = int(data[len(data)-2])     # bp of the peak
     cov = int(data[len(data)-1])    # Coverage at that bp
+    strand = data[5]
 
     # If the bp == 1 do the negative binomial estimation an start a new peak entry.
     if(bp == 1):
@@ -261,6 +262,7 @@ for line in coverage_file:
     else:
         peak_cov_list.append(cov)
         num_bp_peaks_dict[peak_counter] = bp
+        strand_dict[peak_counter] = strand
 
         # This condition takes the last line of the coverage file into account. Else I will miss the last entry.
         if ( line_count == num_coverage_lines ):
@@ -319,6 +321,7 @@ print("[NOTE] Generate Plot")
 # Make vase plot of variationkoefficients.
 f = plt.figure()
 plt.violinplot(filtered_varcoeff_coverage_peaks)
+plt.ylim(0.0, 1.0)
 plt.ylabel('Normalized Variationcoefficient of the Peak Profiles')
 f.savefig(args.output_folder + "/VC_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
@@ -328,10 +331,12 @@ out_tab_file_name = args.output_folder + "/VC_tab_{}_tmp.bed".format(outfilename
 out_tab_file = open(out_tab_file_name, "w")
 for i in range(0, num_peaks):
     coords = coordinates_dict[i]
-    out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t.\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
-                                                             i, varcoeff_coverage_peaks_dict[i],
+    # "Chr Start End ID VC Strand bp r p Max_Norm_VC"
+    out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
+                                                             i, varcoeff_coverage_peaks_dict[i], strand_dict[i],
                                                              num_bp_peaks_dict[i], size_r_peaks_dict[i],
-                                                             prob_success_peaks_dict[i]))
+                                                             prob_success_peaks_dict[i],
+                                                             varcoeff_coverage_peaks_dict[i]/one))
 out_tab_file.close()
 
 # Sort the tabular file.
