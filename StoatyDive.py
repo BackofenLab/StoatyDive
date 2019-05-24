@@ -65,7 +65,7 @@ def main():
     parser.add_argument(
         "--length_norm",
         metavar='bool',
-        default="true",
+        default="false",
         help="Set length normalization to false or true. If true, StoatyDive will expand every peak to the maximal length.")
     parser.add_argument(
         "--length_norm_value",
@@ -134,6 +134,9 @@ def main():
 
     print("[NOTE] Maximal Peak Length {}".format(max_peak_len))
 
+    if ( args.length_norm_value ):
+        max_peak_len = int(args.max_norm_value)
+
     # Extend the peaks to the maximal length if the parameter is set to true.
     if ( args.length_norm == "true" ):
 
@@ -178,9 +181,9 @@ def main():
                     numpy.random.seed(int(args.seed))
 
                 if (numpy.random.randint(low=2, size=1) == 0):
-                    extention_left += current_peak_length - max_peak_len
+                    extention_left -= current_peak_length - max_peak_len
                 else:
-                    extentions_right += current_peak_length - max_peak_len
+                    extentions_right -= current_peak_length - max_peak_len
 
             # Check if extension goes beyond the borders of the chromosome.
             beyond_left = "false"
@@ -309,15 +312,15 @@ def main():
 
         # The mean coverage has to be greater than zero or else the VC is not defined.
         if (size_r_peaks_dict[i] > 0):
-            varcoef = 1 / math.sqrt(size_r_peaks_dict[i] * (1 - prob_success_peaks_dict[i]))
+            varcoeff_coverage_peaks_dict[i] = 1 / math.sqrt(size_r_peaks_dict[i] * (1 - prob_success_peaks_dict[i]))
 
             # Just a safety condition.
-            if ( math.isnan(varcoef) ):
-                print(varcoef)
+            if ( math.isnan(varcoeff_coverage_peaks_dict[i]) ):
+                print(varcoeff_coverage_peaks_dict[i])
 
             # Because the expected number of successes (mean) were estimated, I have to correct the VC based on the
             # changed number of the degrees of freedom.
-            varcoeff_coverage_peaks_dict[i] = varcoef / math.sqrt(num_bp_peaks_dict[i]-1)
+            # varcoeff_coverage_peaks_dict[i] = varcoeff_coverage_peaks_dict[i] / math.sqrt(num_bp_peaks_dict[i]-1)
 
             filtered_num_peaks += 1
         else:
@@ -340,13 +343,14 @@ def main():
     f.savefig(args.output_folder + "/VC_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
     # Normalize all VC so that the scale goes from 0 to 1 which makes a comparison between
-    # different profile evaluations easier.
+    # different profile evaluations easier. Unity-based normalization.
     one = numpy.max(filtered_varcoeff_coverage_peaks)
+    zero = numpy.min(filtered_varcoeff_coverage_peaks)
     if ( args.max_norm_value ):
         one = float(args.max_norm_value)
 
     for i in range(0, len(filtered_varcoeff_coverage_peaks)):
-        filtered_varcoeff_coverage_peaks[i] = filtered_varcoeff_coverage_peaks[i]/one
+        filtered_varcoeff_coverage_peaks[i] = (filtered_varcoeff_coverage_peaks[i]-zero)/(one-zero)
 
     print("[NOTE] Generate Normalized CV Plot")
 
@@ -368,11 +372,11 @@ def main():
                                                                  i, varcoeff_coverage_peaks_dict[i], strand_dict[i],
                                                                  num_bp_peaks_dict[i], size_r_peaks_dict[i],
                                                                  prob_success_peaks_dict[i],
-                                                                 varcoeff_coverage_peaks_dict[i]/one))
+                                                                 (varcoeff_coverage_peaks_dict[i]-zero)/(one-zero)))
     out_tab_file.close()
 
     # Sort the tabular file.
-    sb.Popen("sort -r -k 5 {} > {}".format(out_tab_file_name, "{}/VC_tab_{}.bed".format(args.output_folder, outfilename)), shell=True).wait()
+    sb.Popen("sort -r -k 5 -g {} > {}".format(out_tab_file_name, "{}/VC_tab_{}.bed".format(args.output_folder, outfilename)), shell=True).wait()
     sb.Popen("rm {}".format(out_tab_file_name), shell=True).wait()
 
 if __name__ == '__main__':
