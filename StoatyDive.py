@@ -66,7 +66,11 @@ def main():
         "--length_norm",
         metavar='bool',
         default="true",
-        help="Set length normalizatiuon to false or true. If true, StoatyDive will expand every peak to the maximal length.")
+        help="Set length normalization to false or true. If true, StoatyDive will expand every peak to the maximal length.")
+    parser.add_argument(
+        "--length_norm_value",
+        metavar='int',
+        help="Set length normalizatiuon value (maximum peak length).")
     parser.add_argument(
         "--max_norm_value",
         metavar='float',
@@ -116,20 +120,22 @@ def main():
 
     extended_peak_file_name = "{}/peaks_extended.bed".format(args.output_folder)
 
+    # Find maximal peak length
+    peaks_file = open(args.input_bed, "r")
+    max_peak_len = 0
+    for line in peaks_file:
+        data = line.strip("\n").split("\t")
+        start = data[1]
+        end = data[2]
+        length = int(end) - int(start)
+        if (length > max_peak_len):
+            max_peak_len = length
+    peaks_file.close()
+
+    print("[NOTE] Maximal Peak Length {}".format(max_peak_len))
+
     # Extend the peaks to the maximal length if the parameter is set to true.
     if ( args.length_norm == "true" ):
-
-        # Find maximal peak length
-        peaks_file = open(args.input_bed, "r")
-        max_peak_len = 0
-        for line in peaks_file:
-            data = line.strip("\n").split("\t")
-            start = data[1]
-            end = data[2]
-            length = int(end) - int(start)
-            if ( length > max_peak_len ):
-                max_peak_len = length
-        peaks_file.close()
 
         # Read in chromosome sizes
         chr_sizes_dict = dict()
@@ -153,17 +159,28 @@ def main():
             extentions_right = numpy.round((max_peak_len-peak_length)/2)
 
             # Check if extention left and right make up the max_peak_length, if not,
-            # then add randomly either to left or right some extra bases. This happends
-            # becuase of the rounding.
-            if ( (extention_left + extentions_right + peak_length) < max_peak_len ):
+            # then add or substract randomly either to left or right some extra bases. This happends
+            # because of the rounding.
+            current_peak_length = extention_left + extentions_right + peak_length
+            if ( current_peak_length < max_peak_len ):
                 # Set seed if seed is provided.
                 if ( args.seed ):
                     numpy.random.seed(int(args.seed))
 
                 if ( numpy.random.randint(low=2, size=1) == 0 ):
-                    extention_left +=  max_peak_len - (extention_left + extentions_right)
+                    extention_left +=  max_peak_len - current_peak_length
                 else:
-                    extentions_right += max_peak_len - (extention_left + extentions_right)
+                    extentions_right += max_peak_len - current_peak_length
+
+            if ( current_peak_length > max_peak_len):
+                # Set seed if seed is provided.
+                if (args.seed):
+                    numpy.random.seed(int(args.seed))
+
+                if (numpy.random.randint(low=2, size=1) == 0):
+                    extention_left += current_peak_length - max_peak_len
+                else:
+                    extentions_right += current_peak_length - max_peak_len
 
             # Check if extension goes beyond the borders of the chromosome.
             beyond_left = "false"
