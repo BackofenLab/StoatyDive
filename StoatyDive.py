@@ -64,9 +64,8 @@ def main():
         help="Write results to this path.")
     parser.add_argument(
         "--length_norm",
-        metavar='bool',
-        default="false",
-        help="Set length normalization to false or true. If true, StoatyDive will expand every peak to the maximal length.")
+        action='store_true',
+        help="Set length normalization. StoatyDive will expand every peak to the maximal length.")
     parser.add_argument(
         "--length_norm_value",
         metavar='int',
@@ -75,6 +74,10 @@ def main():
         "--max_norm_value",
         metavar='float',
         help="Provide a maximum value for the coefficient of variation (CV) to make the normalized CV plot more comparable.")
+    parser.add_argument(
+        "--border_penalty",
+        action='store_true',
+        help="Activate to add a penalty for non-centered peaks.")
     parser.add_argument(
         "--seed",
         metavar='int',
@@ -128,17 +131,26 @@ def main():
         start = data[1]
         end = data[2]
         length = int(end) - int(start)
+
+        if (length < 25):
+            sys.exit("[ERROR] Peak Length has to be at least 25 bases.")
+
         if (length > max_peak_len):
             max_peak_len = length
     peaks_file.close()
 
-    print("[NOTE] Maximal Peak Length {}".format(max_peak_len))
+    print("[NOTE] Maximal Peak Length {}.".format(max_peak_len))
 
     if ( args.length_norm_value ):
-        max_peak_len = int(args.max_norm_value)
+        max_peak_len = int(args.length_norm_value)
+
+    if ( max_peak_len <  25 ):
+        sys.exit("[ERROR] Maximal Peak Length has to be at least 25 bases.")
 
     # Extend the peaks to the maximal length if the parameter is set to true.
-    if ( args.length_norm == "true" ):
+    if ( args.length_norm ):
+
+        print("[NOTE] Activate length normalization.")
 
         # Read in chromosome sizes
         chr_sizes_dict = dict()
@@ -244,6 +256,8 @@ def main():
     num_bp_peaks_dict = dict()
     coordinates_dict = dict()
     strand_dict = dict()
+    center_border_diff_left_dict = dict()
+    center_border_diff_right_dict = dict()
 
     # Get the number of lines of the coverage file of bedtools.
     coverage_file = open(coverage_file_name, "r")
@@ -269,18 +283,29 @@ def main():
         # If the bp == 1 do the negative binomial estimation an start a new peak entry.
         if(bp == 1):
             if( peak_counter != -1 ):
+                peak_center = int(num_bp_peaks_dict[peak_counter] / 2)
+                peak_center_ext = int(num_bp_peaks_dict[peak_counter] * 0.1)
                 # The fit is the alternative version of the NB. But I get the number of successes (r) and the
                 # probability of success (p). At least one value needs to be greater than zero, else the estimation
                 # makes no sense.
-                if ( not all(v == 0 for v in peak_cov_list) ):
+                # The second condition tests for a centered peak. This filters out peaks that have spkied read coverages
+                # at the peak ends.
+                center_region = peak_cov_list[(peak_center-peak_center_ext-1):(peak_center+peak_center_ext)]
+                border_left = peak_cov_list[0:peak_center_ext]
+                border_right = peak_cov_list[-peak_center_ext:]
+                if ( not all(v == 0 for v in peak_cov_list) and not all(v <= 10 for v in center_region) ):
                     nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
                     size_r_peaks_dict[peak_counter] = nb_fit["size"]
                     prob_success_peaks_dict[peak_counter] = nb_fit["prob"]
                     variance_coverage_peaks_dict[peak_counter] = (nb_fit["size"] * (1-nb_fit["prob"])) / (nb_fit["prob"] * nb_fit["prob"])
+                    center_border_diff_left_dict[peak_counter] = numpy.max(center_region) - numpy.max(border_left)
+                    center_border_diff_right_dict[peak_counter] = numpy.max(center_region) - numpy.max(border_right)
                 else:
                     size_r_peaks_dict[peak_counter] = 0.0
                     prob_success_peaks_dict[peak_counter] = 0.0
                     variance_coverage_peaks_dict[peak_counter] = 0.0
+                    center_border_diff_left_dict[peak_counter] = 0.0
+                    center_border_diff_right_dict[peak_counter] = 0.0
             peak_cov_list = []
             peak_cov_list.append(cov)
             peak_counter += 1
@@ -292,27 +317,49 @@ def main():
 
             # This condition takes the last line of the coverage file into account. Else I will miss the last entry.
             if ( line_count == num_coverage_lines ):
-                if (  not all(v == 0 for v in peak_cov_list) ):
+                peak_center = int(num_bp_peaks_dict[peak_counter] / 2)
+                peak_center_ext = int(num_bp_peaks_dict[peak_counter] * 0.1)
+                center_region = peak_cov_list[(peak_center - peak_center_ext - 1):(peak_center + peak_center_ext)]
+                border_left = peak_cov_list[0:peak_center_ext]
+                border_right = peak_cov_list[-peak_center_ext:]
+                if (not all(v == 0 for v in peak_cov_list) and not all(v <= 10 for v in center_region)):
                     nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
                     size_r_peaks_dict[peak_counter] = nb_fit["size"]
                     prob_success_peaks_dict[peak_counter] = nb_fit["prob"]
                     variance_coverage_peaks_dict[peak_counter] = (nb_fit["size"] * (1 - nb_fit["prob"])) / (nb_fit["prob"] * nb_fit["prob"])
+                    center_border_diff_left_dict[peak_counter] = numpy.max(center_region) - numpy.max(border_left)
+                    center_border_diff_right_dict[peak_counter] = numpy.max(center_region) - numpy.max(border_right)
                 else:
                     size_r_peaks_dict[peak_counter] = 0.0
                     prob_success_peaks_dict[peak_counter] = 0.0
                     variance_coverage_peaks_dict[peak_counter] = 0.0
+                    center_border_diff_left_dict[peak_counter] = 0.0
+                    center_border_diff_right_dict[peak_counter] = 0.0
 
     coverage_file.close()
 
     filtered_num_peaks = 0
     varcoeff_coverage_peaks_dict = dict()
 
+    if (args.border_penalty):
+        print("[NOTE] Activate border penalty.")
+
     # Calcualte Variantioncoefficient of peak coverage profile.
     for i in range(0, num_peaks):
 
         # The mean coverage has to be greater than zero or else the VC is not defined.
         if (size_r_peaks_dict[i] > 0):
-            varcoeff_coverage_peaks_dict[i] = 1 / math.sqrt(size_r_peaks_dict[i] * (1 - prob_success_peaks_dict[i]))
+            # varcoeff_coverage_peaks_dict[i] = 1 / math.sqrt(size_r_peaks_dict[i] * (1 - prob_success_peaks_dict[i]))
+            varcoeff_coverage_peaks_dict[i] = math.sqrt((1-prob_success_peaks_dict[i])/size_r_peaks_dict[i])
+
+            if ( args.border_penalty ):
+                w1 = 1
+                w2 = 1
+                if ( center_border_diff_left_dict[i] < 0 ):
+                    w1 = 1/abs(center_border_diff_left_dict[i])
+                if ( center_border_diff_right_dict[i] < 0 ):
+                    w2 = 1/abs(center_border_diff_right_dict[i])
+                varcoeff_coverage_peaks_dict[i] = varcoeff_coverage_peaks_dict[i] * w1 * w2
 
             # Just a safety condition.
             if ( math.isnan(varcoeff_coverage_peaks_dict[i]) ):
@@ -363,21 +410,30 @@ def main():
 
     # Generate the output tabular file.
     print("[NOTE] Generate Output Tabular")
-    out_tab_file_name = args.output_folder + "/VC_tab_{}_tmp.bed".format(outfilename)
+    out_tab_file_name = args.output_folder + "/VC_tab_{}.bed".format(outfilename)
     out_tab_file = open(out_tab_file_name, "w")
-    for i in range(0, num_peaks):
-        coords = coordinates_dict[i]
+
+    index_sort = numpy.argsort(list(varcoeff_coverage_peaks_dict.values()))[::-1]
+    keys_list = list(varcoeff_coverage_peaks_dict.keys())
+
+    for i in index_sort:
+        k = keys_list[i]
+        coords = coordinates_dict[k]
         # "Chr Start End ID VC Strand bp r p Max_Norm_VC"
-        out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
-                                                                 i, varcoeff_coverage_peaks_dict[i], strand_dict[i],
-                                                                 num_bp_peaks_dict[i], size_r_peaks_dict[i],
-                                                                 prob_success_peaks_dict[i],
-                                                                 (varcoeff_coverage_peaks_dict[i]-zero)/(one-zero)))
+        out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
+                                                                 i+1, varcoeff_coverage_peaks_dict[k], strand_dict[k],
+                                                                 num_bp_peaks_dict[k], size_r_peaks_dict[k],
+                                                                 prob_success_peaks_dict[k],
+                                                                 (varcoeff_coverage_peaks_dict[k]-zero)/(one-zero),
+                                                                 center_border_diff_left_dict[k],
+                                                                 center_border_diff_right_dict[k]))
     out_tab_file.close()
 
+    # peak_584
+
     # Sort the tabular file.
-    sb.Popen("sort -r -k 5 -g {} > {}".format(out_tab_file_name, "{}/VC_tab_{}.bed".format(args.output_folder, outfilename)), shell=True).wait()
-    sb.Popen("rm {}".format(out_tab_file_name), shell=True).wait()
+    #sb.Popen("sort -r -k5,5 -g {} > {}".format(out_tab_file_name, "{}/VC_tab_{}.bed".format(args.output_folder, outfilename)), shell=True).wait()
+    #sb.Popen("rm {}".format(out_tab_file_name), shell=True).wait()
 
 if __name__ == '__main__':
     main()
