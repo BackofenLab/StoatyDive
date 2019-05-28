@@ -16,6 +16,17 @@ plt.switch_backend('agg')
 
 # bedtools
 
+##############
+##   FUNC   ##
+##############
+
+# Function to obtain the number of lines in a file.
+def get_line_count(file):
+    count = 0
+    for line in file:
+        count += 1
+    return count
+
 def main():
 
     ####################
@@ -79,6 +90,10 @@ def main():
         action='store_true',
         help="Activate to add a penalty for non-centered peaks.")
     parser.add_argument(
+        "--scale_max",
+        metavar='float',
+        help="Provide a maximum value for the coefficient of variation (CV) plot.")
+    parser.add_argument(
         "--seed",
         metavar='int',
         help="Set seed for the optimization scheme.")
@@ -102,17 +117,6 @@ def main():
     bedfile.close()
 
     ##############
-    ##   FUNC   ##
-    ##############
-
-    # Function to obtain the number of lines in a file.
-    def get_line_count(file):
-        count = 0
-        for line in file:
-            count += 1
-        return count
-
-    ##############
     ##   MAIN   ##
     ##############
 
@@ -123,10 +127,12 @@ def main():
 
     extended_peak_file_name = "{}/peaks_extended.bed".format(args.output_folder)
 
-    # Find maximal peak length
+    # Find maximal peak length and get the number of peaks from the peak file.
     peaks_file = open(args.input_bed, "r")
     max_peak_len = 0
+    num_peaks = 0
     for line in peaks_file:
+        num_peaks += 1
         data = line.strip("\n").split("\t")
         start = data[1]
         end = data[2]
@@ -236,16 +242,12 @@ def main():
         extended_peak_file.close()
 
     else:
-        sb.Popen("cp {} {}".format(args.input_bed, extended_peak_file_name), shell=True).wait()
+        extended_peak_file_name = args.input_bed
 
     # Generate Coverage file with bedtools
     coverage_file_name = "{}/{}_coverage.tsv".format(args.output_folder, outfilename)
     sb.Popen("bedtools coverage -a {} -b {} -d -s > {}".format(extended_peak_file_name, args.input_bam,
                                                                coverage_file_name), shell=True).wait()
-    # Get the number of peaks from the peak file.
-    peaks_file = open(args.input_bed, "r")
-    num_peaks = get_line_count(peaks_file)
-    peaks_file.close()
 
     print("[NOTE] {} peaks will be evaluated.".format(num_peaks))
 
@@ -383,9 +385,16 @@ def main():
 
     print("[NOTE] Generate CV Plot")
 
+    scale_max = 1.0
+    if ( args.scale_max ):
+        if ( float(args.scale_max) < 0.0 ):
+            sys.exit("[ERROR] Wrong value for scale_max!")
+        scale_max = float(args.scale_max)
+
     # Make vase plot of variationkoefficients.
     f = plt.figure()
     plt.violinplot(filtered_varcoeff_coverage_peaks)
+    plt.ylim(0.0, scale_max)
     plt.ylabel('Variationcoefficient of the Peak Profiles')
     f.savefig(args.output_folder + "/VC_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
