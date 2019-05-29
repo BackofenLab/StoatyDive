@@ -395,8 +395,10 @@ def main():
     f = plt.figure()
     plt.violinplot(filtered_varcoeff_coverage_peaks)
     plt.ylim(0.0, scale_max)
-    plt.ylabel('Variationcoefficient of the Peak Profiles')
-    f.savefig(args.output_folder + "/VC_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
+    plt.axes().set_xticklabels([])
+    plt.axes().xaxis.set_ticks_position('none')
+    plt.ylabel('Coefficient of Variation of the Peak Profiles')
+    f.savefig(args.output_folder + "/CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
     # Normalize all VC so that the scale goes from 0 to 1 which makes a comparison between
     # different profile evaluations easier. Unity-based normalization.
@@ -414,12 +416,14 @@ def main():
     f = plt.figure()
     plt.violinplot(filtered_varcoeff_coverage_peaks)
     plt.ylim(0.0, 1.0)
-    plt.ylabel('Normalized Variationcoefficient of the Peak Profiles')
-    f.savefig(args.output_folder + "/Norm_VC_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
+    plt.axes().set_xticklabels([])
+    plt.axes().xaxis.set_ticks_position('none')
+    plt.ylabel('Normalized Coefficient of Variation of the Peak Profiles')
+    f.savefig(args.output_folder + "/Norm_CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
     # Generate the output tabular file.
     print("[NOTE] Generate Output Tabular")
-    out_tab_file_name = args.output_folder + "/VC_tab_{}.bed".format(outfilename)
+    out_tab_file_name = args.output_folder + "/CV_tab_{}.bed".format(outfilename)
     out_tab_file = open(out_tab_file_name, "w")
 
     index_sort = numpy.argsort(list(varcoeff_coverage_peaks_dict.values()))[::-1]
