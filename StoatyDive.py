@@ -36,14 +36,15 @@ def main():
     tool_description = """
     The tool can evalute the profile of peaks. Provide as an input the peaks you want to evalutate
     in bed6 format and the reads you used for the peak detection in bed or bam format. The user obtains
-    a distributions of the variationcoefficient (VC) which can be used to evaluate the profile landscape. 
-    In addition, the tool generates a list ranking the peaks based on the VC. The VC range from 0.0 for a broad 
-    to 1.0 for a sharp peak. The ranked list has the following columns: chr, start, end, peakid, VC, strand,
-    peak length, mean read coverage. 
+    a distributions of the coefficient of variation (CV) which can be used to evaluate the profile landscape. 
+    In addition, the tool generates ranked list for the peaks based on the CV. The table hast the following columns:
+    Chr Start End ID VC Strand bp r p Max_Norm_VC Left_Border_Center_Difference Right_Border_Center_Difference. See 
+    StoatyDive's development page for a detailed description. 
     """
 
     # parse command line arguments
-    parser = argparse.ArgumentParser(description=tool_description, usage='%(prog)s [options]',
+    parser = argparse.ArgumentParser(description=tool_description,
+                                     usage='%(prog)s [-h] [options] -a *.bed -b *.bam/*bed -c *.txt',
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
 
     # version
@@ -58,9 +59,9 @@ def main():
         help="Path to the peak file in bed6 format.")
     parser.add_argument(
         "-b", "--input_bam",
-        metavar='*.bai',
+        metavar='*.bam/*.bed',
         required=True,
-        help="Path to the read bam file used for the peakcalling in bed or bam format.")
+        help="Path to the read bam file used for the peak calling in bed or bam format.")
     parser.add_argument(
         "-c", "--chr_file",
         metavar='*.txt',
@@ -80,7 +81,7 @@ def main():
     parser.add_argument(
         "--length_norm_value",
         metavar='int',
-        help="Set length normalizatiuon value (maximum peak length).")
+        help="Set length normalization value (maximum peak length).")
     parser.add_argument(
         "--max_norm_value",
         metavar='float',
@@ -88,7 +89,7 @@ def main():
     parser.add_argument(
         "--border_penalty",
         action='store_true',
-        help="Activate to add a penalty for non-centered peaks.")
+        help="Adds a penalty for non-centered peaks.")
     parser.add_argument(
         "--scale_max",
         metavar='float',
@@ -101,11 +102,6 @@ def main():
     ######################
     ##   CHECKS INPUT   ##
     ######################
-
-    parser.add_argument(
-        "-d", "--debug",
-        help="Print lots of debugging information",
-        action="store_true")
 
     args = parser.parse_args()
 
@@ -432,7 +428,7 @@ def main():
     for i in index_sort:
         k = keys_list[i]
         coords = coordinates_dict[k]
-        # "Chr Start End ID VC Strand bp r p Max_Norm_VC"
+        # "Chr Start End ID VC Strand bp r p Max_Norm_VC Left_Border_Center_Difference Right_Border_Center_Difference"
         out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
                                                                  i+1, varcoeff_coverage_peaks_dict[k], strand_dict[k],
                                                                  num_bp_peaks_dict[k], size_r_peaks_dict[k],
