@@ -9,9 +9,14 @@ of this repository.
 
 `conda install stoatydive`
 
-### Repositroy download
+### Repository download
 
-`git clone https://github.com/Florian-H-Lab/StoatyDive.git`
+```
+git clone https://github.com/Florian-H-Lab/StoatyDive.git
+cd StoatyDive
+make
+make intall
+```
 
 ## Usage
 
@@ -65,6 +70,14 @@ results.
 - You can set a maximal value for the normalized CV distribution plot with `max_norm_value`. This option helps, if you want to compare several  normalized
 CV distribution plots from different experiments. Take the highest CV from all experiments as a maximal value.
 - You can set a maximal value for the  CV distribution plot with `scale_max`. This option helps, if you want to compare several normalized CV distribution plots from different experiments. Take the highest CV from all experiments as a maximal value.
+
+## Quick Example
+
+Example 1:
+`python StoatyDive.py -a /test/very_sharp_peaks_10/peaks.bed -b /test/very_sharp_peaks_10/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/very_sharp_peaks_10/`
+
+Example 1:
+`python StoatyDive.py -a /test/broad_peaks_10/peaks.bed -b /test/broad_peaks_10/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/broad_peaks_10/`
 
 ## Output
 
