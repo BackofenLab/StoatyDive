@@ -7,16 +7,18 @@ of this repository.
 
 ### Conda
 
-`conda install stoatydive`
+```
+conda install stoatydive
+```
 
 ### Repository download
 
 ```
 git clone https://github.com/Florian-H-Lab/StoatyDive.git
 cd StoatyDive
-make
-make intall
 ```
+
+Requirements: python >= 3.6, bedtools >= 2.27.1, numpy>=1.13.3, matplotlib>=2.1, scipy >= 0.19.1
 
 ## Usage
 
