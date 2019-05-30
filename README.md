@@ -1,4 +1,4 @@
-#StoatyDive
+# StoatyDive
 
 ## Installation
 
@@ -85,7 +85,7 @@ Example 2:
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/broad_peaks/CV_Distribution_reads.png" width="350"> | <img src="/test/sharp_peaks/CV_Distribution_reads.png" width="350"> |
+| <img src="/test/broad_peaks/CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/CV_Distribution_reads.png" width="400"> |
 
 The diagram will give you a first impression of the binding specificity of your
 protein of interest. The diagram also tells you about the performance/quality
@@ -98,7 +98,7 @@ in our example B.
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/broad_peaks/Norm_CV_Distribution_reads.png" width="350"> | <img src="/test/sharp_peaks/Norm_CV_Distribution_reads.png" width="350"> |
+| <img src="/test/broad_peaks/Norm_CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/Norm_CV_Distribution_reads.png" width="400"> |
 
 The normalized CV distribution helps to identify specific and unspecific sites within
 an experiment. The normalized CV is in a range [0,1]. A specific site will have a value of 1. An unspecific site will have a value of 0.
