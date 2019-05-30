@@ -74,14 +74,19 @@ CV distribution plots from different experiments. Take the highest CV from all e
 ## Quick Example
 
 Example 1:
-`python StoatyDive.py -a /test/very_sharp_peaks_10/peaks.bed -b /test/very_sharp_peaks_10/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/very_sharp_peaks_10/`
+`python StoatyDive.py -a /test/broad_peaks/peaks.bed -b /test/broad_peaks/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/broad_peaks/`
 
-Example 1:
-`python StoatyDive.py -a /test/broad_peaks_10/peaks.bed -b /test/broad_peaks_10/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/broad_peaks_10/`
+Example 2:
+`python StoatyDive.py -a /test/sharp_peaks/peaks.bed -b /test/sharp_peaks/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/sharp_peaks/`
 
 ## Output
 
 ### CV distribution plot
+
+| A        | B           |
+| :-------------: |:-------------:|
+| <img src="/test/broad_peaks/CV_Distribution_reads.png" width="350"> | <img src="/test/sharp_peaks/CV_Distribution_reads.png" width="350"> |
+
 The diagram will give you a first impression of the binding specificity of your
 protein of interest. The diagram also tells you about the performance/quality
 of your experiment. An experiment with lots of unspecific binding sites will have
@@ -90,6 +95,11 @@ of specific binding sites will have a CV distribution with a high expected CV, a
 in our example B.
 
 ### Normalized CV distribution plot
+
+| A        | B           |
+| :-------------: |:-------------:|
+| <img src="/test/broad_peaks/Norm_CV_Distribution_reads.png" width="350"> | <img src="/test/sharp_peaks/Norm_CV_Distribution_reads.png" width="350"> |
+
 The normalized CV distribution helps to identify specific and unspecific sites within
 an experiment. The normalized CV is in a range [0,1]. A specific site will have a value of 1. An unspecific site will have a value of 0.
 
