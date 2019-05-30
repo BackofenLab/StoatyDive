@@ -381,7 +381,7 @@ def main():
 
     print("[NOTE] Generate CV Plot")
 
-    scale_max = 1.0
+    scale_max = numpy.max(filtered_varcoeff_coverage_peaks)
     if ( args.scale_max ):
         if ( float(args.scale_max) < 0.0 ):
             sys.exit("[ERROR] Wrong value for scale_max!")
