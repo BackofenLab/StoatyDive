@@ -363,10 +363,6 @@ def main():
             if ( math.isnan(varcoeff_coverage_peaks_dict[i]) ):
                 print(varcoeff_coverage_peaks_dict[i])
 
-            # Because the expected number of successes (mean) were estimated, I have to correct the VC based on the
-            # changed number of the degrees of freedom.
-            # varcoeff_coverage_peaks_dict[i] = varcoeff_coverage_peaks_dict[i] / math.sqrt(num_bp_peaks_dict[i]-1)
-
             filtered_num_peaks += 1
         else:
             varcoeff_coverage_peaks_dict[i] = -0.01
@@ -437,12 +433,6 @@ def main():
                                                                  center_border_diff_left_dict[k],
                                                                  center_border_diff_right_dict[k]))
     out_tab_file.close()
-
-    # peak_584
-
-    # Sort the tabular file.
-    #sb.Popen("sort -r -k5,5 -g {} > {}".format(out_tab_file_name, "{}/VC_tab_{}.bed".format(args.output_folder, outfilename)), shell=True).wait()
-    #sb.Popen("rm {}".format(out_tab_file_name), shell=True).wait()
 
 if __name__ == '__main__':
     main()
