@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 import argparse
 import subprocess as sb
@@ -34,12 +35,11 @@ def main():
     ####################
 
     tool_description = """
-    The tool can evalute the profile of peaks. Provide as an input the peaks you want to evalutate
-    in bed6 format and the reads you used for the peak detection in bed or bam format. The user obtains
-    a distributions of the coefficient of variation (CV) which can be used to evaluate the profile landscape. 
-    In addition, the tool generates ranked list for the peaks based on the CV. The table hast the following columns:
-    Chr Start End ID VC Strand bp r p Max_Norm_VC Left_Border_Center_Difference Right_Border_Center_Difference. See 
-    StoatyDive's development page for a detailed description. 
+    The tool can evalute the profile of peaks. Provide the peaks you want to evalutate in bed6 format and the reads 
+    you used for the peak detection in bed or bam format. The user obtains a distributions of the coefficient of variation (CV)
+    which can be used to evaluate the profile landscape. In addition, the tool generates ranked list for the peaks based 
+    on the CV. The table hast the following columns: Chr Start End ID VC Strand bp r p Max_Norm_VC 
+    Left_Border_Center_Difference Right_Border_Center_Difference. See StoatyDive's development page for a detailed description. 
     """
 
     # parse command line arguments
@@ -61,7 +61,7 @@ def main():
         "-b", "--input_bam",
         metavar='*.bam/*.bed',
         required=True,
-        help="Path to the read bam file used for the peak calling in bed or bam format.")
+        help="Path to the read file used for the peak calling in bed or bam format.")
     parser.add_argument(
         "-c", "--chr_file",
         metavar='*.txt',
@@ -85,7 +85,7 @@ def main():
     parser.add_argument(
         "--max_norm_value",
         metavar='float',
-        help="Provide a maximum value for the coefficient of variation (CV) to make the normalized CV plot more comparable.")
+        help="Provide a maximum value for CV to make the normalized CV plot more comparable.")
     parser.add_argument(
         "--border_penalty",
         action='store_true',
@@ -93,7 +93,7 @@ def main():
     parser.add_argument(
         "--scale_max",
         metavar='float',
-        help="Provide a maximum value for the coefficient of variation (CV) plot.")
+        help="Provide a maximum value for the CV plot.")
     parser.add_argument(
         "--seed",
         metavar='int',
@@ -135,13 +135,13 @@ def main():
         length = int(end) - int(start)
 
         if (length < 25):
-            sys.exit("[ERROR] Peak Length has to be at least 25 bases.")
+            sys.exit("[ERROR] Peak length has to be at least 25 bases.")
 
         if (length > max_peak_len):
             max_peak_len = length
     peaks_file.close()
 
-    print("[NOTE] Maximal Peak Length {}.".format(max_peak_len))
+    print("[NOTE] Maximal peak length {}.".format(max_peak_len))
 
     if ( args.length_norm_value ):
         max_peak_len = int(args.length_norm_value)
@@ -224,7 +224,7 @@ def main():
 
             # A last checkup if peak length is maximum length.
             if ( (end - start) != max_peak_len and not (beyond_left == "true" and beyond_left == "true") ):
-                print("[ERROR] Max length of peak not reached.")
+                print("[ERROR] Max length of peaks not reached.")
                 print(data)
                 print(start)
                 print(end)
@@ -262,7 +262,7 @@ def main():
     num_coverage_lines = get_line_count(coverage_file)
     coverage_file.close()
 
-    # Calcualte mean and variance of peak coverage profiles
+    # Calculate mean and variance of peak coverage profiles
     peak_cov_list = []
 
     coverage_file = open(coverage_file_name, "r")
@@ -375,7 +375,7 @@ def main():
         if (i >= 0):
             filtered_varcoeff_coverage_peaks.append(i)
 
-    print("[NOTE] Generate CV Plot")
+    print("[NOTE] Generate CV plot.")
 
     scale_max = numpy.max(filtered_varcoeff_coverage_peaks)
     if ( args.scale_max ):
@@ -402,7 +402,7 @@ def main():
     for i in range(0, len(filtered_varcoeff_coverage_peaks)):
         filtered_varcoeff_coverage_peaks[i] = (filtered_varcoeff_coverage_peaks[i]-zero)/(one-zero)
 
-    print("[NOTE] Generate Normalized CV Plot")
+    print("[NOTE] Generate normalized CV plot.")
 
     # Make vase plot of variationkoefficients.
     f = plt.figure()
@@ -414,7 +414,7 @@ def main():
     f.savefig(args.output_folder + "/Norm_CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
     # Generate the output tabular file.
-    print("[NOTE] Generate Output Tabular")
+    print("[NOTE] Generate output tabular.")
     out_tab_file_name = args.output_folder + "/CV_tab_{}.bed".format(outfilename)
     out_tab_file = open(out_tab_file_name, "w")
 
