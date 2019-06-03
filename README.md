@@ -1,6 +1,6 @@
 # StoatyDive
 
-StoatyDive is a tool to evaluate predicted peak profiles to assess the binding specificity of a protein to its targets. It can be used for sequencing data such as CLIP-seq or ChIP-Seq. 
+StoatyDive is a tool to evaluate predicted peak profiles to assess the binding specificity of a protein to its targets. It can be used for sequencing data such as CLIP-seq or ChIP-Seq.
 
 ## Installation
 
@@ -24,11 +24,9 @@ Requirements: python >= 3.6, bedtools >= 2.27.1, numpy>=1.13.3, matplotlib>=2.1,
 
 ## Usage
 
-conda:
-`StoatyDive [-h] [options] -a *.bed -b *.bam/*bed -c *.txt`
-
-git:
-`python StoatyDive.py [-h] [options] -a *.bed -b *.bam/*bed -c *.txt`
+```
+StoatyDive.py [-h] [options] -a *.bed -b *.bam/*bed -c *.txt
+```
 
 ```
 optional arguments:
@@ -37,8 +35,8 @@ optional arguments:
   -a *.bed, --input_bed *.bed
                         Path to the peak file in bed6 format.
   -b *.bam/*.bed, --input_bam *.bam/*.bed
-                        Path to the read bam file used for the peak calling in
-                        bed or bam format.
+                        Path to the read file used for the peak calling in bed
+                        or bam format.
   -c *.txt, --chr_file *.txt
                         Path to the chromosome length file.
   -o path/, --output_folder path/
@@ -48,12 +46,10 @@ optional arguments:
   --length_norm_value int
                         Set length normalization value (maximum peak length).
   --max_norm_value float
-                        Provide a maximum value for the coefficient of
-                        variation (CV) to make the normalized CV plot more
-                        comparable.
+                        Provide a maximum value for CV to make the normalized
+                        CV plot more comparable.
   --border_penalty      Adds a penalty for non-centered peaks.
-  --scale_max float     Provide a maximum value for the coefficient of
-                        variation (CV) plot.
+  --scale_max float     Provide a maximum value for the CV plot.
   --seed int            Set seed for the optimization scheme.
 ```
 
