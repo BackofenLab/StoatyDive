@@ -16,8 +16,14 @@ conda install stoatydive
 ### Repository download
 
 ```
-git clone https://github.com/Florian-H-Lab/StoatyDive.git
+git clone https://github.com/heylf/StoatyDive.git
 cd StoatyDive
+```
+
+or
+
+```
+https://github.com/heylf/StoatyDive/archive/v1.0.0.tar.gz
 ```
 
 Requirements: python >= 3.6, bedtools >= 2.27.1, numpy>=1.13.3, matplotlib>=2.1, scipy >= 0.19.1
