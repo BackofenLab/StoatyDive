@@ -1,5 +1,7 @@
 # StoatyDive
 
+StoatyDive is a tool to evaluate predicted peak profiles to assess the binding specificity of a protein to its targets. It can be used for sequencing data such as CLIP-seq or ChIP-Seq. 
+
 ## Installation
 
 You can install StoatyDive via conda or with a direct download
