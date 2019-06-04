@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 import os
 import numpy
 import math
-import fit_nbinom as fnb
 import sys
+
+from lib import fit_nbinom as fnb
 
 plt.switch_backend('agg')
 
