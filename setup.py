@@ -6,6 +6,6 @@ setup(name='StoatyDive',
       author_email='heylf@informatik.uni-freiburg.de',
       url='https://github.com/heylf/StoatyDive',
       license="GNU General Public License v3.0  (GPL)",
-      version='1.0.2',
+      version='1.0.4',
       packages=['lib'],
       scripts=['bin/StoatyDive.py'])
