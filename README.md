@@ -19,7 +19,6 @@ conda install stoatydive
 git clone https://github.com/heylf/StoatyDive.git
 cd StoatyDive
 python setup.py install
-python ./bin/StoatyDive.py -h
 ```
 
 or
