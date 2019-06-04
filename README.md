@@ -18,12 +18,14 @@ conda install stoatydive
 ```
 git clone https://github.com/heylf/StoatyDive.git
 cd StoatyDive
+python setup.py install
+python ./bin/StoatyDive.py -h
 ```
 
 or
 
 ```
-https://github.com/heylf/StoatyDive/archive/v1.0.0.tar.gz
+https://github.com/heylf/StoatyDive/archive/v1.0.2.tar.gz
 ```
 
 Requirements: python >= 3.6, bedtools >= 2.27.1, numpy>=1.13.3, matplotlib>=2.1, scipy >= 0.19.1
@@ -80,10 +82,10 @@ CV distribution plots from different experiments. Take the highest CV from all e
 ## Quick Example
 
 Example 1:
-`python StoatyDive.py -a /test/broad_peaks/peaks.bed -b /test/broad_peaks/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/broad_peaks/`
+`StoatyDive.py -a /test/broad_peaks/peaks.bed -b /test/broad_peaks/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/broad_peaks/`
 
 Example 2:
-`python StoatyDive.py -a /test/sharp_peaks/peaks.bed -b /test/sharp_peaks/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/sharp_peaks/`
+`StoatyDive.py -a /test/sharp_peaks/peaks.bed -b /test/sharp_peaks/reads.bed -c /test/UCSC_edu_goldenPath_dm6_bigZips_dm6.chrom.sizes.txt --length_norm --border_penalty -o /test/sharp_peaks/`
 
 ## Output
 
