@@ -21,11 +21,8 @@ from __future__ import print_function
 import numpy as np
 from scipy.special import gammaln
 from scipy.special import psi
-from scipy.misc import factorial
+from scipy.special import factorial
 from scipy.optimize import fmin_l_bfgs_b as optim
-
-import sys
-
 
 # X is a numpy array representing the data
 # initial params is a numpy array representing the initial values of
