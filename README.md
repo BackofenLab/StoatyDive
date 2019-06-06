@@ -1,6 +1,6 @@
 # StoatyDive
 
-[![GitHub](https://img.shields.io/github/tag/heylf/StoatyDive.svg)](https://github.com/heylf/StoatyDive) [![Bioconda](https://anaconda.org/bioconda/stoatydive/badges/version.svg)](https://anaconda.org/bioconda/stoatydive)
+[![GitHub](https://img.shields.io/github/tag/heylf/StoatyDive.svg)](https://github.com/heylf/StoatyDive) [![Bioconda](https://anaconda.org/bioconda/stoatydive/badges/version.svg)](https://anaconda.org/bioconda/stoatydive)[![Build Status](https://travis-ci.org/heylf/StoatyDive.svg?branch=master)](https://travis-ci.org/heylf/StoatyDive) 
 
 StoatyDive is a tool to evaluate predicted peak profiles to assess the binding specificity of a protein to its targets. It can be used for sequencing data such as CLIP-seq or ChIP-Seq.
 
