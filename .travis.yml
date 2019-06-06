@@ -5,10 +5,8 @@ python:
   - "3.6"
 install:
   - python setup.py -q install
-  - conda install bedtools
 script:
   - StoatyDive.py -h
-  - bedtools -h
 
 
 
