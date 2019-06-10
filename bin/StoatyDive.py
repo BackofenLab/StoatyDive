@@ -135,20 +135,17 @@ def main():
         end = data[2]
         length = int(end) - int(start)
 
-        if (length < 25):
-            sys.exit("[ERROR] Peak length has to be at least 25 bases.")
-
         if (length > max_peak_len):
             max_peak_len = length
     peaks_file.close()
-
-    print("[NOTE] Maximal peak length {}.".format(max_peak_len))
 
     if ( args.length_norm_value ):
         max_peak_len = int(args.length_norm_value)
 
     if ( max_peak_len <  25 ):
         sys.exit("[ERROR] Maximal Peak Length has to be at least 25 bases.")
+
+    print("[NOTE] Maximal peak length {}.".format(max_peak_len))
 
     # Extend the peaks to the maximal length if the parameter is set to true.
     if ( args.length_norm ):
