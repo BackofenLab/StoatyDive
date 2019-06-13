@@ -1,7 +1,7 @@
 # StoatyDive
 
 [![GitHub](https://img.shields.io/github/tag/heylf/StoatyDive.svg)](https://github.com/heylf/StoatyDive) [![Bioconda](https://anaconda.org/bioconda/stoatydive/badges/version.svg)](https://anaconda.org/bioconda/stoatydive)
-[![Build Status](https://travis-ci.org/heylf/StoatyDive.svg?branch=master)](https://travis-ci.org/heylf/StoatyDive) 
+[![Build Status](https://travis-ci.org/heylf/StoatyDive.svg?branch=master)](https://travis-ci.org/heylf/StoatyDive)
 
 StoatyDive is a tool to evaluate predicted peak profiles to assess the binding specificity of a protein to its targets. It can be used for sequencing data such as CLIP-seq or ChIP-Seq.
 
@@ -50,7 +50,10 @@ optional arguments:
   -c *.txt, --chr_file *.txt
                         Path to the chromosome length file.
   -o path/, --output_folder path/
-                        Write results to this path.
+                        Write results to this path. [Default: Operating Path]
+  -t float, --thresh float
+                        Set a CV threshold to divide the peak profiles into
+                        specific and unspecific. [Default: 1.0]
   --length_norm         Set length normalization. StoatyDive will expand every
                         peak to the maximal length.
   --length_norm_value int
@@ -75,6 +78,11 @@ StoatyDive just takes the maximal peak length of the given peak set.
 #### Seed
 Please set a seed if you use StoatyDive for any publications to warrant reproducible
 results.
+
+#### CV Threshold
+The user can set a CV threshold with `-t, --thresh` to divide the predicted
+peaks into more specific (0) and more unspecific sites (1). The default is set
+to `1.0`.
 
 #### Other options
 - You can set a maximal value for the normalized CV distribution plot with `max_norm_value`. This option helps, if you want to compare several  normalized
@@ -129,3 +137,4 @@ The CV tabular file is a ranked, tab separated list of your predicted binding si
   value of the center region of the peak. (Penalty used for the border penalty.)
   12. Difference between the maximal value of the right border and the maximal
   value of the center region of the peak. (Penalty used for the border penalty.)
+  13. Type of Peak: 0 = More specifc binding site; 1 = More unpsecific binding site.
