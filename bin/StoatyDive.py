@@ -74,7 +74,12 @@ def main():
         "-o", "--output_folder",
         metavar='path/',
         default=os.getcwd(),
-        help="Write results to this path.")
+        help="Write results to this path. [Default: Operating Path]")
+    parser.add_argument(
+        "-t", "--thresh",
+        metavar='float',
+        default=1.0,
+        help="Set a CV threshold to divide the peak profiles into specific and unspecific. [Default: 1.0]")
     parser.add_argument(
         "--length_norm",
         action='store_true',
@@ -422,14 +427,22 @@ def main():
     for i in index_sort:
         k = keys_list[i]
         coords = coordinates_dict[k]
-        # "Chr Start End ID VC Strand bp r p Max_Norm_VC Left_Border_Center_Difference Right_Border_Center_Difference"
-        out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
+
+        type = 0
+        if ( varcoeff_coverage_peaks_dict[k] >= args.thresh):
+            type = 0
+        else:
+            type = 1
+
+        # "Chr Start End ID VC Strand bp r p
+        # Max_Norm_VC Left_Border_Center_Difference Right_Border_Center_Difference Specific/Unspecific"
+        out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
                                                                  i+1, varcoeff_coverage_peaks_dict[k], strand_dict[k],
                                                                  num_bp_peaks_dict[k], size_r_peaks_dict[k],
                                                                  prob_success_peaks_dict[k],
                                                                  (varcoeff_coverage_peaks_dict[k]-zero)/(one-zero),
                                                                  center_border_diff_left_dict[k],
-                                                                 center_border_diff_right_dict[k]))
+                                                                 center_border_diff_right_dict[k], type))
     out_tab_file.close()
 
 if __name__ == '__main__':
