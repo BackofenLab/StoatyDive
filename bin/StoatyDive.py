@@ -429,7 +429,7 @@ def main():
         coords = coordinates_dict[k]
 
         type = 0
-        if ( varcoeff_coverage_peaks_dict[k] >= args.thresh):
+        if ( varcoeff_coverage_peaks_dict[k] >= float(args.thresh)):
             type = 0
         else:
             type = 1
