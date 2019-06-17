@@ -35,7 +35,7 @@ def fit_nbinom(X, initial_params=None):
         X = args[0]
         N = X.size
 
-        #MLE estimate based on the formula on Wikipedia:
+        # MLE estimate based on the formula on Wikipedia:
         # http://en.wikipedia.org/wiki/Negative_binomial_distribution#Maximum_likelihood_estimation
         result = np.sum(gammaln(X + r)) \
             - np.sum(np.log(factorial(X))) \
