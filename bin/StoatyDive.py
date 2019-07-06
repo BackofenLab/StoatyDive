@@ -256,6 +256,7 @@ def main():
     variance_coverage_peaks_dict = dict()
     num_bp_peaks_dict = dict()
     coordinates_dict = dict()
+    peakid_dict = dict()
     strand_dict = dict()
     center_border_diff_left_dict = dict()
     center_border_diff_right_dict = dict()
@@ -279,6 +280,7 @@ def main():
         data = line.strip("\n").split("\t")
         bp = int(data[len(data)-2])     # bp of the peak
         cov = int(data[len(data)-1])    # Coverage at that bp
+        peakid = data[3]
         strand = data[5]
 
         # If the bp == 1 do the negative binomial estimation an start a new peak entry.
@@ -315,6 +317,7 @@ def main():
             peak_cov_list.append(cov)
             num_bp_peaks_dict[peak_counter] = bp
             strand_dict[peak_counter] = strand
+            peakid_dict[peak_counter] = peakid
 
             # This condition takes the last line of the coverage file into account. Else I will miss the last entry.
             if ( line_count == num_coverage_lines ):
@@ -408,13 +411,13 @@ def main():
     print("[NOTE] Generate normalized CV plot.")
 
     # Make vase plot of variationkoefficients.
-    f = plt.figure()
+    f2 = plt.figure()
     plt.violinplot(filtered_varcoeff_coverage_peaks)
     plt.ylim(0.0, 1.0)
     plt.axes().set_xticklabels([])
     plt.axes().xaxis.set_ticks_position('none')
     plt.ylabel('Normalized Coefficient of Variation of the Peak Profiles')
-    f.savefig(args.output_folder + "/Norm_CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
+    f2.savefig(args.output_folder + "/Norm_CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
     # Generate the output tabular file.
     print("[NOTE] Generate output tabular.")
@@ -436,8 +439,8 @@ def main():
 
         # "Chr Start End ID VC Strand bp r p
         # Max_Norm_VC Left_Border_Center_Difference Right_Border_Center_Difference Specific/Unspecific"
-        out_tab_file.write("{}\t{}\t{}\tpeak_{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
-                                                                 i+1, varcoeff_coverage_peaks_dict[k], strand_dict[k],
+        out_tab_file.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
+                                                                 peakid_dict[k], varcoeff_coverage_peaks_dict[k], strand_dict[k],
                                                                  num_bp_peaks_dict[k], size_r_peaks_dict[k],
                                                                  prob_success_peaks_dict[k],
                                                                  (varcoeff_coverage_peaks_dict[k]-zero)/(one-zero),
