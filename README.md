@@ -134,7 +134,7 @@ Example 3:
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/broad_peaks/CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/CV_Distribution_reads.png" width="400"> |
+| <img src="test/broad_peaks/CV_Distribution_reads.png" width="400"> | <img src="test/sharp_peaks/CV_Distribution_reads.png" width="400"> |
 
 The diagram will give you a first impression of the binding specificity of your
 protein of interest. The diagram also tells you about the performance/quality
@@ -147,7 +147,7 @@ in our example B.
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/broad_peaks/Norm_CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/Norm_CV_Distribution_reads.png" width="400"> |
+| <img src="test/broad_peaks/Norm_CV_Distribution_reads.png" width="400"> | <img src="test/sharp_peaks/Norm_CV_Distribution_reads.png" width="400"> |
 
 The normalized CV distribution helps to identify specific and unspecific sites within
 an experiment. The normalized CV is in a range [0,1]. A specific site will have a value of 1. An unspecific site will have a value of 0.
@@ -181,7 +181,7 @@ You will get some plots for the classification, saved in the folder `clustering_
 ### Cluster PDFs
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/mixed_peaks/clustering_reads/cluster_1.png" width="400"> | <img src="/test/mixed_peaks/cluster_smoothed1.png" width="400"> |
+| <img src="test/mixed_peaks/clustering_reads/cluster_1.png" width="400"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed1.png" width="400"> |
 
 If you turned on the smoothing you will get two types of cluster sets. One shows you
 some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
@@ -189,7 +189,7 @@ for cluster 1; Figure A). One shows you some example smoothed peak profiles to t
 cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B).
 
 ### k-means Optimization
-<img src="/test/mixed_peaks/clustering_reads/kmeans_Optimization.png" width="400">
+<img src="test/mixed_peaks/clustering_reads/kmeans_Optimization.png" width="400">
 
 The plot `kmeans_Optimization.pdf` shows you the optimization scheme. If you data
 has a very low complexity, that is to say, you have lots of similar peak profiles,
@@ -198,7 +198,7 @@ indicated by strong fluctuations in the other diagrams. If you have very disting
 peak profiles, as in our example, then the variance explained will be `> 90%`.
 
 ### uMAP Plot
-<img src="/test/mixed_peaks/clustering_reads/uMAP.png" width="400">
+<img src="test/mixed_peaks/clustering_reads/uMAP.png" width="400">
 
 The plot `uMAP.pdf` shows you the data in the new dimension found by the uMAP
 dimensional reduction algorithm. In correspondance to the the k-means optimization,
