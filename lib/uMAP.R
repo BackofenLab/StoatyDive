@@ -1,10 +1,6 @@
 
-## calling the installed package
-#install.packages("umap")
-#install.packages("data.table")
-
-library(umap)
-library(data.table) # for the shift function
+require("umap")
+require("data.table") # for the shift function
 
 #################
 ##  Parameters ##
