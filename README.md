@@ -198,7 +198,7 @@ indicated by strong fluctuations in the other diagrams. If you have very disting
 peak profiles, as in our example, then the variance explained will be `> 90%`.
 
 ### uMAP Plot
-<img src="test/mixed_peaks/clustering_reads/uMAP.png" width="400">
+<img src="test/mixed_peaks/clustering_reads/uMAP.png" width="800">
 
 The plot `uMAP.pdf` shows you the data in the new dimension found by the uMAP
 dimensional reduction algorithm. In correspondance to the the k-means optimization,
