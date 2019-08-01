@@ -17,6 +17,7 @@ plt.switch_backend('agg')
 #########################
 
 # bedtools
+# R + umap, data.table
 
 ##############
 ##   FUNC   ##
@@ -101,6 +102,20 @@ def main():
         metavar='float',
         help="Provide a maximum value for the CV plot.")
     parser.add_argument(
+        "--lam",
+        metavar='float',
+        default=0.3,
+        help="Parameter for the peak profile classification. Set lambda for the smoothing of the peak profiles. A higher value (> default) will underfit. A lower value (< default) will overfit. [Default: 0.3]")
+    parser.add_argument(
+        "--maxcl",
+        metavar='int',
+        default=15,
+        help="Maximal number of clusters of the kmeans clustering of the peak profiles. The algorithm will be optimized, i.e., the parameter is just a constraint and not absolute. [Default: 15]")
+    parser.add_argument(
+        "--sm",
+        action='store_true',
+        help="Turn on the peak profile smoothing for the peak profile classification. It is recommended to turn it on.")
+    parser.add_argument(
         "--seed",
         metavar='int',
         help="Set seed for the optimization scheme.")
@@ -108,6 +123,8 @@ def main():
     ######################
     ##   CHECKS INPUT   ##
     ######################
+
+    print("[START]")
 
     args = parser.parse_args()
 
@@ -246,7 +263,7 @@ def main():
     # Generate Coverage file with bedtools
     coverage_file_name = "{}/{}_coverage.tsv".format(args.output_folder, outfilename)
     sb.Popen("bedtools coverage -a {} -b {} -d -s > {}".format(extended_peak_file_name, args.input_bam,
-                                                               coverage_file_name), shell=True).wait()
+                                                             coverage_file_name), shell=True).wait()
 
     print("[NOTE] {} peaks will be evaluated.".format(num_peaks))
 
@@ -260,6 +277,7 @@ def main():
     strand_dict = dict()
     center_border_diff_left_dict = dict()
     center_border_diff_right_dict = dict()
+    tsne_matrix = numpy.empty([num_peaks, max_peak_len])
 
     # Get the number of lines of the coverage file of bedtools.
     coverage_file = open(coverage_file_name, "r")
@@ -296,7 +314,11 @@ def main():
                 center_region = peak_cov_list[(peak_center-peak_center_ext-1):(peak_center+peak_center_ext)]
                 border_left = peak_cov_list[0:peak_center_ext]
                 border_right = peak_cov_list[-peak_center_ext:]
+
+                tsne_matrix[peak_counter] = numpy.array(peak_cov_list)
+
                 if ( not all(v == 0 for v in peak_cov_list) and not all(v <= 10 for v in center_region) ):
+                    # predefined features
                     nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
                     size_r_peaks_dict[peak_counter] = nb_fit["size"]
                     prob_success_peaks_dict[peak_counter] = nb_fit["prob"]
@@ -309,6 +331,7 @@ def main():
                     variance_coverage_peaks_dict[peak_counter] = 0.0
                     center_border_diff_left_dict[peak_counter] = 0.0
                     center_border_diff_right_dict[peak_counter] = 0.0
+
             peak_cov_list = []
             peak_cov_list.append(cov)
             peak_counter += 1
@@ -326,7 +349,11 @@ def main():
                 center_region = peak_cov_list[(peak_center - peak_center_ext - 1):(peak_center + peak_center_ext)]
                 border_left = peak_cov_list[0:peak_center_ext]
                 border_right = peak_cov_list[-peak_center_ext:]
+
+                tsne_matrix[peak_counter] = numpy.array(peak_cov_list)
+
                 if (not all(v == 0 for v in peak_cov_list) and not all(v <= 10 for v in center_region)):
+                    # predefined features
                     nb_fit = fnb.fit_nbinom(numpy.array(peak_cov_list))
                     size_r_peaks_dict[peak_counter] = nb_fit["size"]
                     prob_success_peaks_dict[peak_counter] = nb_fit["prob"]
@@ -421,8 +448,7 @@ def main():
 
     # Generate the output tabular file.
     print("[NOTE] Generate output tabular.")
-    out_tab_file_name = args.output_folder + "/CV_tab_{}.bed".format(outfilename)
-    out_tab_file = open(out_tab_file_name, "w")
+    out_tab_file = open(args.output_folder + "/CV_tab_{}.bed".format(outfilename), "w")
 
     index_sort = numpy.argsort(list(varcoeff_coverage_peaks_dict.values()))[::-1]
     keys_list = list(varcoeff_coverage_peaks_dict.keys())
@@ -437,16 +463,29 @@ def main():
         else:
             type = 1
 
-        # "Chr Start End ID VC Strand bp r p
-        # Max_Norm_VC Left_Border_Center_Difference Right_Border_Center_Difference Specific/Unspecific"
-        out_tab_file.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(coords[0], coords[1], coords[2],
+        # "Chr Start End ID CV Strand bp r p
+        # Max_Norm_CV Left_Border_Center_Difference Right_Border_Center_Difference Inter_Index Specific/Unspecific"
+        out_tab_file.write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\n".format(coords[0], coords[1], coords[2],
                                                                  peakid_dict[k], varcoeff_coverage_peaks_dict[k], strand_dict[k],
                                                                  num_bp_peaks_dict[k], size_r_peaks_dict[k],
                                                                  prob_success_peaks_dict[k],
                                                                  (varcoeff_coverage_peaks_dict[k]-zero)/(one-zero),
                                                                  center_border_diff_left_dict[k],
-                                                                 center_border_diff_right_dict[k], type))
+                                                                 center_border_diff_right_dict[k], k+1, type))
     out_tab_file.close()
+
+
+    ### write data for clustering
+    numpy.savetxt(args.output_folder + "/data_classification_{}.tsv".format(outfilename), tsne_matrix, delimiter="\t", newline="\n")
+
+    ### run Rscript for classification
+    print("[NOTE] Run Calssification")
+    if ( args.sm ):
+        sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} TRUE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+    else:
+        sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} FALSE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+
+    print("[FINISH]")
 
 if __name__ == '__main__':
     main()
