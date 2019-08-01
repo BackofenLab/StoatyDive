@@ -11,6 +11,7 @@ install:
   - python setup.py -q install
 script:
   - StoatyDive.py -h
+  - Rscript lib/uMAP.R
 
 
 
