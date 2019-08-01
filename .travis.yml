@@ -7,10 +7,10 @@ before_install:
   - pip install numpy
   - pip install scipy
 install:
+  - sudo apt-get install -y r-base
   - python setup.py -q install
 script:
   - StoatyDive.py -h
-  - Rscript lib/uMAP.R
 
 
 
