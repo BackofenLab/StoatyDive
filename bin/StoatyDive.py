@@ -102,11 +102,6 @@ def main():
         metavar='float',
         help="Provide a maximum value for the CV plot.")
     parser.add_argument(
-        "--lam",
-        metavar='float',
-        default=0.3,
-        help="Parameter for the peak profile classification. Set lambda for the smoothing of the peak profiles. A higher value (> default) will underfit. A lower value (< default) will overfit. [Default: 0.3]")
-    parser.add_argument(
         "--maxcl",
         metavar='int',
         default=15,
@@ -115,6 +110,15 @@ def main():
         "--sm",
         action='store_true',
         help="Turn on the peak profile smoothing for the peak profile classification. It is recommended to turn it on.")
+    parser.add_argument(
+        "--lam",
+        metavar='float',
+        default=0.3,
+        help="Parameter for the peak profile classification. Set lambda for the smoothing of the peak profiles. A higher value (> default) will underfit. A lower value (< default) will overfit. [Default: 0.3]")
+    parser.add_argument(
+        "--turn_off_classification",
+        action='store_true',
+        help="Turn off the peak profile classification.")
     parser.add_argument(
         "--seed",
         metavar='int',
@@ -417,13 +421,11 @@ def main():
         scale_max = float(args.scale_max)
 
     # Make vase plot of variationkoefficients.
-    f = plt.figure()
     plt.violinplot(filtered_varcoeff_coverage_peaks)
     plt.ylim(0.0, scale_max)
-    plt.axes().set_xticklabels([])
-    plt.axes().xaxis.set_ticks_position('none')
+    plt.xticks([], 'none')
     plt.ylabel('Coefficient of Variation of the Peak Profiles')
-    f.savefig(args.output_folder + "/CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
+    plt.savefig(args.output_folder + "/CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
     # Normalize all VC so that the scale goes from 0 to 1 which makes a comparison between
     # different profile evaluations easier. Unity-based normalization.
@@ -441,8 +443,7 @@ def main():
     f2 = plt.figure()
     plt.violinplot(filtered_varcoeff_coverage_peaks)
     plt.ylim(0.0, 1.0)
-    plt.axes().set_xticklabels([])
-    plt.axes().xaxis.set_ticks_position('none')
+    plt.xticks([], 'none')
     plt.ylabel('Normalized Coefficient of Variation of the Peak Profiles')
     f2.savefig(args.output_folder + "/Norm_CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
@@ -479,11 +480,15 @@ def main():
     numpy.savetxt(args.output_folder + "/data_classification_{}.tsv".format(outfilename), tsne_matrix, delimiter="\t", newline="\n")
 
     ### run Rscript for classification
-    print("[NOTE] Run Calssification")
-    if ( args.sm ):
-        sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} TRUE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+    if ( args.turn_off_classification ):
+        print("[NOTE] Skip Classification")
     else:
-        sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} FALSE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+        print("[NOTE] Run Classification")
+        if ( args.sm ):
+            print("[NOTE] Smoothing turned on")
+            sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} TRUE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+        else:
+            sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} FALSE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
 
     print("[FINISH]")
 
