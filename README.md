@@ -134,7 +134,7 @@ Example 3:
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="test/broad_peaks/CV_Distribution_reads.png" width="400"> | <img src="test/sharp_peaks/CV_Distribution_reads.png" width="400"> |
+| <img src="/test/broad_peaks/CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/CV_Distribution_reads.png" width="400"> |
 
 The diagram will give you a first impression of the binding specificity of your
 protein of interest. The diagram also tells you about the performance/quality
@@ -147,7 +147,7 @@ in our example B.
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="test/broad_peaks/Norm_CV_Distribution_reads.png" width="400"> | <img src="test/sharp_peaks/Norm_CV_Distribution_reads.png" width="400"> |
+| <img src="/test/broad_peaks/Norm_CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/Norm_CV_Distribution_reads.png" width="400"> |
 
 The normalized CV distribution helps to identify specific and unspecific sites within
 an experiment. The normalized CV is in a range [0,1]. A specific site will have a value of 1. An unspecific site will have a value of 0.
@@ -181,7 +181,7 @@ You will get some plots for the classification, saved in the folder `clustering_
 ### Cluster PDFs
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="test/mixed_peaks/clustering_reads/cluster_1.png" width="400"> | <img src="test/mixed_peaks/cluster_smoothed1.png" width="400"> |
+| <img src="/test/mixed_peaks/clustering_reads/cluster_1.png" width="400"> | <img src="/test/mixed_peaks/cluster_smoothed1.png" width="400"> |
 
 If you turned on the smoothing you will get two types of cluster sets. One shows you
 some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
