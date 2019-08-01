@@ -1,26 +1,16 @@
-matrix:
-  include:
-    - language: python
-      python:
-        - "3.5"
-        - "3.6"
-      before_install:
-        - pip install matplotlib
-        - pip install numpy
-        - pip install scipy
-      install:
-        - python setup.py -q install
-      script:
-        - StoatyDive.py -h
-    - language: r
-      r:
-        - oldrel
-        - release
-      r_packages:
-        - umap
-        - data.table
-      script:
-        - Rscript lib/uMAP.R
+language: python
+python:
+  - "3.5"
+  - "3.6"
+before_install:
+  - pip install matplotlib
+  - pip install numpy
+  - pip install scipy
+install:
+  - python setup.py -q install
+script:
+  - StoatyDive.py -h
+  - Rscript lib/uMAP.R
 
 
 
