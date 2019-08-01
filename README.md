@@ -65,6 +65,19 @@ optional arguments:
                         CV plot more comparable.
   --border_penalty      Adds a penalty for non-centered peaks.
   --scale_max float     Provide a maximum value for the CV plot.
+  --maxcl int           Maximal number of clusters of the kmeans clustering of
+                        the peak profiles. The algorithm will be optimized,
+                        i.e., the parameter is just a constraint and not
+                        absolute. [Default: 15]
+  --sm                  Turn on the peak profile smoothing for the peak
+                        profile classification. It is recommended to turn it
+                        on.
+  --lam float           Parameter for the peak profile classification. Set
+                        lambda for the smoothing of the peak profiles. A
+                        higher value (> default) will underfit. A lower value
+                        (< default) will overfit. [Default: 0.3]
+  --turn_off_classification
+                        Turn off the peak profile classification.
   --seed int            Set seed for the optimization scheme.
 ```
 
@@ -121,7 +134,7 @@ Example 3:
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/broad_peaks/CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/CV_Distribution_reads.png" width="400"> |
+| <img src="test/broad_peaks/CV_Distribution_reads.png" width="400"> | <img src="test/sharp_peaks/CV_Distribution_reads.png" width="400"> |
 
 The diagram will give you a first impression of the binding specificity of your
 protein of interest. The diagram also tells you about the performance/quality
@@ -134,7 +147,7 @@ in our example B.
 
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/broad_peaks/Norm_CV_Distribution_reads.png" width="400"> | <img src="/test/sharp_peaks/Norm_CV_Distribution_reads.png" width="400"> |
+| <img src="test/broad_peaks/Norm_CV_Distribution_reads.png" width="400"> | <img src="test/sharp_peaks/Norm_CV_Distribution_reads.png" width="400"> |
 
 The normalized CV distribution helps to identify specific and unspecific sites within
 an experiment. The normalized CV is in a range [0,1]. A specific site will have a value of 1. An unspecific site will have a value of 0.
@@ -168,7 +181,7 @@ You will get some plots for the classification, saved in the folder `clustering_
 ### Cluster PDFs
 | A        | B           |
 | :-------------: |:-------------:|
-| <img src="/test/mixed_peaks/clustering_reads/cluster_1.pdf" width="400"> | <img src="/test/mixed_peaks/cluster_smoothed1.pdf" width="400"> |
+| <img src="test/mixed_peaks/clustering_reads/cluster_1.pdf" width="400"> | <img src="test/mixed_peaks/cluster_smoothed1.pdf" width="400"> |
 
 If you turned on the smoothing you will get two types of cluster sets. One shows you
 some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
@@ -190,4 +203,4 @@ peak profiles, as in our example, then the variance explained will be `> 90%`.
 The plot `uMAP.pdf` shows you the data in the new dimension found by the uMAP
 dimensional reduction algorithm. In correspondance to the the k-means optimization,
 highly distinguishable peaks will appear in the plot as very clearly separated
-point clusters. 
+point clusters.
