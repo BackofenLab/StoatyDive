@@ -8,4 +8,7 @@ setup(name='StoatyDive',
       license="GNU General Public License v3.0  (GPL)",
       version='1.0.4',
       packages=['lib'],
+      package_data={'': ['*.r', '*.R']},
+      include_package_data=True,
+      zip_safe = False,
       scripts=['bin/StoatyDive.py'])
