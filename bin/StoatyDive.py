@@ -174,6 +174,7 @@ def main():
     print("[NOTE] Maximal peak length {}.".format(max_peak_len))
 
     # Extend the peaks to the maximal length if the parameter is set to true.
+    bool_length_norm = 0
     if ( args.length_norm ):
 
         print("[NOTE] Activate length normalization.")
@@ -263,6 +264,7 @@ def main():
 
     else:
         extended_peak_file_name = args.input_bed
+        bool_length_norm = 1
 
     # Generate Coverage file with bedtools
     coverage_file_name = "{}/{}_coverage.tsv".format(args.output_folder, outfilename)
@@ -477,7 +479,21 @@ def main():
 
 
     ### write data for clustering
-    numpy.savetxt(args.output_folder + "/data_classification_{}.tsv".format(outfilename), tsne_matrix, delimiter="\t", newline="\n")
+    if ( bool_length_norm == 0 ):
+        numpy.savetxt(args.output_folder + "/data_classification_{}.tsv".format(outfilename), tsne_matrix, delimiter="\t", newline="\n")
+    else:
+        # Pad profiles with zero to make them the same length if length normalization was tuned of
+        for v in tsne_matrix:
+            l = numpy.floor( (max_peak_len - len(v))/2 )
+            r = numpy.floor( (max_peak_len - len(v))/2 )
+
+            if ( (l+r+len(v)) != max_peak_len ):
+                r += max_peak_len - (l+r+len(v))
+
+            v = numpy.pad(v, (l, r), 'constant', constant_values=(0,0))
+        numpy.savetxt(args.output_folder + "/data_classification_{}.tsv".format(outfilename), tsne_matrix, delimiter="\t", newline="\n")
+
+    script_path = os.path.join(os.path.dirname(os.path.dirname(fnb.__file__)), "lib/uMAP.R")
 
     ### run Rscript for classification
     if ( args.turn_off_classification ):
@@ -486,9 +502,9 @@ def main():
         print("[NOTE] Run Classification")
         if ( args.sm ):
             print("[NOTE] Smoothing turned on")
-            sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} TRUE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+            sb.Popen("Rscript {0} {1} {2} {3} {4} TRUE".format(script_path, args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
         else:
-            sb.Popen("Rscript lib/uMAP.R {0} {1} {2} {3} FALSE".format(args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+            sb.Popen("Rscript {0} {1} {2} {3} {4} FALSE".format(script_path, args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
 
     print("[FINISH]")
 
