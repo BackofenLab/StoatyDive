@@ -28,6 +28,7 @@ from scipy.optimize import fmin_l_bfgs_b as optim
 # initial params is a numpy array representing the initial values of
 # size and prob parameters
 def fit_nbinom(X, initial_params=None):
+
     infinitesimal = np.finfo(np.float).eps
 
     def log_likelihood(params, *args):
