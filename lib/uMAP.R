@@ -20,11 +20,11 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   output_path <- paste0(data_path, "/clustering_", filename, "/")
   
   # get data
-  data <- read.table(paste0(data_path, "data_classification_", filename, ".tsv"), header=FALSE)
+  data <- read.table(paste0(data_path, "/data_classification_", filename, ".tsv"), header=FALSE)
   data2 <- matrix(as.numeric(unlist(data)), nrow=nrow(data), ncol=ncol(data))
   rownames(data2) <- seq(1, nrow(data2))
   
-  outputmatrix <- read.table(paste0(data_path, "CV_tab_", filename , ".bed"), header=FALSE)
+  outputmatrix <- read.table(paste0(data_path, "/CV_tab_", filename , ".bed"), header=FALSE)
   
   ################
   ##  Normalize ##
@@ -196,7 +196,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     plot(num_centroids, perc,
          type="b", pch = 19, frame = FALSE,
          xlab="Number of Clusters",
-         ylab="Percent of Variance explained",
+         ylab=" ",
          ylim = c(0,100),
          xlim=c(1,k.max))
     text( (opt - 0.5) , perc[opt], round(perc[opt], digits = 1))
@@ -254,6 +254,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   }
   
   pdf(paste0(output_path,"/uMAP.pdf"))
+  par(family = 'serif', cex = 1.5)
   
   plot_uMAP(1, 2, new_data)
   
@@ -282,7 +283,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   outputmatrix[match(duplicates, outputmatrix[,13]), ncol(outputmatrix)] <- clusters_of_duplicates
   outputmatrix[match(rownames(data_removed_duplicates), outputmatrix[,13]), ncol(outputmatrix)] <- clusters
   
-  write.table(outputmatrix, file=paste0(data_path, "final_tab_", filename, ".bed"), row.names = FALSE, col.names = FALSE, quote = FALSE, sep="\t")
+  write.table(outputmatrix, file=paste0(data_path, "/final_tab_", filename, ".bed"), row.names = FALSE, col.names = FALSE, quote = FALSE, sep="\t")
   
   ########################################
   ## Generate Peak Profiles of Clusters ##
@@ -308,16 +309,18 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     }
     
     if( on_off_smoothing ) {
-      pdf(paste0(output_path, "cluster_smoothed", unique_clusters[i],".pdf"))
+      pdf(paste0(output_path, "/cluster_smoothed", unique_clusters[i],".pdf"))
+      par(family = 'serif', cex = 1.5)
       for( j in 1:num_peaks ){
-          plot(testing2[peaks[j],])
+          plot(testing2[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position")
       }
       dev.off()
     }
     
-    pdf(paste0(output_path, "cluster_", unique_clusters[i],".pdf"))
+    pdf(paste0(output_path, "/cluster_", unique_clusters[i],".pdf"))
+    par(family = 'serif', cex = 1.5)
     for( j in 1:num_peaks ){
-      plot(data_normalized[peaks[j],])
+      plot(data_normalized[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position")
     }
     dev.off()
     
