@@ -4,6 +4,8 @@ require("data.table") # for the shift function
 
 umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_smoothing){
 
+  set.seed(123)
+  
   print(data_path)
   print(filename)
   print(lam)
@@ -152,8 +154,6 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   # function to find optimal number of clusters
   kopt <- function(data, k.max){
     
-    set.seed(123)
-    
     num_centroids <- c(2:k.max) 
     
     kmeans <- sapply(num_centroids, function(k){kmeans(data, centers = k, nstart = 100, iter.max = 1000)})
@@ -243,9 +243,12 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   #########################
   colors <- rainbow(length(unique(clusters)))
   cluster_colors <- unlist(lapply(clusters, function(x) { return(colors[x]) }))
+  seq_clusters <- c(1:length(unique(clusters)))
   
   plot_uMAP <- function(c1, c2, data){
+    par(mar=c(4.1, 4.1, 4.1, 4.1), xpd=TRUE)
     plot(data[,c1], data[,c2], xlab=paste0("Dim ",c1), ylab=paste0("Dim ",c2), col="white")
+    legend("topright", inset=c(-0.2,0), col=colors[seq_clusters], legend=seq_clusters, pch=seq_clusters, title="Group")
     
     for(k in 1:length(unique(clusters))){
       datapoints <- which(clusters == k)
