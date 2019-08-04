@@ -152,8 +152,8 @@ in our example B.
 The normalized CV distribution helps to identify specific and unspecific sites within
 an experiment. The normalized CV is in a range [0,1]. A specific site will have a value of 1. An unspecific site will have a value of 0.
 
-## CV_tab file
-The CV tabular file is a ranked, tab separated list of your predicted binding sites:
+## final_tab_*.bed file
+The final tabular file is a ranked, tab separated list of your predicted binding sites:
   1. Chromosome
   2. Start of Peak
   3. End of peak
@@ -173,7 +173,9 @@ The CV tabular file is a ranked, tab separated list of your predicted binding si
   15. Class of the Peak (Cluster)
 
 Use column `14` to divide your peak into the two general categories of
-specific and unspecific. Use column `15` to find peaks with a specific shape.
+specific and unspecific. Use column `15` to find peaks with a specific shape. If the user
+skipped the classification, then the final_tab_*.bed is the CV_tab_*.bed. The
+tabular has no 15th column. 
 
 ## Clustering/Classification Results
 You will get some plots for the classification, saved in the folder `clustering_*`.
