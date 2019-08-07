@@ -113,6 +113,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     data_points <- length(y)
     
     # Test if we have just a vector of constant values.
+    # Lambda is part of the splines ridge regression.
     which(y != max(y))
     if ( length(which(y != max(y))) != 0 ){
       x <- c(1:data_points)
