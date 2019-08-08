@@ -175,20 +175,22 @@ The final tabular file is a ranked, tab separated list of your predicted binding
 Use column `14` to divide your peak into the two general categories of
 specific and unspecific. Use column `15` to find peaks with a specific shape. If the user
 skipped the classification, then the final_tab_*.bed is the CV_tab_*.bed. The
-tabular has no 15th column. 
+tabular has no 15th column.
 
 ## Clustering/Classification Results
 You will get some plots for the classification, saved in the folder `clustering_*`.
 
-### Cluster PDFs
+### Cluster Profiles (pdf)
 | A        | B           |
 | :-------------: |:-------------:|
 | <img src="test/mixed_peaks/clustering_reads/cluster_1.svg" width="400"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed1.svg" width="400"> |
 
 If you turned on the smoothing you will get two types of cluster sets. One shows you
 some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
-for cluster 1; Figure A). One shows you some example smoothed peak profiles to the specific
-cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B).
+for cluster 1; Figure A). One shows you some example smoothed and sometimes translocated
+peak profiles to the specific cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B).
+Profile like figure B are used for the classification. The profiles are colored based
+on the clusters as seen as in the uMAP plot. 
 
 ### k-means Optimization
 <img src="test/mixed_peaks/clustering_reads/kmeans_Optimization.svg" width="800">
