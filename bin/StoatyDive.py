@@ -168,8 +168,8 @@ def main():
     if ( args.length_norm_value ):
         max_peak_len = int(args.length_norm_value)
 
-    if ( max_peak_len <  25 ):
-        sys.exit("[ERROR] Maximal Peak Length has to be at least 25 bases.")
+    if ( max_peak_len <  10 ):
+        sys.exit("[ERROR] Maximal Peak Length has to be at least 10 bases.")
 
     print("[NOTE] Maximal peak length {}.".format(max_peak_len))
 
