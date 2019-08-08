@@ -141,6 +141,13 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     data_smoothed <- t(apply(data_ready, 1, smoothing, lambda=lam, dim=smoothing_dim))
   }
   
+  pdf(paste0(output_path,"/preReductionData.pdf"))
+  par(family = 'serif', cex = 1.5)
+  plot(data_smoothed[,1], data_smoothed[,2], xlab=paste0("Dim ",1), ylab=paste0("Dim ",2))
+  plot(data_smoothed[,1], data_smoothed[,3], xlab=paste0("Dim ",1), ylab=paste0("Dim ",3))
+  plot(data_smoothed[,2], data_smoothed[,3], xlab=paste0("Dim ",2), ylab=paste0("Dim ",3))
+  dev.off()
+  
   #######################
   ##  kmeans Functions ##
   #######################
