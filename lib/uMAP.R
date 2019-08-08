@@ -141,11 +141,12 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     data_smoothed <- t(apply(data_ready, 1, smoothing, lambda=lam, dim=smoothing_dim))
   }
   
-  pdf(paste0(output_path,"/preReductionData.pdf"))
+  pdf(paste0(output_path,"/PCA.pdf"))
   par(family = 'serif', cex = 1.5)
-  plot(data_smoothed[,1], data_smoothed[,2], xlab=paste0("Dim ",1), ylab=paste0("Dim ",2))
-  plot(data_smoothed[,1], data_smoothed[,3], xlab=paste0("Dim ",1), ylab=paste0("Dim ",3))
-  plot(data_smoothed[,2], data_smoothed[,3], xlab=paste0("Dim ",2), ylab=paste0("Dim ",3))
+  pca <- prcomp(data_smoothed)$x
+  plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
+  plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
+  plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
   dev.off()
   
   #######################
