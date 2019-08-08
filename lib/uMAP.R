@@ -308,7 +308,6 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   pre_testing1 <- t(apply(data_normalized, 1, center_peak, x_dist=dist))
   testing1 <- data_normalized
   testing1[peaks_to_translocate, ] <- pre_testing1[peaks_to_translocate,]
-  
   testing2 <- t(apply(testing1, 1, smoothing, lambda=lam, dim=150))
   
   unique_clusters <- unique(clusters)
@@ -324,7 +323,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
       pdf(paste0(output_path, "/cluster_smoothed", unique_clusters[i],".pdf"))
       par(family = 'serif', cex = 1.5)
       for( j in 1:num_peaks ){
-          plot(testing2[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position")
+          plot(testing2[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position", 
+               col = colors[unique_clusters[i]], pch=20)
       }
       dev.off()
     }
@@ -332,7 +332,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     pdf(paste0(output_path, "/cluster_", unique_clusters[i],".pdf"))
     par(family = 'serif', cex = 1.5)
     for( j in 1:num_peaks ){
-      plot(data_normalized[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position")
+      plot(data_normalized[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position", 
+           col = colors[unique_clusters[i]], pch=20)
     }
     dev.off()
     
