@@ -337,6 +337,15 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     }
     dev.off()
     
+    
+    average_profile <- apply(testing1[peaks,], 2, mean)
+    
+    pdf(paste0(output_path, "/cluster_average_profiles", unique_clusters[i],".pdf"))
+    par(family = 'serif', cex = 1.5)
+    plot(average_profile, ylab = "Normalized Read Count", xlab = "Nucleotide Position", 
+         col = colors[unique_clusters[i]], pch=20)
+    dev.off()
+    
   }
 }
 
