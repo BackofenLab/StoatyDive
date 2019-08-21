@@ -170,10 +170,11 @@ The final tabular file is a ranked, tab separated list of your predicted binding
   value of the center region of the peak. (Penalty used for the border penalty.)
   13. Internal peak index
   14. Type of Peak: 0 = More specifc binding site; 1 = More unpsecific binding site.
-  15. Class of the Peak (Cluster)
+  15. Relative Position of the maximal coverage/intensity (sumit) inside the peak.
+  16. Class of the Peak (Cluster).
 
 Use column `14` to divide your peak into the two general categories of
-specific and unspecific. Use column `15` to find peaks with a specific shape. If the user
+specific and unspecific. Use column `16` to find peaks with a specific shape. If the user
 skipped the classification, then the final_tab_*.bed is the CV_tab_*.bed. The
 tabular has no 15th column.
 
@@ -190,7 +191,7 @@ some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.
 for cluster 1; Figure A). One shows you some example smoothed and sometimes translocated
 peak profiles to the specific cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B).
 Profile like figure B are used for the classification. The profiles are colored based
-on the clusters as seen as in the uMAP plot. 
+on the clusters as seen as in the uMAP plot.
 
 ### k-means Optimization
 <img src="test/mixed_peaks/clustering_reads/kmeans_Optimization.svg" width="800">
