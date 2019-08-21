@@ -165,7 +165,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     
     num_centroids <- c(2:k.max) 
     
-    kmeans <- sapply(num_centroids, function(k){kmeans(data, centers = k, nstart = 100, iter.max = 1000)})
+    kmeans <- sapply(num_centroids, function(k){kmeans(data, centers = k, nstart = 100, iter.max = 10000)})
     
     # get total within-cluster sum of squares
     twss <- numeric(ncol(kmeans))
@@ -189,8 +189,11 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     }
     percantage_diff <- differences/sum(differences)
     
-    if ( which( percantage_diff < 0.1 )[1] < opt ) 
-      opt <- which( percantage_diff < 0.1 )[1] + 2
+    if (  is.na(which( percantage_diff < 0.1 )[1] ) == FALSE ){
+      if ( which( percantage_diff < 0.1 )[1] < opt ) {
+        opt <- which( percantage_diff < 0.1 )[1] + 2
+      }
+    }
     
     pdf(paste0(output_path, "/kmeans_Optimization.pdf"), 15, 15)
     par(cex = 2.0, mfrow = c(2,2), cex = 1.5, family = 'serif')
@@ -236,30 +239,47 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   data_umap = umap(data_smoothed, config = custom.config)
   new_data <- data_umap$layout
   
+  # Remove constant value profiles
+  constant_profiles <- apply( data_smoothed, 1, function(x){return(length(which(x!=0)))} )
+  non_constant_profiles <- which(constant_profiles!=0)
+  constant_profiles <- which(constant_profiles==0)
+  new_data_for_kmeans <- new_data[non_constant_profiles,]
+  
   ###############
   ### kmeans  ###
   ###############
   
-  returned_optimisation_values <- kopt(new_data, maximal_cluster_number)
+  returned_optimisation_values <- kopt(new_data_for_kmeans, maximal_cluster_number)
   optimal_num_centroids <- returned_optimisation_values[1]
   optimal_perc <- returned_optimisation_values[2]
   
   ## use kmeans clustering with optimal number of centroids
-  clusters <- kmeans(new_data, centers=optimal_num_centroids, nstart = 100, iter.max = 1000)$cluster
+  clusters <- kmeans(new_data_for_kmeans, centers=optimal_num_centroids, nstart = 100, iter.max = 1000)$cluster
+  
+  num_clusters <- length(unique(clusters)) 
+  
+  # Add cluster of constant values 
+  if ( length(constant_profiles) != 0 ){
+    num_clusters <- num_clusters + 1
+    add_constant_cluster <- rep(-1, nrow(new_data))
+    add_constant_cluster[non_constant_profiles] <- clusters
+    add_constant_cluster[constant_profiles] <- num_clusters
+    clusters <- add_constant_cluster
+  }
   
   #########################
   ##  Visualize Clusters ##
   #########################
-  colors <- rainbow(length(unique(clusters)))
+  colors <- rainbow(num_clusters)
   cluster_colors <- unlist(lapply(clusters, function(x) { return(colors[x]) }))
-  seq_clusters <- c(1:length(unique(clusters)))
+  seq_clusters <- c(1:num_clusters)
   
   plot_uMAP <- function(c1, c2, data){
     par(mar=c(4.1, 4.1, 4.1, 4.1), xpd=TRUE)
     plot(data[,c1], data[,c2], xlab=paste0("Dim ",c1), ylab=paste0("Dim ",c2), col="white")
     legend("topright", inset=c(-0.2,0), col=colors[seq_clusters], legend=seq_clusters, pch=seq_clusters, title="Group")
     
-    for(k in 1:length(unique(clusters))){
+    for(k in 1:num_clusters){
       datapoints <- which(clusters == k)
       points(data[datapoints,c1], data[datapoints,c2], col=colors[k], pch=k)
     }
@@ -291,6 +311,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   cluster_col[duplicates, 1] <- clusters_of_duplicates
   
   # Fill output matrix 
+  summit_positions <- apply(data2, 1, which.max)
+  outputmatrix <- cbind(outputmatrix, summit_positions)
   outputmatrix <- cbind(outputmatrix, rep(-1, nrow(outputmatrix)))
   outputmatrix[match(duplicates, outputmatrix[,13]), ncol(outputmatrix)] <- clusters_of_duplicates
   outputmatrix[match(rownames(data_removed_duplicates), outputmatrix[,13]), ncol(outputmatrix)] <- clusters
@@ -343,7 +365,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     pdf(paste0(output_path, "/cluster_average_profile", unique_clusters[i],".pdf"))
     par(family = 'serif', cex = 1.5)
     plot(average_profile, ylab = "Normalized Read Count", xlab = "Nucleotide Position", 
-         col = colors[unique_clusters[i]], pch=20)
+         col = colors[unique_clusters[i]], pch=20, ylim=c(0,1))
     dev.off()
     
   }
