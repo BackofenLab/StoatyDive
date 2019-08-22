@@ -185,7 +185,7 @@ The final tabular file is a ranked, tab separated list of your predicted binding
 Use column `14` to divide your peak into the two general categories of
 specific and unspecific. Use column `16` to find peaks with a specific shape. If the user
 skipped the classification, then the final_tab_*.bed is the CV_tab_*.bed. The
-tabular has no 15th column.
+tabular has no 15/16th column.
 
 ## Clustering/Classification Results
 You will get some plots for the classification, saved in the folder `clustering_*`.
