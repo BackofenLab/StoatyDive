@@ -37,11 +37,11 @@ def main():
     ####################
 
     tool_description = """
-    The tool can evalute the profile of peaks. Provide the peaks you want to evalutate in bed6 format and the reads 
+    The tool can evalute the profile of peaks. Provide the peaks you want to evalutate in bed6 format and the reads
     you used for the peak detection in bed or bam format. The user obtains a distributions of the coefficient of variation (CV)
-    which can be used to evaluate the profile landscape. In addition, the tool generates ranked list for the peaks based 
-    on the CV. The table hast the following columns: Chr Start End ID VC Strand bp r p Max_Norm_VC 
-    Left_Border_Center_Difference Right_Border_Center_Difference. See StoatyDive's development page for a detailed description. 
+    which can be used to evaluate the profile landscape. In addition, the tool generates ranked list for the peaks based
+    on the CV. The table hast the following columns: Chr Start End ID VC Strand bp r p Max_Norm_VC
+    Left_Border_Center_Difference Right_Border_Center_Difference. See StoatyDive's development page for a detailed description.
     """
 
     # parse command line arguments
@@ -110,6 +110,10 @@ def main():
         "--sm",
         action='store_true',
         help="Turn on the peak profile smoothing for the peak profile classification. It is recommended to turn it on.")
+    parser.add_argument(
+        "--max_translocate",
+        action='store_true',
+        help="Set this flag is you want to translocate the peak profiles based on the maximum value inside the profile instead of a Gaussian blur translocation.")
     parser.add_argument(
         "--lam",
         metavar='float',
@@ -495,16 +499,27 @@ def main():
 
     script_path = os.path.join(os.path.dirname(os.path.dirname(fnb.__file__)), "lib/uMAP.R")
 
-    ### run Rscript for classification
+    ### Create R call
+    Rcall = "Rscript {0} {1} {2} {3} {4}".format(script_path, args.output_folder, outfilename, args.lam, args.maxcl)
+
+    if ( args.sm ):
+        print("[NOTE] Smoothing turned on")
+        Rcall += " TRUE"
+    else:
+        Rcall += " FALSE"
+
+    if ( args.max_translocate ):
+        print("[NOTE] Max translocation turned on")
+        Rcall += " TRUE"
+    else:
+        Rcall += " FALSE"
+
+    ### Run Rscript for classification
     if ( args.turn_off_classification ):
         print("[NOTE] Skip Classification")
     else:
         print("[NOTE] Run Classification")
-        if ( args.sm ):
-            print("[NOTE] Smoothing turned on")
-            sb.Popen("Rscript {0} {1} {2} {3} {4} TRUE".format(script_path, args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
-        else:
-            sb.Popen("Rscript {0} {1} {2} {3} {4} FALSE".format(script_path, args.output_folder, outfilename, args.lam, args.maxcl), shell=True).wait()
+        sb.Popen(Rcall, shell=True).wait()
 
     print("[FINISH]")
 
