@@ -2,7 +2,7 @@
 require("umap")
 require("data.table") # for the shift function
 
-umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_smoothing){
+umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_smoothing, max_translocate){
 
   set.seed(123)
   
@@ -11,6 +11,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   print(lam)
   print(maximal_cluster_number)
   print(on_off_smoothing)
+  print(max_translocate)
   
   ############
   ##  Input ##
@@ -46,65 +47,6 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   duplicates <- which(duplicated(data_normalized))
   data_removed_duplicates <- data_normalized[which(duplicated(data_normalized) == FALSE),]
   
-  ############################
-  ##  Check for Translocate ##
-  ############################
-  
-  end <- ncol(data_removed_duplicates)
-  
-  left <- which(apply(data_removed_duplicates[,1:3], 1, mean) < 0.8)
-  right <- which(apply(data_removed_duplicates[,(end-2):end], 1, mean) < 0.8)
-  
-  peaks_to_translocate <- intersect(left, right)
-  
-  #################
-  ##  Tranlocate ##
-  #################
-  
-  translocate_forward <- function(v, s){
-    end <- length(v)
-    v_new <- shift(v, s)
-    v_new[1:s] <- v[(end-s+1):end]
-    return(v_new)
-  }
-  
-  translocate_backward <- function(v, s){
-    end <- length(v)
-    v_new <- shift(v, s)
-    v_new[(end-abs(s)+1):end] <- v[1:abs(s)]
-    return(v_new)
-  }
-  
-  center_peak <- function(y_peak, x_dist){
-    s <- which.max(convolve(x_dist , y_peak, type="open")) - length(y_peak)
-    if ( s < 0 ){
-      return(translocate_backward(y_peak, s))
-    }
-    if ( s > 0 ){
-      return(translocate_forward(y_peak, s))
-    } 
-    return(y_peak)
-  }
-  
-  # Center Peak
-  # Use a Gaussian distribution to center the peaks around the middle of the diagram.
-  dist <- dnorm(seq(-4, 4, 8/ncol(data_removed_duplicates)), mean=0, sd=1)
-  dist <- dist/max(dist)
-  d <- length(dist) - ncol(data_removed_duplicates)
-  dist <- dist[1:ncol(data_removed_duplicates)]
-  
-  if ( d > 0 ){
-    dist <- translocate_backward(dist, -d)
-  }
-  
-  if ( d < 0 ){
-    dist <- translocate_forward(dist, d)
-  } 
-  
-  pre_data_ready <- t(apply(data_removed_duplicates, 1, center_peak, x_dist=dist))
-  data_ready <- data_removed_duplicates
-  data_ready[peaks_to_translocate, ] <- pre_data_ready[peaks_to_translocate, ]
-  
   #################
   ##  Smooth Out ##
   #################
@@ -131,19 +73,90 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   
   smoothing_dim <- 150
   
-  if ( ncol(data_ready) > smoothing_dim ) {
-    smoothing_dim <- ncol(data_ready)
+  if ( ncol(data_removed_duplicates) > smoothing_dim ) {
+    smoothing_dim <- ncol(data_removed_duplicates)
   }
     
-  data_smoothed <- data_ready
+  data_smoothed <- data_removed_duplicates
   if( on_off_smoothing ) {
     print("[NOTE] Smooth data")
-    data_smoothed <- t(apply(data_ready, 1, smoothing, lambda=lam, dim=smoothing_dim))
+    data_smoothed <- t(apply(data_removed_duplicates, 1, smoothing, lambda=lam, dim=smoothing_dim))
   }
   
+  ############################
+  ##  Check for Translocate ##
+  ############################
+  
+  end <- ncol(data_smoothed)
+  
+  left <- which(apply(data_smoothed[,1:3], 1, mean) < 0.8)
+  right <- which(apply(data_smoothed[,(end-2):end], 1, mean) < 0.8)
+  
+  peaks_to_translocate <- intersect(left, right)
+  
+  #################
+  ##  Tranlocate ##
+  #################
+  
+  translocate_forward <- function(v, s){
+    end <- length(v)
+    v_new <- shift(v, s)
+    v_new[1:s] <- v[(end-s+1):end]
+    return(v_new)
+  }
+  
+  translocate_backward <- function(v, s){
+    end <- length(v)
+    v_new <- shift(v, s)
+    v_new[(end-abs(s)+1):end] <- v[1:abs(s)]
+    return(v_new)
+  }
+  
+  center_peak <- function(y_peak, x_dist){
+    s <- 0
+    
+    if ( max_translocate ){
+      s <- floor(length(y_peak)/2) - which.max(y_peak) 
+    } else {
+      s <- which.max(convolve(x_dist , y_peak, type="open")) - length(y_peak)
+    }
+    
+    if ( s < 0 ){
+      return(translocate_backward(y_peak, s))
+    }
+    if ( s > 0 ){
+      return(translocate_forward(y_peak, s))
+    } 
+    return(y_peak)
+  }
+  
+  # Center Peak
+  # Use a Gaussian distribution to center the peaks around the middle of the diagram.
+  dist <- dnorm(seq(-4, 4, 8/ncol(data_smoothed)), mean=0, sd=1)
+  dist <- dist/max(dist)
+  d <- length(dist) - ncol(data_smoothed)
+  dist <- dist[1:ncol(data_smoothed)]
+  
+  if ( d > 0 ){
+    dist <- translocate_backward(dist, -d)
+  }
+  
+  if ( d < 0 ){
+    dist <- translocate_forward(dist, d)
+  } 
+  
+  pre_data_ready <- t(apply(data_smoothed, 1, center_peak, x_dist=dist))
+  data_ready <- data_smoothed
+  data_ready[peaks_to_translocate, ] <- pre_data_ready[peaks_to_translocate, ]
+  
+  #########
+  ## PCA ##
+  #########
+  
+  # Just PCA for comparison
   pdf(paste0(output_path,"/PCA.pdf"))
   par(family = 'serif', cex = 1.5)
-  pca <- prcomp(data_smoothed)$x
+  pca <- prcomp(data_ready)$x
   plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
   plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
   plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
@@ -236,11 +249,11 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   custom.config$min_dist = 0.01
   custom.config$n_neighbors = 5
   
-  data_umap = umap(data_smoothed, config = custom.config)
+  data_umap = umap(data_ready, config = custom.config)
   new_data <- data_umap$layout
   
   # Remove constant value profiles
-  constant_profiles <- apply( data_smoothed, 1, function(x){return(length(which(x!=0)))} )
+  constant_profiles <- apply( data_ready, 1, function(x){return(length(which(x!=0)))} )
   non_constant_profiles <- which(constant_profiles!=0)
   constant_profiles <- which(constant_profiles==0)
   new_data_for_kmeans <- new_data[non_constant_profiles,]
@@ -270,6 +283,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   #########################
   ##  Visualize Clusters ##
   #########################
+  
   colors <- rainbow(num_clusters)
   cluster_colors <- unlist(lapply(clusters, function(x) { return(colors[x]) }))
   seq_clusters <- c(1:num_clusters)
@@ -327,11 +341,19 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   left <- which(apply(data_normalized[,1:3], 1, mean) < 0.8)
   right <- which(apply(data_normalized[,(end-2):end], 1, mean) < 0.8)
   peaks_to_translocate <- intersect(left, right)
-  pre_testing1 <- t(apply(data_normalized, 1, center_peak, x_dist=dist))
-  testing1 <- data_normalized
-  testing1[peaks_to_translocate, ] <- pre_testing1[peaks_to_translocate,]
-  testing2 <- t(apply(testing1, 1, smoothing, lambda=lam, dim=150))
   
+  # 1) Smooth
+  # 2) Translocate
+  testing1 <- t(apply(data_normalized, 1, smoothing, lambda=lam, dim=smoothing_dim))
+  pre_testing2 <- t(apply(testing1, 1, center_peak, x_dist=dist))
+  testing2 <- testing1
+  testing2[peaks_to_translocate, ] <- pre_testing2[peaks_to_translocate,]
+  
+  # Just translocate
+  pre_for_avaerage_profile <- t(apply(data_normalized, 1, center_peak, x_dist=dist))
+  for_avaerage_profile <- data_normalized
+  for_avaerage_profile[peaks_to_translocate, ] <- pre_for_avaerage_profile[peaks_to_translocate,]
+
   unique_clusters <- unique(clusters)
   for( i in 1:length(unique_clusters) ){
     peaks <- which(cluster_col[,1] == unique_clusters[i])
@@ -359,8 +381,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     }
     dev.off()
     
-    
-    average_profile <- apply(testing1[peaks,], 2, mean)
+    average_profile <- apply(for_avaerage_profile[peaks,], 2, mean)
     
     pdf(paste0(output_path, "/cluster_average_profile", unique_clusters[i],".pdf"))
     par(family = 'serif', cex = 1.5)
@@ -380,5 +401,5 @@ args = commandArgs(trailingOnly=TRUE)
 if ( length(args) < 5 ) {
   print("[TEST] Not enough arguments.")
 } else {
-  umap_main(args[1], args[2], as.numeric(args[3]), as.numeric(args[4]), args[5])
+  umap_main(args[1], args[2], as.numeric(args[3]), as.numeric(args[4]), args[5], args[6])
 }
