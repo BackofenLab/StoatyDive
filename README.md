@@ -42,43 +42,46 @@ StoatyDive.py [-h] [options] -a *.bed -b *.bam/*bed -c *.txt
 
 ```
 optional arguments:
-  -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
-  -a *.bed, --input_bed *.bed
-                        Path to the peak file in bed6 format.
-  -b *.bam/*.bed, --input_bam *.bam/*.bed
-                        Path to the read file used for the peak calling in bed
-                        or bam format.
-  -c *.txt, --chr_file *.txt
-                        Path to the chromosome length file.
-  -o path/, --output_folder path/
-                        Write results to this path. [Default: Operating Path]
-  -t float, --thresh float
-                        Set a CV threshold to divide the peak profiles into
-                        specific and unspecific. [Default: 1.0]
-  --length_norm         Set length normalization. StoatyDive will expand every
-                        peak to the maximal length.
-  --length_norm_value int
-                        Set length normalization value (maximum peak length).
-  --max_norm_value float
-                        Provide a maximum value for CV to make the normalized
-                        CV plot more comparable.
-  --border_penalty      Adds a penalty for non-centered peaks.
-  --scale_max float     Provide a maximum value for the CV plot.
-  --maxcl int           Maximal number of clusters of the kmeans clustering of
-                        the peak profiles. The algorithm will be optimized,
-                        i.e., the parameter is just a constraint and not
-                        absolute. [Default: 15]
-  --sm                  Turn on the peak profile smoothing for the peak
-                        profile classification. It is recommended to turn it
-                        on.
-  --lam float           Parameter for the peak profile classification. Set
-                        lambda for the smoothing of the peak profiles. A
-                        higher value (> default) will underfit. A lower value
-                        (< default) will overfit. [Default: 0.3]
-  --turn_off_classification
-                        Turn off the peak profile classification.
-  --seed int            Set seed for the optimization scheme.
+-h, --help            show this help message and exit
+-v, --version         show program's version number and exit
+-a *.bed, --input_bed *.bed
+                      Path to the peak file in bed6 format.
+-b *.bam/*.bed, --input_bam *.bam/*.bed
+                      Path to the read file used for the peak calling in bed
+                      or bam format.
+-c *.txt, --chr_file *.txt
+                      Path to the chromosome length file.
+-o path/, --output_folder path/
+                      Write results to this path. [Default: Operating Path]
+-t float, --thresh float
+                      Set a CV threshold to divide the peak profiles into
+                      specific and unspecific. [Default: 1.0]
+--length_norm         Set length normalization. StoatyDive will expand every
+                      peak to the maximal length.
+--length_norm_value int
+                      Set length normalization value (maximum peak length).
+--max_norm_value float
+                      Provide a maximum value for CV to make the normalized
+                      CV plot more comparable.
+--border_penalty      Adds a penalty for non-centered peaks.
+--scale_max float     Provide a maximum value for the CV plot.
+--maxcl int           Maximal number of clusters of the kmeans clustering of
+                      the peak profiles. The algorithm will be optimized,
+                      i.e., the parameter is just a constraint and not
+                      absolute. [Default: 15]
+--sm                  Turn on the peak profile smoothing for the peak
+                      profile classification. It is recommended to turn it
+                      on.
+--max_translocate     Set this flag is you want to translocate the peak
+                      profiles based on the maximum value inside the profile
+                      instead of a Gaussian blur translocation.
+--lam float           Parameter for the peak profile classification. Set
+                      lambda for the smoothing of the peak profiles. A
+                      higher value (> default) will underfit. A lower value
+                      (< default) will overfit. [Default: 0.3]
+--turn_off_classification
+                      Turn off the peak profile classification.
+--seed int            Set seed for the optimization scheme.
 ```
 
 ### Recommendations
@@ -111,6 +114,12 @@ StoatyDive can smooths the peak profiles, with a spline regression, using the
 option `--sm`, which is recommended. This helps reduce the amount of noise. The
 parameter `--lam` can be adjusted for your data. The default of `0.3` was optimized
 with some test data. A higher value (> default) will underfit. A lower value (< default) will overfit.
+
+#### Translocation of the Peak Profile
+StoatyDive translocates (centers) the profiles with a Gaussian blur, because the dimensional reduction
+methods uMAP is not translation invariant. You can also decide to center the peak profiles based on the
+maximal intensity value inside with `--max_translocate`. This can be useful, for example, if you use
+truncation events of iCLIP.
 
 #### Other options
 - You can set a maximal value for the normalized CV distribution plot with `max_norm_value`. This option helps, if you want to compare several  normalized
