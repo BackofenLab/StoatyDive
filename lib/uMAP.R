@@ -1,6 +1,7 @@
 
 require("umap")
 require("data.table") # for the shift function
+require("zoo") # for rollmeans
 
 umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_smoothing, max_translocate){
 
@@ -130,20 +131,29 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     return(y_peak)
   }
   
-  # Center Peak
-  # Use a Gaussian distribution to center the peaks around the middle of the diagram.
-  dist <- dnorm(seq(-4, 4, 8/ncol(data_smoothed)), mean=0, sd=1)
-  dist <- dist/max(dist)
-  d <- length(dist) - ncol(data_smoothed)
-  dist <- dist[1:ncol(data_smoothed)]
-  
-  if ( d > 0 ){
-    dist <- translocate_backward(dist, -d)
+  generate_gaussian <- function(dim) {
+    dist <- dnorm(seq(-4, 4, 8/dim), mean=0, sd=1)
+    dist <- dist/max(dist)
+    d <- length(dist) - dim
+    
+    if ( d > 0 ){
+      dist <- dist[1:dim]
+      dist <- translocate_backward(dist, -d)
+    }
+    
+    if ( d < 0 ){
+      zero_vector <- rep(0, dim)
+      zero_vector[1:dim] <- dist
+      dist <- zero_vector
+      dist <- translocate_forward(dist, d)
+    } 
+    
+    return(dist)
   }
   
-  if ( d < 0 ){
-    dist <- translocate_forward(dist, d)
-  } 
+  # Center Peak
+  # Use a Gaussian distribution to center the peaks around the middle of the diagram.
+  dist <- generate_gaussian(ncol(data_smoothed))
   
   pre_data_ready <- t(apply(data_smoothed, 1, center_peak, x_dist=dist))
   data_ready <- data_smoothed
@@ -174,7 +184,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   }
   
   # function to find optimal number of clusters
-  kopt <- function(data, k.max){
+  kopt_means <- function(data, k.max){
     
     num_centroids <- c(2:k.max) 
     
@@ -238,6 +248,56 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     return(c(opt, perc[opt]))
   }
   
+  ###################################
+  ### Adding Additional Features  ###
+  ###################################
+  
+  AUC <- function(y){
+    x <- c(1:length(y))
+    return( sum( diff(x)*abs(rollmean(y,2)) ) ) 
+  }
+  
+  Inflection <- function(y){
+    infl <- c(FALSE, diff(diff(y)>0)!=0)
+    return(length(which(infl == TRUE)))
+  }
+  
+  MSE <- function(sim, obs){
+    return( ( sim - obs)^2 )
+  }
+  
+  ARC <- function(y){
+    x <- c(1:length(y))
+    return(sum(sqrt(diff(x)^2 + diff(y)^2)))
+  }
+  
+  # Check for Pleateau
+  number_of_constant_value <- apply(data_removed_duplicates, 1, function(x){ return(length(which(x == 1)))} )
+  data_ready <- cbind(data_ready, number_of_constant_value)
+  
+  # Are under the curve
+  auc <- apply(data_smoothed, 1, AUC)
+  data_ready <- cbind(data_ready, auc)
+  
+  # Number of inflexion points
+  data_smoothed_for_inflection <- t(apply(data_removed_duplicates, 1, smoothing, lambda=.8, dim=smoothing_dim))
+  inflections_points <- apply(data_smoothed, 1, Inflection)
+  data_ready <- cbind(data_ready, inflections_points)
+  
+  # MSE Features
+  data_smoothed_for_mse <- t(apply(data_removed_duplicates, 1, smoothing, lambda=.8, dim=ncol(data_removed_duplicates)))
+  errors <- sapply(1:nrow(data_ready), function(r){ sum((data_removed_duplicates[r,]-data_smoothed_for_mse[r,])^2) })
+  mse <- errors/smoothing_dim
+  data_ready <- cbind(data_ready, mse)
+  
+  # Max Absolute Difference Feature
+  max_abs_diff <- apply( data_removed_duplicates, 1, function(x){max(abs(diff(x)))} ) 
+  data_ready <- cbind(data_ready, max_abs_diff)
+  
+  # Arc Length Feature
+  arc_length <- apply(data_removed_duplicates, 1, ARC) 
+  data_ready <- cbind(data_ready, arc_length)
+  
   #############
   ### uMAP  ###
   #############
@@ -253,7 +313,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   new_data <- data_umap$layout
   
   # Remove constant value profiles
-  constant_profiles <- apply( data_ready, 1, function(x){return(length(which(x!=0)))} )
+  constant_profiles <- apply( data_removed_duplicates, 1, function(x){return(length(which(x!=0)))} )
   non_constant_profiles <- which(constant_profiles!=0)
   constant_profiles <- which(constant_profiles==0)
   new_data_for_kmeans <- new_data[non_constant_profiles,]
@@ -262,7 +322,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   ### kmeans  ###
   ###############
   
-  returned_optimisation_values <- kopt(new_data_for_kmeans, maximal_cluster_number)
+  returned_optimisation_values <- kopt_means(new_data_for_kmeans, maximal_cluster_number)
   optimal_num_centroids <- returned_optimisation_values[1]
   optimal_perc <- returned_optimisation_values[2]
   
@@ -337,6 +397,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   ## Generate Peak Profiles of Clusters ##
   ########################################
   
+  print("[NOTE] Create cluster profiles")
+  
   end <- ncol(data_normalized)
   left <- which(apply(data_normalized[,1:3], 1, mean) < 0.8)
   right <- which(apply(data_normalized[,(end-2):end], 1, mean) < 0.8)
@@ -350,6 +412,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   testing2[peaks_to_translocate, ] <- pre_testing2[peaks_to_translocate,]
   
   # Just translocate
+  dist <- generate_gaussian(ncol(data_normalized))
+  
   pre_for_avaerage_profile <- t(apply(data_normalized, 1, center_peak, x_dist=dist))
   for_avaerage_profile <- data_normalized
   for_avaerage_profile[peaks_to_translocate, ] <- pre_for_avaerage_profile[peaks_to_translocate,]
