@@ -27,11 +27,11 @@
          d="M 88.56,110.16 H 458.64 V 415.44 H 88.56 Z" />
     </clipPath>
     <clipPath
-       id="clipPath1321"
+       id="clipPath1313"
        clipPathUnits="userSpaceOnUse">
       <path
          inkscape:connector-curvature="0"
-         id="path1319"
+         id="path1311"
          d="M 88.56,110.16 H 458.64 V 415.44 H 88.56 Z" />
     </clipPath>
   </defs>
@@ -42,9 +42,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="586.46703"
-     inkscape:cy="569.8442"
+     inkscape:zoom="0.7"
+     inkscape:cx="-148.1359"
+     inkscape:cy="667.92746"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -73,22 +73,40 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(185.78547,-162.44048)">
+     transform="translate(-219.02703,-182.09524)">
     <g
-       transform="matrix(0.35277777,0,0,-0.35277777,-187.81896,309.42069)"
+       transform="matrix(0.35277777,0,0,-0.35277777,216.99354,329.07545)"
        inkscape:label="cluster_smoothed1"
-       id="g1311">
+       id="g1303">
       <g
-         id="g1313" />
+         id="g1305" />
       <g
-         id="g1315">
+         id="g1307">
         <g
-           clip-path="url(#clipPath1321)"
-           id="g1317">
+           clip-path="url(#clipPath1313)"
+           id="g1309">
+          <text
+             id="text1317"
+             style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             transform="matrix(1,0,0,-1,99.3,236.38)">
+            <tspan
+               id="tspan1315"
+               y="0"
+               x="0">●</tspan>
+          </text>
+          <text
+             id="text1321"
+             style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             transform="matrix(1,0,0,-1,101.64,237)">
+            <tspan
+               id="tspan1319"
+               y="0"
+               x="0">●</tspan>
+          </text>
           <text
              id="text1325"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,99.3,151.42)">
+             transform="matrix(1,0,0,-1,103.97,237.5)">
             <tspan
                id="tspan1323"
                y="0"
@@ -97,7 +115,7 @@
           <text
              id="text1329"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,101.64,151.53)">
+             transform="matrix(1,0,0,-1,106.3,237.56)">
             <tspan
                id="tspan1327"
                y="0"
@@ -106,7 +124,7 @@
           <text
              id="text1333"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,103.97,151.66)">
+             transform="matrix(1,0,0,-1,108.63,236.75)">
             <tspan
                id="tspan1331"
                y="0"
@@ -115,7 +133,7 @@
           <text
              id="text1337"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,106.3,151.8)">
+             transform="matrix(1,0,0,-1,110.96,234.14)">
             <tspan
                id="tspan1335"
                y="0"
@@ -124,7 +142,7 @@
           <text
              id="text1341"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,108.63,151.95)">
+             transform="matrix(1,0,0,-1,113.29,228.68)">
             <tspan
                id="tspan1339"
                y="0"
@@ -133,7 +151,7 @@
           <text
              id="text1345"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,110.96,152.02)">
+             transform="matrix(1,0,0,-1,115.62,219.71)">
             <tspan
                id="tspan1343"
                y="0"
@@ -142,7 +160,7 @@
           <text
              id="text1349"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,113.29,151.9)">
+             transform="matrix(1,0,0,-1,117.95,208.14)">
             <tspan
                id="tspan1347"
                y="0"
@@ -151,7 +169,7 @@
           <text
              id="text1353"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,115.62,151.44)">
+             transform="matrix(1,0,0,-1,120.28,195.27)">
             <tspan
                id="tspan1351"
                y="0"
@@ -160,7 +178,7 @@
           <text
              id="text1357"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,117.95,150.4)">
+             transform="matrix(1,0,0,-1,122.62,182.4)">
             <tspan
                id="tspan1355"
                y="0"
@@ -169,7 +187,7 @@
           <text
              id="text1361"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,120.28,148.51)">
+             transform="matrix(1,0,0,-1,124.95,170.82)">
             <tspan
                id="tspan1359"
                y="0"
@@ -178,7 +196,7 @@
           <text
              id="text1365"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,122.62,145.68)">
+             transform="matrix(1,0,0,-1,127.28,161.83)">
             <tspan
                id="tspan1363"
                y="0"
@@ -187,7 +205,7 @@
           <text
              id="text1369"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,124.95,142.48)">
+             transform="matrix(1,0,0,-1,129.61,156.34)">
             <tspan
                id="tspan1367"
                y="0"
@@ -196,7 +214,7 @@
           <text
              id="text1373"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,127.28,139.66)">
+             transform="matrix(1,0,0,-1,131.94,153.69)">
             <tspan
                id="tspan1371"
                y="0"
@@ -205,7 +223,7 @@
           <text
              id="text1377"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,129.61,137.8)">
+             transform="matrix(1,0,0,-1,134.27,152.85)">
             <tspan
                id="tspan1375"
                y="0"
@@ -214,7 +232,7 @@
           <text
              id="text1381"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,131.94,136.82)">
+             transform="matrix(1,0,0,-1,136.6,152.89)">
             <tspan
                id="tspan1379"
                y="0"
@@ -223,7 +241,7 @@
           <text
              id="text1385"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,134.27,136.46)">
+             transform="matrix(1,0,0,-1,138.93,153.38)">
             <tspan
                id="tspan1383"
                y="0"
@@ -232,7 +250,7 @@
           <text
              id="text1389"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,136.6,136.49)">
+             transform="matrix(1,0,0,-1,141.26,154)">
             <tspan
                id="tspan1387"
                y="0"
@@ -241,7 +259,7 @@
           <text
              id="text1393"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,138.93,136.75)">
+             transform="matrix(1,0,0,-1,143.6,154.53)">
             <tspan
                id="tspan1391"
                y="0"
@@ -250,7 +268,7 @@
           <text
              id="text1397"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,141.26,137.11)">
+             transform="matrix(1,0,0,-1,145.93,155.09)">
             <tspan
                id="tspan1395"
                y="0"
@@ -259,7 +277,7 @@
           <text
              id="text1401"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,143.6,137.4)">
+             transform="matrix(1,0,0,-1,148.26,155.93)">
             <tspan
                id="tspan1399"
                y="0"
@@ -268,7 +286,7 @@
           <text
              id="text1405"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,145.93,137.39)">
+             transform="matrix(1,0,0,-1,150.59,157.1)">
             <tspan
                id="tspan1403"
                y="0"
@@ -277,7 +295,7 @@
           <text
              id="text1409"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,148.26,136.83)">
+             transform="matrix(1,0,0,-1,152.92,158.04)">
             <tspan
                id="tspan1407"
                y="0"
@@ -286,7 +304,7 @@
           <text
              id="text1413"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,150.59,135.46)">
+             transform="matrix(1,0,0,-1,155.25,158)">
             <tspan
                id="tspan1411"
                y="0"
@@ -295,7 +313,7 @@
           <text
              id="text1417"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,152.92,133.02)">
+             transform="matrix(1,0,0,-1,157.58,156.36)">
             <tspan
                id="tspan1415"
                y="0"
@@ -304,7 +322,7 @@
           <text
              id="text1421"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,155.25,129.23)">
+             transform="matrix(1,0,0,-1,159.91,152.89)">
             <tspan
                id="tspan1419"
                y="0"
@@ -313,7 +331,7 @@
           <text
              id="text1425"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,157.58,124.26)">
+             transform="matrix(1,0,0,-1,162.24,147.52)">
             <tspan
                id="tspan1423"
                y="0"
@@ -322,7 +340,7 @@
           <text
              id="text1429"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,159.91,120.03)">
+             transform="matrix(1,0,0,-1,164.57,140.12)">
             <tspan
                id="tspan1427"
                y="0"
@@ -331,7 +349,7 @@
           <text
              id="text1433"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,162.24,118.87)">
+             transform="matrix(1,0,0,-1,166.91,130.61)">
             <tspan
                id="tspan1431"
                y="0"
@@ -340,7 +358,7 @@
           <text
              id="text1437"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,164.57,123.33)">
+             transform="matrix(1,0,0,-1,169.24,118.87)">
             <tspan
                id="tspan1435"
                y="0"
@@ -349,7 +367,7 @@
           <text
              id="text1441"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,166.91,136.7)">
+             transform="matrix(1,0,0,-1,171.57,315.85)">
             <tspan
                id="tspan1439"
                y="0"
@@ -358,7 +376,7 @@
           <text
              id="text1445"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,169.24,162.46)">
+             transform="matrix(1,0,0,-1,173.9,315.88)">
             <tspan
                id="tspan1443"
                y="0"
@@ -367,7 +385,7 @@
           <text
              id="text1449"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,171.57,201.78)">
+             transform="matrix(1,0,0,-1,176.23,315.9)">
             <tspan
                id="tspan1447"
                y="0"
@@ -376,7 +394,7 @@
           <text
              id="text1453"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,173.9,246.46)">
+             transform="matrix(1,0,0,-1,178.56,315.91)">
             <tspan
                id="tspan1451"
                y="0"
@@ -385,7 +403,7 @@
           <text
              id="text1457"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,176.23,285.98)">
+             transform="matrix(1,0,0,-1,180.89,315.91)">
             <tspan
                id="tspan1455"
                y="0"
@@ -394,7 +412,7 @@
           <text
              id="text1461"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,178.56,312.21)">
+             transform="matrix(1,0,0,-1,183.22,315.87)">
             <tspan
                id="tspan1459"
                y="0"
@@ -403,7 +421,7 @@
           <text
              id="text1465"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,180.89,326.62)">
+             transform="matrix(1,0,0,-1,185.55,315.77)">
             <tspan
                id="tspan1463"
                y="0"
@@ -412,7 +430,7 @@
           <text
              id="text1469"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,183.22,333.07)">
+             transform="matrix(1,0,0,-1,187.89,315.59)">
             <tspan
                id="tspan1467"
                y="0"
@@ -421,7 +439,7 @@
           <text
              id="text1473"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,185.55,335.08)">
+             transform="matrix(1,0,0,-1,190.22,315.31)">
             <tspan
                id="tspan1471"
                y="0"
@@ -430,7 +448,7 @@
           <text
              id="text1477"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,187.89,334.88)">
+             transform="matrix(1,0,0,-1,192.55,314.93)">
             <tspan
                id="tspan1475"
                y="0"
@@ -439,7 +457,7 @@
           <text
              id="text1481"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,190.22,334.34)">
+             transform="matrix(1,0,0,-1,194.88,314.51)">
             <tspan
                id="tspan1479"
                y="0"
@@ -448,7 +466,7 @@
           <text
              id="text1485"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,192.55,334.93)">
+             transform="matrix(1,0,0,-1,197.21,314.31)">
             <tspan
                id="tspan1483"
                y="0"
@@ -457,7 +475,7 @@
           <text
              id="text1489"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,194.88,336.54)">
+             transform="matrix(1,0,0,-1,199.54,314.63)">
             <tspan
                id="tspan1487"
                y="0"
@@ -466,7 +484,7 @@
           <text
              id="text1493"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,197.21,338.64)">
+             transform="matrix(1,0,0,-1,201.87,315.87)">
             <tspan
                id="tspan1491"
                y="0"
@@ -475,7 +493,7 @@
           <text
              id="text1497"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,199.54,340.9)">
+             transform="matrix(1,0,0,-1,204.2,318.69)">
             <tspan
                id="tspan1495"
                y="0"
@@ -484,7 +502,7 @@
           <text
              id="text1501"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,201.87,343.8)">
+             transform="matrix(1,0,0,-1,206.53,323.83)">
             <tspan
                id="tspan1499"
                y="0"
@@ -493,7 +511,7 @@
           <text
              id="text1505"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,204.2,348)">
+             transform="matrix(1,0,0,-1,208.86,331.56)">
             <tspan
                id="tspan1503"
                y="0"
@@ -502,7 +520,7 @@
           <text
              id="text1509"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,206.53,353.83)">
+             transform="matrix(1,0,0,-1,211.2,340.31)">
             <tspan
                id="tspan1507"
                y="0"
@@ -511,7 +529,7 @@
           <text
              id="text1513"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,208.86,360.23)">
+             transform="matrix(1,0,0,-1,213.53,348.05)">
             <tspan
                id="tspan1511"
                y="0"
@@ -520,7 +538,7 @@
           <text
              id="text1517"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,211.2,365.8)">
+             transform="matrix(1,0,0,-1,215.86,353.19)">
             <tspan
                id="tspan1515"
                y="0"
@@ -529,7 +547,7 @@
           <text
              id="text1521"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,213.53,369.48)">
+             transform="matrix(1,0,0,-1,218.19,356.02)">
             <tspan
                id="tspan1519"
                y="0"
@@ -538,7 +556,7 @@
           <text
              id="text1525"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,215.86,371.47)">
+             transform="matrix(1,0,0,-1,220.52,357.27)">
             <tspan
                id="tspan1523"
                y="0"
@@ -547,7 +565,7 @@
           <text
              id="text1529"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,218.19,372.34)">
+             transform="matrix(1,0,0,-1,222.85,357.61)">
             <tspan
                id="tspan1527"
                y="0"
@@ -556,7 +574,7 @@
           <text
              id="text1533"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,220.52,372.55)">
+             transform="matrix(1,0,0,-1,225.18,357.42)">
             <tspan
                id="tspan1531"
                y="0"
@@ -565,7 +583,7 @@
           <text
              id="text1537"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,222.85,372.38)">
+             transform="matrix(1,0,0,-1,227.51,357.02)">
             <tspan
                id="tspan1535"
                y="0"
@@ -574,7 +592,7 @@
           <text
              id="text1541"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,225.18,372.04)">
+             transform="matrix(1,0,0,-1,229.84,356.64)">
             <tspan
                id="tspan1539"
                y="0"
@@ -583,7 +601,7 @@
           <text
              id="text1545"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,227.51,371.69)">
+             transform="matrix(1,0,0,-1,232.18,356.33)">
             <tspan
                id="tspan1543"
                y="0"
@@ -592,7 +610,7 @@
           <text
              id="text1549"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,229.84,371.38)">
+             transform="matrix(1,0,0,-1,234.51,356.04)">
             <tspan
                id="tspan1547"
                y="0"
@@ -601,7 +619,7 @@
           <text
              id="text1553"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,232.18,371.07)">
+             transform="matrix(1,0,0,-1,236.84,355.75)">
             <tspan
                id="tspan1551"
                y="0"
@@ -610,7 +628,7 @@
           <text
              id="text1557"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,234.51,370.78)">
+             transform="matrix(1,0,0,-1,239.17,355.44)">
             <tspan
                id="tspan1555"
                y="0"
@@ -619,7 +637,7 @@
           <text
              id="text1561"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,236.84,370.58)">
+             transform="matrix(1,0,0,-1,241.5,355.06)">
             <tspan
                id="tspan1559"
                y="0"
@@ -628,7 +646,7 @@
           <text
              id="text1565"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,239.17,370.56)">
+             transform="matrix(1,0,0,-1,243.83,354.65)">
             <tspan
                id="tspan1563"
                y="0"
@@ -637,7 +655,7 @@
           <text
              id="text1569"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,241.5,370.87)">
+             transform="matrix(1,0,0,-1,246.16,354.46)">
             <tspan
                id="tspan1567"
                y="0"
@@ -646,7 +664,7 @@
           <text
              id="text1573"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,243.83,371.84)">
+             transform="matrix(1,0,0,-1,248.49,354.79)">
             <tspan
                id="tspan1571"
                y="0"
@@ -655,7 +673,7 @@
           <text
              id="text1577"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,246.16,373.84)">
+             transform="matrix(1,0,0,-1,250.82,356.03)">
             <tspan
                id="tspan1575"
                y="0"
@@ -664,7 +682,7 @@
           <text
              id="text1581"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,248.49,377.12)">
+             transform="matrix(1,0,0,-1,253.16,358.84)">
             <tspan
                id="tspan1579"
                y="0"
@@ -673,7 +691,7 @@
           <text
              id="text1585"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,250.82,381.35)">
+             transform="matrix(1,0,0,-1,255.49,363.98)">
             <tspan
                id="tspan1583"
                y="0"
@@ -682,7 +700,7 @@
           <text
              id="text1589"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,253.16,386.04)">
+             transform="matrix(1,0,0,-1,257.82,371.73)">
             <tspan
                id="tspan1587"
                y="0"
@@ -691,7 +709,7 @@
           <text
              id="text1593"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,255.49,390.73)">
+             transform="matrix(1,0,0,-1,260.15,380.54)">
             <tspan
                id="tspan1591"
                y="0"
@@ -700,7 +718,7 @@
           <text
              id="text1597"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,257.82,394.95)">
+             transform="matrix(1,0,0,-1,262.48,388.38)">
             <tspan
                id="tspan1595"
                y="0"
@@ -709,7 +727,7 @@
           <text
              id="text1601"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,260.15,398.22)">
+             transform="matrix(1,0,0,-1,264.81,393.71)">
             <tspan
                id="tspan1599"
                y="0"
@@ -718,7 +736,7 @@
           <text
              id="text1605"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,262.48,400.21)">
+             transform="matrix(1,0,0,-1,267.14,396.77)">
             <tspan
                id="tspan1603"
                y="0"
@@ -727,7 +745,7 @@
           <text
              id="text1609"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,264.81,401.17)">
+             transform="matrix(1,0,0,-1,269.47,398.29)">
             <tspan
                id="tspan1607"
                y="0"
@@ -736,7 +754,7 @@
           <text
              id="text1613"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,267.14,401.5)">
+             transform="matrix(1,0,0,-1,271.8,398.85)">
             <tspan
                id="tspan1611"
                y="0"
@@ -745,7 +763,7 @@
           <text
              id="text1617"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,269.47,401.54)">
+             transform="matrix(1,0,0,-1,274.13,398.57)">
             <tspan
                id="tspan1615"
                y="0"
@@ -754,7 +772,7 @@
           <text
              id="text1621"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,271.8,401.45)">
+             transform="matrix(1,0,0,-1,276.47,397.45)">
             <tspan
                id="tspan1619"
                y="0"
@@ -763,7 +781,7 @@
           <text
              id="text1625"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,274.13,401.36)">
+             transform="matrix(1,0,0,-1,278.8,395.42)">
             <tspan
                id="tspan1623"
                y="0"
@@ -772,7 +790,7 @@
           <text
              id="text1629"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,276.47,401.34)">
+             transform="matrix(1,0,0,-1,281.13,392.11)">
             <tspan
                id="tspan1627"
                y="0"
@@ -781,7 +799,7 @@
           <text
              id="text1633"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,278.8,401.33)">
+             transform="matrix(1,0,0,-1,283.46,387.11)">
             <tspan
                id="tspan1631"
                y="0"
@@ -790,7 +808,7 @@
           <text
              id="text1637"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,281.13,401.21)">
+             transform="matrix(1,0,0,-1,285.79,380.52)">
             <tspan
                id="tspan1635"
                y="0"
@@ -799,7 +817,7 @@
           <text
              id="text1641"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,283.46,400.86)">
+             transform="matrix(1,0,0,-1,288.12,374.54)">
             <tspan
                id="tspan1639"
                y="0"
@@ -808,7 +826,7 @@
           <text
              id="text1645"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,285.79,400.02)">
+             transform="matrix(1,0,0,-1,290.45,371.92)">
             <tspan
                id="tspan1643"
                y="0"
@@ -817,7 +835,7 @@
           <text
              id="text1649"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,288.12,398.41)">
+             transform="matrix(1,0,0,-1,292.78,374.49)">
             <tspan
                id="tspan1647"
                y="0"
@@ -826,7 +844,7 @@
           <text
              id="text1653"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,290.45,395.88)">
+             transform="matrix(1,0,0,-1,295.11,380.38)">
             <tspan
                id="tspan1651"
                y="0"
@@ -835,7 +853,7 @@
           <text
              id="text1657"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,292.78,392.82)">
+             transform="matrix(1,0,0,-1,297.45,386.83)">
             <tspan
                id="tspan1655"
                y="0"
@@ -844,7 +862,7 @@
           <text
              id="text1661"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,295.11,389.75)">
+             transform="matrix(1,0,0,-1,299.78,391.61)">
             <tspan
                id="tspan1659"
                y="0"
@@ -853,7 +871,7 @@
           <text
              id="text1665"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,297.45,386.97)">
+             transform="matrix(1,0,0,-1,302.11,394.66)">
             <tspan
                id="tspan1663"
                y="0"
@@ -862,7 +880,7 @@
           <text
              id="text1669"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,299.78,383.94)">
+             transform="matrix(1,0,0,-1,304.44,396.49)">
             <tspan
                id="tspan1667"
                y="0"
@@ -871,7 +889,7 @@
           <text
              id="text1673"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,302.11,379.88)">
+             transform="matrix(1,0,0,-1,306.77,397.56)">
             <tspan
                id="tspan1671"
                y="0"
@@ -880,7 +898,7 @@
           <text
              id="text1677"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,304.44,374.4)">
+             transform="matrix(1,0,0,-1,309.1,398.31)">
             <tspan
                id="tspan1675"
                y="0"
@@ -889,7 +907,7 @@
           <text
              id="text1681"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,306.77,368.49)">
+             transform="matrix(1,0,0,-1,311.43,399.12)">
             <tspan
                id="tspan1679"
                y="0"
@@ -898,7 +916,7 @@
           <text
              id="text1685"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,309.1,363.54)">
+             transform="matrix(1,0,0,-1,313.76,400.25)">
             <tspan
                id="tspan1683"
                y="0"
@@ -907,7 +925,7 @@
           <text
              id="text1689"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,311.43,360.53)">
+             transform="matrix(1,0,0,-1,316.09,401.25)">
             <tspan
                id="tspan1687"
                y="0"
@@ -916,7 +934,7 @@
           <text
              id="text1693"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,313.76,358.86)">
+             transform="matrix(1,0,0,-1,318.43,401.54)">
             <tspan
                id="tspan1691"
                y="0"
@@ -925,7 +943,7 @@
           <text
              id="text1697"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,316.09,357.54)">
+             transform="matrix(1,0,0,-1,320.76,400.2)">
             <tspan
                id="tspan1695"
                y="0"
@@ -934,7 +952,7 @@
           <text
              id="text1701"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,318.43,355.52)">
+             transform="matrix(1,0,0,-1,323.09,395.12)">
             <tspan
                id="tspan1699"
                y="0"
@@ -943,7 +961,7 @@
           <text
              id="text1705"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,320.76,351.59)">
+             transform="matrix(1,0,0,-1,325.42,383.85)">
             <tspan
                id="tspan1703"
                y="0"
@@ -952,7 +970,7 @@
           <text
              id="text1709"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,323.09,344.45)">
+             transform="matrix(1,0,0,-1,327.75,364.66)">
             <tspan
                id="tspan1707"
                y="0"
@@ -961,7 +979,7 @@
           <text
              id="text1713"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,325.42,333.54)">
+             transform="matrix(1,0,0,-1,330.08,338.71)">
             <tspan
                id="tspan1711"
                y="0"
@@ -970,7 +988,7 @@
           <text
              id="text1717"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,327.75,321.15)">
+             transform="matrix(1,0,0,-1,332.41,307.83)">
             <tspan
                id="tspan1715"
                y="0"
@@ -979,7 +997,7 @@
           <text
              id="text1721"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,330.08,310.24)">
+             transform="matrix(1,0,0,-1,334.74,274.37)">
             <tspan
                id="tspan1719"
                y="0"
@@ -988,7 +1006,7 @@
           <text
              id="text1725"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,332.41,303.09)">
+             transform="matrix(1,0,0,-1,337.07,242.48)">
             <tspan
                id="tspan1723"
                y="0"
@@ -997,7 +1015,7 @@
           <text
              id="text1729"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,334.74,299.19)">
+             transform="matrix(1,0,0,-1,339.4,216.8)">
             <tspan
                id="tspan1727"
                y="0"
@@ -1006,7 +1024,7 @@
           <text
              id="text1733"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,337.07,297.27)">
+             transform="matrix(1,0,0,-1,341.74,200.73)">
             <tspan
                id="tspan1731"
                y="0"
@@ -1015,7 +1033,7 @@
           <text
              id="text1737"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,339.4,296.15)">
+             transform="matrix(1,0,0,-1,344.07,192.68)">
             <tspan
                id="tspan1735"
                y="0"
@@ -1024,7 +1042,7 @@
           <text
              id="text1741"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,341.74,294.83)">
+             transform="matrix(1,0,0,-1,346.4,189.8)">
             <tspan
                id="tspan1739"
                y="0"
@@ -1033,7 +1051,7 @@
           <text
              id="text1745"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,344.07,292.33)">
+             transform="matrix(1,0,0,-1,348.73,189.57)">
             <tspan
                id="tspan1743"
                y="0"
@@ -1042,7 +1060,7 @@
           <text
              id="text1749"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,346.4,288.05)">
+             transform="matrix(1,0,0,-1,351.06,190.74)">
             <tspan
                id="tspan1747"
                y="0"
@@ -1051,7 +1069,7 @@
           <text
              id="text1753"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,348.73,282.67)">
+             transform="matrix(1,0,0,-1,353.39,192.37)">
             <tspan
                id="tspan1751"
                y="0"
@@ -1060,7 +1078,7 @@
           <text
              id="text1757"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,351.06,277.24)">
+             transform="matrix(1,0,0,-1,355.72,193.7)">
             <tspan
                id="tspan1755"
                y="0"
@@ -1069,7 +1087,7 @@
           <text
              id="text1761"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,353.39,272.28)">
+             transform="matrix(1,0,0,-1,358.05,194.61)">
             <tspan
                id="tspan1759"
                y="0"
@@ -1078,7 +1096,7 @@
           <text
              id="text1765"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,355.72,266.38)">
+             transform="matrix(1,0,0,-1,360.38,195.17)">
             <tspan
                id="tspan1763"
                y="0"
@@ -1087,7 +1105,7 @@
           <text
              id="text1769"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,358.05,257.62)">
+             transform="matrix(1,0,0,-1,362.72,195.44)">
             <tspan
                id="tspan1767"
                y="0"
@@ -1096,7 +1114,7 @@
           <text
              id="text1773"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,360.38,244.73)">
+             transform="matrix(1,0,0,-1,365.05,195.52)">
             <tspan
                id="tspan1771"
                y="0"
@@ -1105,7 +1123,7 @@
           <text
              id="text1777"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,362.72,228.99)">
+             transform="matrix(1,0,0,-1,367.38,195.49)">
             <tspan
                id="tspan1775"
                y="0"
@@ -1114,7 +1132,7 @@
           <text
              id="text1781"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,365.05,212.37)">
+             transform="matrix(1,0,0,-1,369.71,195.43)">
             <tspan
                id="tspan1779"
                y="0"
@@ -1123,7 +1141,7 @@
           <text
              id="text1785"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,367.38,196.67)">
+             transform="matrix(1,0,0,-1,372.04,195.37)">
             <tspan
                id="tspan1783"
                y="0"
@@ -1132,7 +1150,7 @@
           <text
              id="text1789"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,369.71,183.17)">
+             transform="matrix(1,0,0,-1,374.37,195.33)">
             <tspan
                id="tspan1787"
                y="0"
@@ -1141,7 +1159,7 @@
           <text
              id="text1793"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,372.04,173.03)">
+             transform="matrix(1,0,0,-1,376.7,195.31)">
             <tspan
                id="tspan1791"
                y="0"
@@ -1150,7 +1168,7 @@
           <text
              id="text1797"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,374.37,167)">
+             transform="matrix(1,0,0,-1,379.03,195.31)">
             <tspan
                id="tspan1795"
                y="0"
@@ -1159,7 +1177,7 @@
           <text
              id="text1801"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,376.7,164.23)">
+             transform="matrix(1,0,0,-1,381.36,195.31)">
             <tspan
                id="tspan1799"
                y="0"
@@ -1168,7 +1186,7 @@
           <text
              id="text1805"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,379.03,163.49)">
+             transform="matrix(1,0,0,-1,383.69,195.31)">
             <tspan
                id="tspan1803"
                y="0"
@@ -1177,7 +1195,7 @@
           <text
              id="text1809"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,381.36,163.67)">
+             transform="matrix(1,0,0,-1,386.03,195.28)">
             <tspan
                id="tspan1807"
                y="0"
@@ -1186,7 +1204,7 @@
           <text
              id="text1813"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,383.69,164.29)">
+             transform="matrix(1,0,0,-1,388.36,195.18)">
             <tspan
                id="tspan1811"
                y="0"
@@ -1195,7 +1213,7 @@
           <text
              id="text1817"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,386.03,165.01)">
+             transform="matrix(1,0,0,-1,390.69,195)">
             <tspan
                id="tspan1815"
                y="0"
@@ -1204,7 +1222,7 @@
           <text
              id="text1821"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,388.36,165.56)">
+             transform="matrix(1,0,0,-1,393.02,194.72)">
             <tspan
                id="tspan1819"
                y="0"
@@ -1213,7 +1231,7 @@
           <text
              id="text1825"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,390.69,165.92)">
+             transform="matrix(1,0,0,-1,395.35,194.34)">
             <tspan
                id="tspan1823"
                y="0"
@@ -1222,7 +1240,7 @@
           <text
              id="text1829"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,393.02,166.12)">
+             transform="matrix(1,0,0,-1,397.68,193.93)">
             <tspan
                id="tspan1827"
                y="0"
@@ -1231,7 +1249,7 @@
           <text
              id="text1833"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,395.35,166.21)">
+             transform="matrix(1,0,0,-1,400.01,193.72)">
             <tspan
                id="tspan1831"
                y="0"
@@ -1240,7 +1258,7 @@
           <text
              id="text1837"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,397.68,166.23)">
+             transform="matrix(1,0,0,-1,402.34,194.05)">
             <tspan
                id="tspan1835"
                y="0"
@@ -1249,7 +1267,7 @@
           <text
              id="text1841"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,400.01,166.2)">
+             transform="matrix(1,0,0,-1,404.67,195.29)">
             <tspan
                id="tspan1839"
                y="0"
@@ -1258,7 +1276,7 @@
           <text
              id="text1845"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,402.34,166.17)">
+             transform="matrix(1,0,0,-1,407.01,198.11)">
             <tspan
                id="tspan1843"
                y="0"
@@ -1267,7 +1285,7 @@
           <text
              id="text1849"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,404.67,166.15)">
+             transform="matrix(1,0,0,-1,409.34,203.25)">
             <tspan
                id="tspan1847"
                y="0"
@@ -1276,7 +1294,7 @@
           <text
              id="text1853"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,407.01,166.13)">
+             transform="matrix(1,0,0,-1,411.67,210.98)">
             <tspan
                id="tspan1851"
                y="0"
@@ -1285,7 +1303,7 @@
           <text
              id="text1857"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,409.34,166.11)">
+             transform="matrix(1,0,0,-1,414,219.74)">
             <tspan
                id="tspan1855"
                y="0"
@@ -1294,7 +1312,7 @@
           <text
              id="text1861"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,411.67,166.11)">
+             transform="matrix(1,0,0,-1,416.33,227.47)">
             <tspan
                id="tspan1859"
                y="0"
@@ -1303,7 +1321,7 @@
           <text
              id="text1865"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,414,166.1)">
+             transform="matrix(1,0,0,-1,418.66,232.61)">
             <tspan
                id="tspan1863"
                y="0"
@@ -1312,7 +1330,7 @@
           <text
              id="text1869"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,416.33,166.1)">
+             transform="matrix(1,0,0,-1,420.99,235.42)">
             <tspan
                id="tspan1867"
                y="0"
@@ -1321,7 +1339,7 @@
           <text
              id="text1873"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,418.66,166.1)">
+             transform="matrix(1,0,0,-1,423.32,236.65)">
             <tspan
                id="tspan1871"
                y="0"
@@ -1330,7 +1348,7 @@
           <text
              id="text1877"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,420.99,166.11)">
+             transform="matrix(1,0,0,-1,425.65,236.96)">
             <tspan
                id="tspan1875"
                y="0"
@@ -1339,7 +1357,7 @@
           <text
              id="text1881"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,423.32,166.11)">
+             transform="matrix(1,0,0,-1,427.99,236.73)">
             <tspan
                id="tspan1879"
                y="0"
@@ -1348,7 +1366,7 @@
           <text
              id="text1885"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,425.65,166.11)">
+             transform="matrix(1,0,0,-1,430.32,236.29)">
             <tspan
                id="tspan1883"
                y="0"
@@ -1357,7 +1375,7 @@
           <text
              id="text1889"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,427.99,166.11)">
+             transform="matrix(1,0,0,-1,432.65,235.9)">
             <tspan
                id="tspan1887"
                y="0"
@@ -1366,7 +1384,7 @@
           <text
              id="text1893"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,430.32,166.11)">
+             transform="matrix(1,0,0,-1,434.98,235.63)">
             <tspan
                id="tspan1891"
                y="0"
@@ -1375,7 +1393,7 @@
           <text
              id="text1897"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,432.65,166.11)">
+             transform="matrix(1,0,0,-1,437.31,235.53)">
             <tspan
                id="tspan1895"
                y="0"
@@ -1384,7 +1402,7 @@
           <text
              id="text1901"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,434.98,166.11)">
+             transform="matrix(1,0,0,-1,439.64,235.62)">
             <tspan
                id="tspan1899"
                y="0"
@@ -1393,217 +1411,199 @@
           <text
              id="text1905"
              style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,437.31,166.11)">
+             transform="matrix(1,0,0,-1,441.97,235.9)">
             <tspan
                id="tspan1903"
-               y="0"
-               x="0">●</tspan>
-          </text>
-          <text
-             id="text1909"
-             style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,439.64,166.11)">
-            <tspan
-               id="tspan1907"
-               y="0"
-               x="0">●</tspan>
-          </text>
-          <text
-             id="text1913"
-             style="font-variant:normal;font-weight:normal;font-size:7.48000002px;font-family:ZapfDingbats;-inkscape-font-specification:ZapfDingbats;writing-mode:lr-tb;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             transform="matrix(1,0,0,-1,441.97,166.11)">
-            <tspan
-               id="tspan1911"
                y="0"
                x="0">●</tspan>
           </text>
         </g>
       </g>
       <g
-         id="g1915">
+         id="g1907">
         <path
            inkscape:connector-curvature="0"
-           id="path1917"
+           id="path1909"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            d="M 99.94,110.16 H 449.6" />
         <path
            inkscape:connector-curvature="0"
-           id="path1919"
+           id="path1911"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            d="M 99.94,110.16 V 99.36" />
         <path
            inkscape:connector-curvature="0"
-           id="path1921"
+           id="path1913"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            d="M 216.49,110.16 V 99.36" />
         <path
            inkscape:connector-curvature="0"
-           id="path1923"
+           id="path1915"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            d="M 333.04,110.16 V 99.36" />
         <path
            inkscape:connector-curvature="0"
-           id="path1925"
+           id="path1917"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            d="M 449.6,110.16 V 99.36" />
         <text
-           id="text1929"
+           id="text1921"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            transform="matrix(1,0,0,-1,95.44,71.28)">
           <tspan
-             id="tspan1927"
+             id="tspan1919"
              y="0"
              x="0">0</tspan>
         </text>
         <text
-           id="text1933"
+           id="text1925"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            transform="matrix(1,0,0,-1,207.49,71.28)">
           <tspan
-             id="tspan1931"
+             id="tspan1923"
              sodipodi:role="line"
              y="0"
              x="0 9">50</tspan>
         </text>
         <text
-           id="text1937"
+           id="text1929"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            transform="matrix(1,0,0,-1,319.54,71.28)">
           <tspan
-             id="tspan1935"
+             id="tspan1927"
              sodipodi:role="line"
              y="0"
              x="0 9 18">100</tspan>
         </text>
         <text
-           id="text1941"
+           id="text1933"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            transform="matrix(1,0,0,-1,436.1,71.28)">
           <tspan
-             id="tspan1939"
+             id="tspan1931"
              sodipodi:role="line"
              y="0"
              x="0 9 18">150</tspan>
         </text>
         <path
            inkscape:connector-curvature="0"
+           id="path1935"
+           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 88.56,117.47 V 404.13" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path1937"
+           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 88.56,117.47 H 77.76" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path1939"
+           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 88.56,174.8 H 77.76" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path1941"
+           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 88.56,232.13 H 77.76" />
+        <path
+           inkscape:connector-curvature="0"
            id="path1943"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-           d="M 88.56,124.72 V 404.13" />
+           d="M 88.56,289.47 H 77.76" />
         <path
            inkscape:connector-curvature="0"
            id="path1945"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-           d="M 88.56,124.72 H 77.76" />
+           d="M 88.56,346.8 H 77.76" />
         <path
            inkscape:connector-curvature="0"
            id="path1947"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-           d="M 88.56,180.6 H 77.76" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path1949"
-           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-           d="M 88.56,236.48 H 77.76" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path1951"
-           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-           d="M 88.56,292.37 H 77.76" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path1953"
-           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-           d="M 88.56,348.25 H 77.76" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path1955"
-           style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            d="M 88.56,404.13 H 77.76" />
         <text
-           id="text1959"
+           id="text1951"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           transform="matrix(0,1,1,0,62.64,113.47)">
+           transform="matrix(0,1,1,0,62.64,106.22)">
           <tspan
-             id="tspan1957"
+             id="tspan1949"
              sodipodi:role="line"
              y="0"
              x="0 9 13.5">0.0</tspan>
         </text>
         <text
-           id="text1963"
+           id="text1955"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           transform="matrix(0,1,1,0,62.64,169.35)">
+           transform="matrix(0,1,1,0,62.64,163.55)">
           <tspan
-             id="tspan1961"
+             id="tspan1953"
              sodipodi:role="line"
              y="0"
              x="0 9 13.5">0.2</tspan>
         </text>
         <text
-           id="text1967"
+           id="text1959"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           transform="matrix(0,1,1,0,62.64,225.23)">
+           transform="matrix(0,1,1,0,62.64,220.88)">
           <tspan
-             id="tspan1965"
+             id="tspan1957"
              sodipodi:role="line"
              y="0"
              x="0 9 13.5">0.4</tspan>
         </text>
         <text
-           id="text1971"
+           id="text1963"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           transform="matrix(0,1,1,0,62.64,281.12)">
+           transform="matrix(0,1,1,0,62.64,278.22)">
           <tspan
-             id="tspan1969"
+             id="tspan1961"
              sodipodi:role="line"
              y="0"
              x="0 9 13.5">0.6</tspan>
         </text>
         <text
-           id="text1975"
+           id="text1967"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           transform="matrix(0,1,1,0,62.64,337)">
+           transform="matrix(0,1,1,0,62.64,335.55)">
           <tspan
-             id="tspan1973"
+             id="tspan1965"
              sodipodi:role="line"
              y="0"
              x="0 9 13.5">0.8</tspan>
         </text>
         <text
-           id="text1979"
+           id="text1971"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            transform="matrix(0,1,1,0,62.64,392.88)">
           <tspan
-             id="tspan1977"
+             id="tspan1969"
              sodipodi:role="line"
              y="0"
              x="0 9 13.5">1.0</tspan>
         </text>
         <path
            inkscape:connector-curvature="0"
-           id="path1981"
+           id="path1973"
            style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            d="M 88.56,110.16 H 458.64 V 415.44 H 88.56 V 110.16" />
       </g>
       <g
-         id="g1983">
+         id="g1975">
         <text
-           id="text1987"
+           id="text1979"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            transform="matrix(1,0,0,-1,202.35,28.08)">
           <tspan
-             id="tspan1985"
+             id="tspan1977"
              sodipodi:role="line"
              y="0"
              x="0 12.996 21.996 29.988001 34.992001 42.984001 51.984001 56.987999 61.992001 70.991997 78.984001 83.484001 93.491997 102.492 109.494 114.498 119.502 124.506 133.506">Nucleotide Position</tspan>
         </text>
         <text
-           id="text1991"
+           id="text1983"
            style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            transform="matrix(0,1,1,0,19.44,175.31)">
           <tspan
-             id="tspan1989"
+             id="tspan1981"
              sodipodi:role="line"
              y="0"
              x="0 12.996 21.996 27.99 41.993999 49.986 54.990002 59.993999 67.986 75.977997 84.977997 89.477997 101.484 109.476 117.468 126.468 130.968 142.974 151.974 160.974 169.974">Normalized Read Count</tspan>
