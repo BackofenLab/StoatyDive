@@ -135,7 +135,7 @@ Example 2:
 `StoatyDive.py -a test/sharp_peaks/peaks.bed -b test/sharp_peaks/reads.bed -c test/chrom_sizes.txt --length_norm --border_penalty --turn_off_classification -o test/sharp_peaks/`
 
 Example 3:
-`StoatyDive.py -a test/mixed_peaks/peaks.bed -b test/mixed_peaks/reads.bam -c test/chrom_sizes.txt --length_norm --length_norm_value 50 --border_penalty -o test/mixed_peaks/`
+`StoatyDive.py -a test/mixed_peaks/peaks.bed -b test/mixed_peaks/reads.bam -c test/chrom_sizes.txt --length_norm --length_norm_value 50 --border_penalty --sm --seed 10 -o test/mixed_peaks/`
 
 ## Output
 
@@ -191,14 +191,15 @@ tabular has no 15/16th column.
 You will get some plots for the classification, saved in the folder `clustering_*`.
 
 ### Cluster Profiles (pdf)
-| A        | B           |
-| :-------------: |:-------------:|
-| <img src="test/mixed_peaks/clustering_reads/cluster_1.svg" width="400"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed1.svg" width="400"> |
+| A        | B           | C |
+| :-------------: |:-------------:|:-------------:|
+| <img src="test/mixed_peaks/clustering_reads/cluster_1.svg" width="230"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed1.svg" width="230"> | <img src="test/mixed_peaks/clustering_reads/cluster_average_profile1.svg" width="230"> |
 
-If you turned on the smoothing you will get two types of cluster sets. One shows you
+If you turned on the smoothing you will get three types of cluster sets. The first one shows you
 some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
-for cluster 1; Figure A). One shows you some example smoothed and sometimes translocated
-peak profiles to the specific cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B).
+for cluster 1; Figure A). The second one shows you some example smoothed and sometimes translocated
+peak profiles to the specific cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B). The third one
+are the average profiles of each cluster (e.g. cluster_average_profile1.pdf for cluster 1; Figure C).
 Profile like figure B are used for the classification. The profiles are colored based
 on the clusters as seen as in the uMAP plot.
 
