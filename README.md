@@ -193,7 +193,7 @@ You will get some plots for the classification, saved in the folder `clustering_
 ### Cluster Profiles (pdf)
 | A        | B           | C |
 | :-------------: |:-------------:|:-------------:|
-| <img src="test/mixed_peaks/clustering_reads/cluster_1.svg" width="230"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed1.svg" width="230"> | <img src="test/mixed_peaks/clustering_reads/cluster_average_profile1.svg" width="230"> |
+| <img src="test/mixed_peaks/clustering_reads/cluster_1.svg" width="260"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed1.svg" width="260"> | <img src="test/mixed_peaks/clustering_reads/cluster_average_profile1.svg" width="260"> |
 
 If you turned on the smoothing you will get three types of cluster sets. The first one shows you
 some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
