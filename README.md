@@ -72,7 +72,7 @@ optional arguments:
 --sm                  Turn on the peak profile smoothing for the peak
                       profile classification. It is recommended to turn it
                       on.
---max_translocate     Set this flag is you want to translocate the peak
+--max_translocate     Set this flag if you want to translocate the peak
                       profiles based on the maximum value inside the profile
                       instead of a Gaussian blur translocation.
 --lam float           Parameter for the peak profile classification. Set
