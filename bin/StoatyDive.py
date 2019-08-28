@@ -113,7 +113,7 @@ def main():
     parser.add_argument(
         "--max_translocate",
         action='store_true',
-        help="Set this flag is you want to translocate the peak profiles based on the maximum value inside the profile instead of a Gaussian blur translocation.")
+        help="Set this flag if you want to translocate the peak profiles based on the maximum value inside the profile instead of a Gaussian blur translocation.")
     parser.add_argument(
         "--lam",
         metavar='float',
@@ -464,21 +464,28 @@ def main():
         k = keys_list[i]
         coords = coordinates_dict[k]
 
+        max_norma_cv = (varcoeff_coverage_peaks_dict[k]-zero)/(one-zero)
+
         type = 0
         if ( varcoeff_coverage_peaks_dict[k] >= float(args.thresh)):
             type = 0
         else:
             type = 1
 
-        # "Chr Start End ID CV Strand bp r p
-        # Max_Norm_CV Left_Border_Center_Difference Right_Border_Center_Difference Inter_Index Specific/Unspecific"
+        # Chr  Start   End
+        # ID_from_File    CV  Strand
+        # bp    r   p
+        # Max_Norm_CV
+        # Left_Border_Center_Difference
+        # Right_Border_Center_Difference Inter_Index
+        # Internal_Peak_ID  Specific/Unspecific"
         out_tab_file.write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\n".format(coords[0], coords[1], coords[2],
                                                                  peakid_dict[k], varcoeff_coverage_peaks_dict[k], strand_dict[k],
-                                                                 num_bp_peaks_dict[k], size_r_peaks_dict[k],
-                                                                 prob_success_peaks_dict[k],
-                                                                 (varcoeff_coverage_peaks_dict[k]-zero)/(one-zero),
+                                                                 num_bp_peaks_dict[k], size_r_peaks_dict[k], prob_success_peaks_dict[k],
+                                                                 max_norma_cv,
                                                                  center_border_diff_left_dict[k],
-                                                                 center_border_diff_right_dict[k], k+1, type))
+                                                                 center_border_diff_right_dict[k],
+                                                                 k+1, type))
     out_tab_file.close()
 
 
