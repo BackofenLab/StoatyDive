@@ -3,16 +3,31 @@ require("umap")
 require("data.table") # for the shift function
 require("zoo") # for rollmeans
 
-umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_smoothing, max_translocate){
+# for testing
+require("Rtsne")
+require("kohonen")
 
-  set.seed(123)
+umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_k, on_off_smoothing){
   
   print(data_path)
   print(filename)
-  print(lam)
-  print(maximal_cluster_number)
-  print(on_off_smoothing)
-  print(max_translocate)
+  print(paste0("Lam: ", lam))
+  print(paste0("Maximal k cluster: ", maximal_cluster_number))
+  if ( optimal_k == -1  ){
+    print("Find k optimal cluster")
+  } else {
+    print(paste0("Set k cluster to: ", optimal_k))
+  }
+  if ( on_off_smoothing ){
+    print("Turn on smoothing") 
+  }
+  
+  # data_path <- "~/Documents/StoatyDiveResults/SLBP"
+  # filename <- "SLBP_rep2_sorted"
+  # lam <- 0.3
+  # maximal_cluster_number <- 15
+  # on_off_smoothing <- TRUE
+  # optimal_k <- 7
   
   ############
   ##  Input ##
@@ -33,6 +48,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   ################
   ##  Normalize ##
   ################
+  set.seed(123)
   
   min_max_noramlize <- function(x){
     x_new <- (x-min(x)) / (max(x)-min(x)) 
@@ -82,95 +98,16 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   if( on_off_smoothing ) {
     print("[NOTE] Smooth data")
     data_smoothed <- t(apply(data_removed_duplicates, 1, smoothing, lambda=lam, dim=smoothing_dim))
+    
+    # get rid of negative values
+    data_smoothed[which(data_smoothed < 0)] = 0.0
+    
+    # get rid of diract impulses bigger than max (> 1.0)
+    data_smoothed[which(data_smoothed > 1.0)] = 1.0
+    
   }
   
-  ############################
-  ##  Check for Translocate ##
-  ############################
-  
-  end <- ncol(data_smoothed)
-  
-  left <- which(apply(data_smoothed[,1:3], 1, mean) < 0.8)
-  right <- which(apply(data_smoothed[,(end-2):end], 1, mean) < 0.8)
-  
-  peaks_to_translocate <- intersect(left, right)
-  
-  #################
-  ##  Tranlocate ##
-  #################
-  
-  translocate_forward <- function(v, s){
-    end <- length(v)
-    v_new <- shift(v, s)
-    v_new[1:s] <- v[(end-s+1):end]
-    return(v_new)
-  }
-  
-  translocate_backward <- function(v, s){
-    end <- length(v)
-    v_new <- shift(v, s)
-    v_new[(end-abs(s)+1):end] <- v[1:abs(s)]
-    return(v_new)
-  }
-  
-  center_peak <- function(y_peak, x_dist){
-    s <- 0
-    
-    if ( max_translocate ){
-      s <- floor(length(y_peak)/2) - which.max(y_peak) 
-    } else {
-      s <- which.max(convolve(x_dist , y_peak, type="open")) - length(y_peak)
-    }
-    
-    if ( s < 0 ){
-      return(translocate_backward(y_peak, s))
-    }
-    if ( s > 0 ){
-      return(translocate_forward(y_peak, s))
-    } 
-    return(y_peak)
-  }
-  
-  generate_gaussian <- function(dim) {
-    dist <- dnorm(seq(-4, 4, 8/dim), mean=0, sd=1)
-    dist <- dist/max(dist)
-    d <- length(dist) - dim
-    
-    if ( d > 0 ){
-      dist <- dist[1:dim]
-      dist <- translocate_backward(dist, -d)
-    }
-    
-    if ( d < 0 ){
-      zero_vector <- rep(0, dim)
-      zero_vector[1:dim] <- dist
-      dist <- zero_vector
-      dist <- translocate_forward(dist, d)
-    } 
-    
-    return(dist)
-  }
-  
-  # Center Peak
-  # Use a Gaussian distribution to center the peaks around the middle of the diagram.
-  dist <- generate_gaussian(ncol(data_smoothed))
-  
-  pre_data_ready <- t(apply(data_smoothed, 1, center_peak, x_dist=dist))
   data_ready <- data_smoothed
-  data_ready[peaks_to_translocate, ] <- pre_data_ready[peaks_to_translocate, ]
-  
-  #########
-  ## PCA ##
-  #########
-  
-  # Just PCA for comparison
-  pdf(paste0(output_path,"/PCA.pdf"))
-  par(family = 'serif', cex = 1.5)
-  pca <- prcomp(data_ready)$x
-  plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
-  plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
-  plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
-  dev.off()
   
   #######################
   ##  kmeans Functions ##
@@ -212,9 +149,9 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     }
     percantage_diff <- differences/sum(differences)
     
-    if (  is.na(which( percantage_diff < 0.1 )[1] ) == FALSE ){
-      if ( which( percantage_diff < 0.1 )[1] < opt ) {
-        opt <- which( percantage_diff < 0.1 )[1] + 2
+    if (  is.na(which( percantage_diff < 0.05 )[1] ) == FALSE ){
+      if ( which( percantage_diff < 0.05 )[1] < opt ) {
+        opt <- which( percantage_diff < 0.05 )[1] + 2
       }
     }
     
@@ -278,25 +215,74 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   # Are under the curve
   auc <- apply(data_smoothed, 1, AUC)
   data_ready <- cbind(data_ready, auc)
+
+  # Arc Length Feature
+  arc_length <- apply(data_removed_duplicates, 1, ARC)
+  data_ready <- cbind(data_ready, arc_length)
   
+  # OLD Features (many useful for the future)
   # Number of inflexion points
-  data_smoothed_for_inflection <- t(apply(data_removed_duplicates, 1, smoothing, lambda=.8, dim=smoothing_dim))
-  inflections_points <- apply(data_smoothed, 1, Inflection)
-  data_ready <- cbind(data_ready, inflections_points)
+  # data_smoothed_for_inflection <- t(apply(data_removed_duplicates, 1, smoothing, lambda=.3, dim=smoothing_dim))
+  # inflections_points <- apply(data_smoothed, 1, Inflection)
+  # data_ready <- cbind(data_ready, inflections_points)
   
-  # MSE Features
-  data_smoothed_for_mse <- t(apply(data_removed_duplicates, 1, smoothing, lambda=.8, dim=ncol(data_removed_duplicates)))
-  errors <- sapply(1:nrow(data_ready), function(r){ sum((data_removed_duplicates[r,]-data_smoothed_for_mse[r,])^2) })
-  mse <- errors/smoothing_dim
-  data_ready <- cbind(data_ready, mse)
+  # # MSE Features
+  # data_smoothed_for_mse <- t(apply(data_removed_duplicates, 1, smoothing, lambda=.8, dim=ncol(data_removed_duplicates)))
+  # errors <- sapply(1:nrow(data_ready), function(r){ sum((data_removed_duplicates[r,]-data_smoothed_for_mse[r,])^2) })
+  # mse <- errors/smoothing_dim
+  # data_ready <- cbind(data_ready, mse)
   
   # Max Absolute Difference Feature
-  max_abs_diff <- apply( data_removed_duplicates, 1, function(x){max(abs(diff(x)))} ) 
-  data_ready <- cbind(data_ready, max_abs_diff)
+  # max_abs_diff <- apply( data_removed_duplicates, 1, function(x){max(abs(diff(x)))} )
+  # data_ready <- cbind(data_ready, max_abs_diff)
   
-  # Arc Length Feature
-  arc_length <- apply(data_removed_duplicates, 1, ARC) 
-  data_ready <- cbind(data_ready, arc_length)
+  # #########
+  # ## PCA ##
+  # #########
+  # 
+  # # Just PCA for comparison
+  # pdf(paste0(output_path,"/PCA.pdf"))
+  # par(family = 'serif', cex = 1.5, mfrow=c(2, 2), mgp = c(2, 1, 0))
+  # pca <- prcomp(data_ready)$x
+  # plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
+  # plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
+  # plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
+  # dev.off()
+  # 
+  # ##########
+  # ## tSNE ##
+  # ##########
+  # 
+  # tsne <- Rtsne(data_ready, dims = 2, perplexity=100, verbose=TRUE, max_iter = 5000, eta=100, momentum=0.1, pca = TRUE)
+  # pdf(paste0(output_path,"/tSNE.pdf"))
+  # par(family = 'serif', cex = 1.5, mgp = c(2, 1, 0))
+  # plot(tsne$Y[,1], tsne$Y[,2], xlab=paste0("Dim ",1), ylab=paste0("Dim ",2))
+  # dev.off()
+  # 
+  # #########
+  # ## SOM ##
+  # #########
+  # 
+  # # Create the SOM Grid - you generally have to specify the size of the
+  # # training grid prior to training the SOM. Hexagonal and Circular
+  # # topologies are possible
+  # som_grid <- somgrid(xdim = 10, ydim= 10, topo="hexagonal")
+  # 
+  # # Finally, train the SOM, options for the number of iterations,
+  # # the learning rates, and the neighbourhood are available
+  # set.seed(123)
+  # 
+  # som_model <- som(data_ready,
+  #                  grid=som_grid,
+  #                  rlen=5000,
+  #                  alpha=c(0.05, 0.01),
+  #                  radius=c(5, 0),
+  #                  dist.fcts="euclidean")
+  # 
+  # pdf(paste0(output_path, "/SOM.pdf"))
+  # par(family = 'serif')
+  # plot(som_model, type="count")
+  # dev.off()
   
   #############
   ### uMAP  ###
@@ -326,6 +312,10 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   optimal_num_centroids <- returned_optimisation_values[1]
   optimal_perc <- returned_optimisation_values[2]
   
+  if ( optimal_k != -1 ){
+    optimal_num_centroids <- optimal_k
+  }
+  
   ## use kmeans clustering with optimal number of centroids
   clusters <- kmeans(new_data_for_kmeans, centers=optimal_num_centroids, nstart = 100, iter.max = 1000)$cluster
   
@@ -349,7 +339,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   seq_clusters <- c(1:num_clusters)
   
   plot_uMAP <- function(c1, c2, data){
-    par(mar=c(4.1, 4.1, 4.1, 4.1), xpd=TRUE)
+    par(mar=c(4.1, 4.1, 4.1, 4.1), xpd=TRUE, mgp = c(2, 1, 0))
     plot(data[,c1], data[,c2], xlab=paste0("Dim ",c1), ylab=paste0("Dim ",c2), col="white")
     legend("topright", inset=c(-0.2,0), col=colors[seq_clusters], legend=seq_clusters, pch=seq_clusters, title="Group")
     
@@ -399,25 +389,15 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
   
   print("[NOTE] Create cluster profiles")
   
-  end <- ncol(data_normalized)
-  left <- which(apply(data_normalized[,1:3], 1, mean) < 0.8)
-  right <- which(apply(data_normalized[,(end-2):end], 1, mean) < 0.8)
-  peaks_to_translocate <- intersect(left, right)
+  # Smoothed profiles
+  for_smoothed_profiles <- t(apply(data_normalized, 1, smoothing, lambda=lam, dim=smoothing_dim))
+  for_smoothed_profiles[which(for_smoothed_profiles < 0)] = 0.0
+  for_smoothed_profiles[which(for_smoothed_profiles > 1.0)] = 1.0
   
-  # 1) Smooth
-  # 2) Translocate
-  testing1 <- t(apply(data_normalized, 1, smoothing, lambda=lam, dim=smoothing_dim))
-  pre_testing2 <- t(apply(testing1, 1, center_peak, x_dist=dist))
-  testing2 <- testing1
-  testing2[peaks_to_translocate, ] <- pre_testing2[peaks_to_translocate,]
-  
-  # Just translocate
-  dist <- generate_gaussian(ncol(data_normalized))
-  
-  pre_for_avaerage_profile <- t(apply(data_normalized, 1, center_peak, x_dist=dist))
+  # Average Profiles
   for_avaerage_profile <- data_normalized
-  for_avaerage_profile[peaks_to_translocate, ] <- pre_for_avaerage_profile[peaks_to_translocate,]
 
+  peak_length <- length(data_normalized[1,])
   unique_clusters <- unique(clusters)
   for( i in 1:length(unique_clusters) ){
     peaks <- which(cluster_col[,1] == unique_clusters[i])
@@ -429,28 +409,33 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
     
     if( on_off_smoothing ) {
       pdf(paste0(output_path, "/cluster_smoothed", unique_clusters[i],".pdf"))
-      par(family = 'serif', cex = 1.5)
+      par(family = 'serif', cex = 1.5, mgp = c(2, 1, 0))
       for( j in 1:num_peaks ){
-          plot(testing2[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position", 
-               col = colors[unique_clusters[i]], pch=20)
+        barplot(for_smoothed_profiles[peaks[j],], ylab = "Normalized Read Count", xlab = "Relative Nucleotide Position", 
+               col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA)
+        abline(v=round(peak_length/2), lty="dashed")
+        mtext("0", side=1, line=0.1, at=round(peak_length/2)) 
       }
       dev.off()
     }
     
     pdf(paste0(output_path, "/cluster_", unique_clusters[i],".pdf"))
-    par(family = 'serif', cex = 1.5)
+    par(family = 'serif', cex = 1.5, mgp = c(2, 1, 0))
     for( j in 1:num_peaks ){
-      plot(data_normalized[peaks[j],], ylab = "Normalized Read Count", xlab = "Nucleotide Position", 
-           col = colors[unique_clusters[i]], pch=20)
+      barplot(data_normalized[peaks[j],], ylab = "Normalized Read Count", xlab = "Relative Nucleotide Position", 
+           col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA)
+      abline(v=round(peak_length/2), lty="dashed")
+      mtext("0", side=1, line=0.1, at=round(peak_length/2)) 
     }
     dev.off()
     
     average_profile <- apply(for_avaerage_profile[peaks,], 2, mean)
-    
     pdf(paste0(output_path, "/cluster_average_profile", unique_clusters[i],".pdf"))
-    par(family = 'serif', cex = 1.5)
-    plot(average_profile, ylab = "Normalized Read Count", xlab = "Nucleotide Position", 
-         col = colors[unique_clusters[i]], pch=20, ylim=c(0,1))
+    par(family = 'serif', cex = 1.5,  mgp = c(2, 1, 0))
+    barplot(average_profile, ylab = "Normalized Read Count", xlab = "Relative Nucleotide Position", 
+         col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA)
+    abline(v=round(peak_length/2), lty="dashed")
+    mtext("0", side=1, line=0.1, at=round(peak_length/2)) 
     dev.off()
     
   }
@@ -462,8 +447,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, on_off_s
 
 args = commandArgs(trailingOnly=TRUE)
 
-if ( length(args) < 5 ) {
+if ( length(args) < 6 ) {
   print("[TEST] Not enough arguments.")
 } else {
-  umap_main(args[1], args[2], as.numeric(args[3]), as.numeric(args[4]), args[5], args[6])
+  umap_main(args[1], args[2], as.numeric(args[3]), as.numeric(args[4]), as.numeric(args[5]), args[6])
 }
