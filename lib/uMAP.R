@@ -317,7 +317,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
   }
   
   ## use kmeans clustering with optimal number of centroids
-  clusters <- kmeans(new_data_for_kmeans, centers=optimal_num_centroids, nstart = 100, iter.max = 1000)$cluster
+  clusters <- kmeans(new_data_for_kmeans, centers=optimal_num_centroids, nstart = 100, iter.max = 10000)$cluster
   
   num_clusters <- length(unique(clusters)) 
   
@@ -393,13 +393,11 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
   for_smoothed_profiles <- t(apply(data_normalized, 1, smoothing, lambda=lam, dim=smoothing_dim))
   for_smoothed_profiles[which(for_smoothed_profiles < 0)] = 0.0
   for_smoothed_profiles[which(for_smoothed_profiles > 1.0)] = 1.0
-  
-  # Average Profiles
-  for_avaerage_profile <- data_normalized
 
   peak_length <- length(data_normalized[1,])
   unique_clusters <- unique(clusters)
-  for( i in 1:length(unique_clusters) ){
+  num_clusters <- length(unique_clusters)
+  for( i in 1:num_clusters ){
     peaks <- which(cluster_col[,1] == unique_clusters[i])
     num_peaks <- length(peaks)
     
@@ -429,18 +427,78 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
     }
     dev.off()
     
-    average_profile <- apply(for_avaerage_profile[peaks,], 2, mean)
-    pdf(paste0(output_path, "/cluster_average_profile", unique_clusters[i],".pdf"))
-    par(family = 'serif', cex = 1.5,  mgp = c(2, 1, 0))
-    barplot(average_profile, ylab = "Normalized Read Count", xlab = "Relative Nucleotide Position", 
-         col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA)
-    abline(v=round(peak_length/2), lty="dashed")
-    mtext("0", side=1, line=0.1, at=round(peak_length/2)) 
-    dev.off()
-    
   }
-}
+  
+  # Sort clusters and colors
+  unique_clusters <- sort(unique_clusters)
+  
+  # Overviews
+  peak_selection <- c(17,2,1,19,18,4,1)
+  peaks <- which(cluster_col[,1] == unique_clusters[1])
+  
+  xlab_position <- ceiling(num_clusters/2) 
+  
+  pdf(paste0(output_path, "/overview_clusters.pdf"), width = 15, height = 3)
+  par(family = 'serif', cex = 1.5, mfrow=c(1, num_clusters), mar=c(4,3,2,0), mgp = c(2, 1, 0))
+  barplot(data_normalized[peaks[peak_selection[1]],], ylab = "Normalized Read Count", xlab = "", 
+          col = colors[1], pch=20, ylim=c(0,1), space=0, border=NA)
+  abline(v=round(peak_length/2), lty="dashed")
+  mtext("0", side=1, line=0.5, at=round(peak_length/2), family = 'serif', cex = 0.7) 
+  title(main = "1", line=0.9)
+    
+  for( i in 2:num_clusters ){
+    peaks <- which(cluster_col[,1] == unique_clusters[i])
+    par(mar=c(4,1,2,1), mgp = c(2, 1, 0))
+    if ( i == xlab_position ){
+      barplot(data_normalized[peaks[peak_selection[i]],], ylab = "", xlab = "Relative Nucleotide Position", 
+              col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA, yaxt="n")
+    } else {
+      barplot(data_normalized[peaks[peak_selection[i]],], ylab = "", xlab = "", 
+              col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA, yaxt="n")
+    }
+    abline(v=round(peak_length/2), lty="dashed")
+    mtext("0", side=1, line=0.5, at=round(peak_length/2), family = 'serif', cex = 0.7)
+    title(main = i, line=0.9)
+  }
+  
+  dev.off()
+  
+  # Average Profiles
+  for_avaerage_profile <- data_normalized
+  
+  peaks <- which(cluster_col[,1] == unique_clusters[1])
+  
+  pdf(paste0(output_path, "/cluster_average_profiles.pdf"), width = 15, height = 3)
+  par(family = 'serif', cex = 1.5, mfrow=c(1, num_clusters), mar=c(4,3,2,0), mgp = c(2, 1, 0))
+  
+  average_profile <- apply(for_avaerage_profile[peaks,], 2, mean)
+  barplot(average_profile, ylab = "Normalized Read Count", xlab = "",
+          col = colors[unique_clusters[1]], pch=20, ylim=c(0,1), space=0, border=NA)
+  abline(v=round(peak_length/2), lty="dashed")
+  mtext("0", side=1, line=0.1, at=round(peak_length/2),  family = 'serif', cex = 0.7)
+  title(main = "1", line=0.9)
+  
+  for( i in 2:num_clusters ){
+    peaks <- which(cluster_col[,1] == unique_clusters[i])
+    average_profile <- apply(for_avaerage_profile[peaks,], 2, mean)
+    
+    par(mar=c(4,1,2,1), mgp = c(2, 1, 0))
+    if ( i == xlab_position ){
+      barplot(average_profile, ylab = "", xlab = "Relative Nucleotide Position", 
+              col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA, yaxt="n")
+    } else {
+      barplot(average_profile, ylab = "", xlab = "", 
+              col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA, yaxt="n")
+    }
+    abline(v=round(peak_length/2), lty="dashed")
+    mtext("0", side=1, line=0.5, at=round(peak_length/2), family = 'serif', cex = 0.7)
+    title(main = i, line=0.9)
+  }
+  
+  dev.off()
 
+}
+  
 #################
 ##  Parameters ##
 #################
