@@ -80,8 +80,9 @@ def main():
     parser.add_argument(
         "-t", "--thresh",
         metavar='float',
-        default=1.0,
-        help="Set a CV threshold to divide the peak profiles into specific and unspecific. [Default: 1.0]")
+        default=0.5,
+        help="Set a normalized CV threshold to divide the peak profiles into more specific (0) and more "
+             "unspecific (1). [Default: 1.0]")
     parser.add_argument(
         "--peak_correction",
         action='store_true',
@@ -593,7 +594,7 @@ def main():
         max_norma_cv = (varcoeff_coverage_peaks_dict[k]-zero)/(one-zero)
 
         type = 0
-        if ( varcoeff_coverage_peaks_dict[k] >= float(args.thresh)):
+        if ( max_norma_cv >= float(args.thresh)):
             type = 0
         else:
             type = 1
