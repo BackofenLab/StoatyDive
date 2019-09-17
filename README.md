@@ -94,10 +94,6 @@ just overlap with a short appendage of a read stack. The length normalization ta
 care of different sized peaks. All peak are extended to a certain length with `--length_norm`. The user can either provide a peak length with `length_norm_value` or
 StoatyDive just takes the maximal peak length of the given peak set.
 
-#### Seed
-Please set a seed if you use StoatyDive for any publications to warrant reproducible
-results.
-
 #### CV Threshold
 The user can set a CV threshold with `-t, --thresh` to divide the predicted
 peaks into more specific (0) and more unspecific sites (1). The default is set
