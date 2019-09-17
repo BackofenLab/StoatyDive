@@ -88,10 +88,10 @@ optional arguments:
 ### Recommendations
 
 #### Border Penalty and Length Normalization
-It is recommended to use StoatyDive with `--border_penalty` and `--length_norm`.
+It is recommended to use StoatyDive with `--border_penalty` and `--peak_correction`.
 Adding the border penalty takes care of peaks that are not correctly centered and might
 just overlap with a short appendage of a read stack. The length normalization takes
-care of different sized peaks. All peak are extended to a certain length with `--length_norm`. The user can either provide a peak length with `length_norm_value` or
+care of different sized peaks. All peak are extended to a certain length with `--peak_correction`. The user can either provide a peak length with `peak_length` or
 StoatyDive just takes the maximal peak length of the given peak set.
 
 #### CV Threshold
@@ -104,7 +104,8 @@ StoatyDive runs uMAP and k-means clustering to classify the peak profiles.
 You can skip this step with `--turn_off_classification`. The parameter `--maxcl`
 is crucial for the k-means clustering. Just leave it in default, since the number
 of clusters will be optimized internally. The parameter `--maxcl` is just an upper
-bound. If you assume that 15 cluster is not enough then increase the parameter.
+bound. If you assume that 15 cluster is not enough then increase the parameter. You
+can also force StoatyDive to use k clusters with `-k`.
 
 #### Smoothing of the Peak Profiles
 StoatyDive can smooths the peak profiles, with a spline regression, using the
