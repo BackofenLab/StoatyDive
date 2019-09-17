@@ -42,46 +42,47 @@ StoatyDive.py [-h] [options] -a *.bed -b *.bam/*bed -c *.txt
 
 ```
 optional arguments:
--h, --help            show this help message and exit
--v, --version         show program's version number and exit
--a *.bed, --input_bed *.bed
-                      Path to the peak file in bed6 format.
--b *.bam/*.bed, --input_bam *.bam/*.bed
-                      Path to the read file used for the peak calling in bed
-                      or bam format.
--c *.txt, --chr_file *.txt
-                      Path to the chromosome length file.
--o path/, --output_folder path/
-                      Write results to this path. [Default: Operating Path]
--t float, --thresh float
-                      Set a CV threshold to divide the peak profiles into
-                      specific and unspecific. [Default: 1.0]
---length_norm         Set length normalization. StoatyDive will expand every
-                      peak to the maximal length.
---length_norm_value int
-                      Set length normalization value (maximum peak length).
---max_norm_value float
-                      Provide a maximum value for CV to make the normalized
-                      CV plot more comparable.
---border_penalty      Adds a penalty for non-centered peaks.
---scale_max float     Provide a maximum value for the CV plot.
---maxcl int           Maximal number of clusters of the kmeans clustering of
-                      the peak profiles. The algorithm will be optimized,
-                      i.e., the parameter is just a constraint and not
-                      absolute. [Default: 15]
---sm                  Turn on the peak profile smoothing for the peak
-                      profile classification. It is recommended to turn it
-                      on.
---max_translocate     Set this flag if you want to translocate the peak
-                      profiles based on the maximum value inside the profile
-                      instead of a Gaussian blur translocation.
---lam float           Parameter for the peak profile classification. Set
-                      lambda for the smoothing of the peak profiles. A
-                      higher value (> default) will underfit. A lower value
-                      (< default) will overfit. [Default: 0.3]
---turn_off_classification
-                      Turn off the peak profile classification.
---seed int            Set seed for the optimization scheme.
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  -a *.bed, --input_bed *.bed
+                        Path to the peak file in bed6 format.
+  -b *.bam/*.bed, --input_bam *.bam/*.bed
+                        Path to the read file used for the peak calling in bed
+                        or bam format.
+  -c *.txt, --chr_file *.txt
+                        Path to the chromosome length file.
+  -o path/, --output_folder path/
+                        Write results to this path. [Default: Operating Path]
+  -t float, --thresh float
+                        Set a normalized CV threshold to divide the peak
+                        profiles into more specific (0) and more unspecific
+                        (1). [Default: 1.0]
+  --peak_correction     Activate peak correction. The peaks are recentered
+                        (shifted) for the correct sumit.
+  --max_translocate     Set this flag if you want to shift the peak profiles
+                        based on the maximum value inside the profile instead
+                        of a Gaussian blur translocation.
+  --peak_length int     Set maximum peak length for the constant peak length.
+  --max_norm_value float
+                        Provide a maximum value for CV to make the normalized
+                        CV plot more comparable.
+  --border_penalty      Adds a penalty for non-centered peaks.
+  --scale_max float     Provide a maximum value for the CV plot.
+  --maxcl int           Maximal number of clusters of the kmeans clustering of
+                        the peak profiles. The algorithm will be optimized,
+                        i.e., the parameter is just a constraint and not
+                        absolute. [Default: 15]
+  -k int, --numcl int   You can forcefully set the number of cluster of peak
+                        profiles.
+  --sm                  Turn on the peak profile smoothing for the peak
+                        profile classification. It is recommended to turn it
+                        on.
+  --lam float           Parameter for the peak profile classification. Set
+                        lambda for the smoothing of the peak profiles. A
+                        higher value (> default) will underfit. A lower value
+                        (< default) will overfit. [Default: 0.3]
+  --turn_off_classification
+                        Turn off the peak profile classification.
 ```
 
 ### Recommendations
@@ -129,13 +130,13 @@ CV distribution plots from different experiments. Take the highest CV from all e
 ## Quick Example
 
 Example 1:
-`StoatyDive.py -a test/broad_peaks/peaks.bed -b test/broad_peaks/reads.bed -c test/chrom_sizes.txt --length_norm --border_penalty --turn_off_classification -o test/broad_peaks/`
+`StoatyDive.py -a test/broad_peaks/peaks.bed -b test/broad_peaks/reads.bed -c test/chrom_sizes.txt --peak_correction --border_penalty --turn_off_classification -o test/broad_peaks/`
 
 Example 2:
-`StoatyDive.py -a test/sharp_peaks/peaks.bed -b test/sharp_peaks/reads.bed -c test/chrom_sizes.txt --length_norm --border_penalty --turn_off_classification -o test/sharp_peaks/`
+`StoatyDive.py -a test/sharp_peaks/peaks.bed -b test/sharp_peaks/reads.bed -c test/chrom_sizes.txt --peak_correction --border_penalty --turn_off_classification -o test/sharp_peaks/`
 
 Example 3:
-`StoatyDive.py -a test/mixed_peaks/peaks.bed -b test/mixed_peaks/reads.bam -c test/chrom_sizes.txt --length_norm --length_norm_value 50 --border_penalty --sm --seed 10 -o test/mixed_peaks/`
+`StoatyDive.py -a test/mixed_peaks/peaks.bed -b test/mixed_peaks/reads.bam -c test/chrom_sizes.txt --peak_correction --peak_length 50 --border_penalty --sm -o test/mixed_peaks/`
 
 ## Output
 
@@ -190,21 +191,29 @@ tabular has no 15/16th column.
 ## Clustering/Classification Results
 You will get some plots for the classification, saved in the folder `clustering_*`.
 
-### Cluster Profiles (pdf)
-| A        | B           | C |
-| :-------------: |:-------------:|:-------------:|
-| <img src="test/mixed_peaks/clustering_reads/cluster_1.svg" width="260"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed1.svg" width="260"> | <img src="test/mixed_peaks/clustering_reads/cluster_average_profile1.svg" width="260"> |
+### Individual Cluster Profiles (pdf)
+| A        | B           |
+| :-------------: |:-------------:|
+| <img src="test/mixed_peaks/clustering_reads/cluster_3.svg" width="260"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed3.svg" width="260"> |
 
-If you turned on the smoothing you will get three types of cluster sets. The first one shows you
+If you turned on the smoothing you will get four types of cluster sets. The first one shows you
 some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
-for cluster 1; Figure A). The second one shows you some example smoothed and sometimes translocated
-peak profiles to the specific cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B). The third one
-are the average profiles of each cluster (e.g. cluster_average_profile1.pdf for cluster 1; Figure C).
-Profile like figure B are used for the classification. The profiles are colored based
-on the clusters as seen as in the uMAP plot.
+for cluster 1; Figure A). The second one shows you some example smoothed and sometimes translocated peak profiles to the specific cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B). Profile like figure B are used for the classification. The profiles are colored based on the clusters as seen as in the uMAP plot.
+
+### Overview Cluster Profiles (pdf)
+
+| C        |
+| :-------------: |
+| <img src="test/mixed_peaks/clustering_reads/overview_clusters.svg" width="520"> |
+
+| D        |
+| :-------------: |
+| <img src="test/mixed_peaks/clustering_reads/cluster_average_profiles.svg" width="520"> |
+
+The third one is an example profile, such as Figure A for each cluster in one plot (overview_cluster.pdf; Figure C). The fourth one are the average profiles of each cluster (e.g. cluster_average_profiles.pdf; Figure D).
 
 ### k-means Optimization
-<img src="test/mixed_peaks/clustering_reads/kmeans_Optimization.svg" width="800">
+<img src="test/mixed_peaks/clustering_reads/kmeans_Optimization.svg" width="400">
 
 The plot `kmeans_Optimization.pdf` shows you the optimization scheme. If you data
 has a very low complexity, that is to say, you have lots of similar peak profiles,
@@ -213,7 +222,7 @@ indicated by strong fluctuations in the other diagrams. If you have very disting
 peak profiles, as in our example, then the variance explained will be `> 90%`.
 
 ### uMAP Plot
-<img src="test/mixed_peaks/clustering_reads/uMAP.svg" width="800">
+<img src="test/mixed_peaks/clustering_reads/uMAP.svg" width="400">
 
 The plot `uMAP.pdf` shows you the data in the new dimension found by the uMAP
 dimensional reduction algorithm. In correspondance to the the k-means optimization,
