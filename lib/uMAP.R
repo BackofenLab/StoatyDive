@@ -236,53 +236,53 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
   # max_abs_diff <- apply( data_removed_duplicates, 1, function(x){max(abs(diff(x)))} )
   # data_ready <- cbind(data_ready, max_abs_diff)
   
-  # #########
-  # ## PCA ##
-  # #########
-  # 
-  # # Just PCA for comparison
-  # pdf(paste0(output_path,"/PCA.pdf"))
-  # par(family = 'serif', cex = 1.5, mfrow=c(2, 2), mgp = c(2, 1, 0))
-  # pca <- prcomp(data_ready)$x
-  # plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
-  # plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
-  # plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
-  # dev.off()
-  # 
-  # ##########
-  # ## tSNE ##
-  # ##########
-  # 
-  # tsne <- Rtsne(data_ready, dims = 2, perplexity=100, verbose=TRUE, max_iter = 5000, eta=100, momentum=0.1, pca = TRUE)
-  # pdf(paste0(output_path,"/tSNE.pdf"))
-  # par(family = 'serif', cex = 1.5, mgp = c(2, 1, 0))
-  # plot(tsne$Y[,1], tsne$Y[,2], xlab=paste0("Dim ",1), ylab=paste0("Dim ",2))
-  # dev.off()
-  # 
-  # #########
-  # ## SOM ##
-  # #########
-  # 
-  # # Create the SOM Grid - you generally have to specify the size of the
-  # # training grid prior to training the SOM. Hexagonal and Circular
-  # # topologies are possible
-  # som_grid <- somgrid(xdim = 10, ydim= 10, topo="hexagonal")
-  # 
-  # # Finally, train the SOM, options for the number of iterations,
-  # # the learning rates, and the neighbourhood are available
-  # set.seed(123)
-  # 
-  # som_model <- som(data_ready,
-  #                  grid=som_grid,
-  #                  rlen=5000,
-  #                  alpha=c(0.05, 0.01),
-  #                  radius=c(5, 0),
-  #                  dist.fcts="euclidean")
-  # 
-  # pdf(paste0(output_path, "/SOM.pdf"))
-  # par(family = 'serif')
-  # plot(som_model, type="count")
-  # dev.off()
+  #########
+  ## PCA ##
+  #########
+
+  # Just PCA for comparison
+  pdf(paste0(output_path,"/PCA.pdf"))
+  par(family = 'serif', cex = 1.5, mfrow=c(2, 2), mgp = c(2, 1, 0))
+  pca <- prcomp(data_ready)$x
+  plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
+  plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
+  plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
+  dev.off()
+
+  ##########
+  ## tSNE ##
+  ##########
+
+  tsne <- Rtsne(data_ready, dims = 2, perplexity=100, verbose=TRUE, max_iter = 5000, eta=100, momentum=0.1, pca = TRUE)
+  pdf(paste0(output_path,"/tSNE.pdf"))
+  par(family = 'serif', cex = 1.5, mgp = c(2, 1, 0))
+  plot(tsne$Y[,1], tsne$Y[,2], xlab=paste0("Dim ",1), ylab=paste0("Dim ",2))
+  dev.off()
+
+  #########
+  ## SOM ##
+  #########
+
+  # Create the SOM Grid - you generally have to specify the size of the
+  # training grid prior to training the SOM. Hexagonal and Circular
+  # topologies are possible
+  som_grid <- somgrid(xdim = 10, ydim= 10, topo="hexagonal")
+
+  # Finally, train the SOM, options for the number of iterations,
+  # the learning rates, and the neighbourhood are available
+  set.seed(123)
+
+  som_model <- som(data_ready,
+                   grid=som_grid,
+                   rlen=5000,
+                   alpha=c(0.05, 0.01),
+                   radius=c(5, 0),
+                   dist.fcts="euclidean")
+
+  pdf(paste0(output_path, "/SOM.pdf"))
+  par(family = 'serif')
+  plot(som_model, type="count")
+  dev.off()
   
   #############
   ### uMAP  ###
@@ -433,7 +433,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
   unique_clusters <- sort(unique_clusters)
   
   # Overviews
-  peak_selection <- c(17,2,1,19,18,4,1)
+  #peak_selection <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+  peak_selection <- rep(1, num_clusters)
   peaks <- which(cluster_col[,1] == unique_clusters[1])
   
   xlab_position <- ceiling(num_clusters/2) 
