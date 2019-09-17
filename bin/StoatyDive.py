@@ -133,16 +133,14 @@ def main():
         "--turn_off_classification",
         action='store_true',
         help="Turn off the peak profile classification.")
-    parser.add_argument(
-        "--seed",
-        metavar='int',
-        help="Set seed for the optimization scheme.")
 
     ######################
     ##   CHECKS INPUT   ##
     ######################
 
     print("[START]")
+
+    seed = 123
 
     args = parser.parse_args()
 
@@ -346,9 +344,7 @@ def main():
         # because of the rounding.
         current_peak_length = extention_left + extentions_right + peak_length
         if (current_peak_length < max_peak_len):
-            # Set seed if seed is provided.
-            if (args.seed):
-                numpy.random.seed(int(args.seed))
+            numpy.random.seed(int(seed))
 
             if (numpy.random.randint(low=2, size=1) == 0):
                 extention_left += max_peak_len - current_peak_length
@@ -356,9 +352,7 @@ def main():
                 extentions_right += max_peak_len - current_peak_length
 
         if (current_peak_length > max_peak_len):
-            # Set seed if seed is provided.
-            if (args.seed):
-                numpy.random.seed(int(args.seed))
+            numpy.random.seed(int(seed))
 
             if (numpy.random.randint(low=2, size=1) == 0):
                 extention_left -= current_peak_length - max_peak_len
