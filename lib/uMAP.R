@@ -236,53 +236,53 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
   # max_abs_diff <- apply( data_removed_duplicates, 1, function(x){max(abs(diff(x)))} )
   # data_ready <- cbind(data_ready, max_abs_diff)
   
-  #########
-  ## PCA ##
-  #########
-
-  # Just PCA for comparison
-  pdf(paste0(output_path,"/PCA.pdf"))
-  par(family = 'serif', cex = 1.5, mfrow=c(2, 2), mgp = c(2, 1, 0))
-  pca <- prcomp(data_ready)$x
-  plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
-  plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
-  plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
-  dev.off()
-
-  ##########
-  ## tSNE ##
-  ##########
-
-  tsne <- Rtsne(data_ready, dims = 2, perplexity=100, verbose=TRUE, max_iter = 5000, eta=100, momentum=0.1, pca = TRUE)
-  pdf(paste0(output_path,"/tSNE.pdf"))
-  par(family = 'serif', cex = 1.5, mgp = c(2, 1, 0))
-  plot(tsne$Y[,1], tsne$Y[,2], xlab=paste0("Dim ",1), ylab=paste0("Dim ",2))
-  dev.off()
-
-  #########
-  ## SOM ##
-  #########
-
-  # Create the SOM Grid - you generally have to specify the size of the
-  # training grid prior to training the SOM. Hexagonal and Circular
-  # topologies are possible
-  som_grid <- somgrid(xdim = 10, ydim= 10, topo="hexagonal")
-
-  # Finally, train the SOM, options for the number of iterations,
-  # the learning rates, and the neighbourhood are available
-  set.seed(123)
-
-  som_model <- som(data_ready,
-                   grid=som_grid,
-                   rlen=5000,
-                   alpha=c(0.05, 0.01),
-                   radius=c(5, 0),
-                   dist.fcts="euclidean")
-
-  pdf(paste0(output_path, "/SOM.pdf"))
-  par(family = 'serif')
-  plot(som_model, type="count")
-  dev.off()
+  # #########
+  # ## PCA ##
+  # #########
+  # 
+  # # Just PCA for comparison
+  # pdf(paste0(output_path,"/PCA.pdf"))
+  # par(family = 'serif', cex = 1.5, mfrow=c(2, 2), mgp = c(2, 1, 0))
+  # pca <- prcomp(data_ready)$x
+  # plot(pca[,1], pca[,2], xlab=paste0("PC ",1), ylab=paste0("PC ",2))
+  # plot(pca[,1], pca[,3], xlab=paste0("PC ",1), ylab=paste0("PC ",3))
+  # plot(pca[,2], pca[,3], xlab=paste0("PC ",2), ylab=paste0("PC ",3))
+  # dev.off()
+  # 
+  # ##########
+  # ## tSNE ##
+  # ##########
+  # 
+  # tsne <- Rtsne(data_ready, dims = 2, perplexity=100, verbose=TRUE, max_iter = 5000, eta=100, momentum=0.1, pca = TRUE)
+  # pdf(paste0(output_path,"/tSNE.pdf"))
+  # par(family = 'serif', cex = 1.5, mgp = c(2, 1, 0))
+  # plot(tsne$Y[,1], tsne$Y[,2], xlab=paste0("Dim ",1), ylab=paste0("Dim ",2))
+  # dev.off()
+  # 
+  # #########
+  # ## SOM ##
+  # #########
+  # 
+  # # Create the SOM Grid - you generally have to specify the size of the
+  # # training grid prior to training the SOM. Hexagonal and Circular
+  # # topologies are possible
+  # som_grid <- somgrid(xdim = 10, ydim= 10, topo="hexagonal")
+  # 
+  # # Finally, train the SOM, options for the number of iterations,
+  # # the learning rates, and the neighbourhood are available
+  # set.seed(123)
+  # 
+  # som_model <- som(data_ready,
+  #                  grid=som_grid,
+  #                  rlen=5000,
+  #                  alpha=c(0.05, 0.01),
+  #                  radius=c(5, 0),
+  #                  dist.fcts="euclidean")
+  # 
+  # pdf(paste0(output_path, "/SOM.pdf"))
+  # par(family = 'serif')
+  # plot(som_model, type="count")
+  # dev.off()
   
   #############
   ### uMAP  ###
@@ -411,8 +411,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
       for( j in 1:num_peaks ){
         barplot(for_smoothed_profiles[peaks[j],], ylab = "Normalized Read Count", xlab = "Relative Nucleotide Position", 
                col = colors[unique_clusters[i]], pch=20, ylim=c(0,1), space=0, border=NA)
-        abline(v=round(peak_length/2), lty="dashed")
-        mtext("0", side=1, line=0.1, at=round(peak_length/2)) 
+        abline(v=round(smoothing_dim/2), lty="dashed")
+        mtext("0", side=1, line=0.1, at=round(smoothing_dim/2)) 
       }
       dev.off()
     }
@@ -444,8 +444,8 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
   barplot(data_normalized[peaks[peak_selection[1]],], ylab = "Normalized Read Count", xlab = "", 
           col = colors[1], pch=20, ylim=c(0,1), space=0, border=NA)
   abline(v=round(peak_length/2), lty="dashed")
-  mtext("0", side=1, line=0.5, at=round(peak_length/2), family = 'serif', cex = 0.7) 
-  title(main = "1", line=0.9)
+  mtext("0", side=1, line=0.5, at=round(peak_length/2), family = 'serif', cex = 0.7)
+  title(main = paste0("1: ", length(peaks)), line=0.9)
     
   for( i in 2:num_clusters ){
     peaks <- which(cluster_col[,1] == unique_clusters[i])
@@ -459,7 +459,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
     }
     abline(v=round(peak_length/2), lty="dashed")
     mtext("0", side=1, line=0.5, at=round(peak_length/2), family = 'serif', cex = 0.7)
-    title(main = i, line=0.9)
+    title(main = paste0(i, ": ", length(peaks)), line=0.9)
   }
   
   dev.off()
@@ -477,7 +477,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
           col = colors[unique_clusters[1]], pch=20, ylim=c(0,1), space=0, border=NA)
   abline(v=round(peak_length/2), lty="dashed")
   mtext("0", side=1, line=0.1, at=round(peak_length/2),  family = 'serif', cex = 0.7)
-  title(main = "1", line=0.9)
+  title(main = paste0("1: ", length(peaks)), line=0.9)
   
   for( i in 2:num_clusters ){
     peaks <- which(cluster_col[,1] == unique_clusters[i])
@@ -493,7 +493,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
     }
     abline(v=round(peak_length/2), lty="dashed")
     mtext("0", side=1, line=0.5, at=round(peak_length/2), family = 'serif', cex = 0.7)
-    title(main = i, line=0.9)
+    title(main = paste0(i, ": ", length(peaks)), line=0.9)
   }
   
   dev.off()
