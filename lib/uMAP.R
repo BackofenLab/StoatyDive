@@ -433,7 +433,7 @@ umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_
   unique_clusters <- sort(unique_clusters)
   
   # Overviews
-  #peak_selection <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+  #peak_selection <- c(1,1,1,1,1,1,1)
   peak_selection <- rep(1, num_clusters)
   peaks <- which(cluster_col[,1] == unique_clusters[1])
   
