@@ -4,8 +4,8 @@ require("data.table") # for the shift function
 require("zoo") # for rollmeans
 
 # for testing
-require("Rtsne")
-require("kohonen")
+# require("Rtsne")
+# require("kohonen")
 
 umap_main <- function(data_path, filename, lam, maximal_cluster_number, optimal_k, on_off_smoothing){
   

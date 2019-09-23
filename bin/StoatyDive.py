@@ -18,7 +18,7 @@ from scipy.stats import norm
 #########################
 
 # bedtools
-# R + umap, data.table
+# R + umap, data.table, zoo
 
 ##############
 ##   FUNC   ##
