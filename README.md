@@ -1,7 +1,7 @@
 # StoatyDive
 
-[![GitHub](https://img.shields.io/github/tag/heylf/StoatyDive.svg)](https://github.com/heylf/StoatyDive) [![Bioconda](https://anaconda.org/bioconda/stoatydive/badges/version.svg)](https://anaconda.org/bioconda/stoatydive)
-[![Build Status](https://travis-ci.org/heylf/StoatyDive.svg?branch=master)](https://travis-ci.org/heylf/StoatyDive)
+[![GitHub](https://img.shields.io/github/tag/BackofenLab/StoatyDive.svg)](https://github.com/BackofenLab/StoatyDive) [![Bioconda](https://anaconda.org/bioconda/stoatydive/badges/version.svg)](https://anaconda.org/bioconda/stoatydive)
+[![Build Status](https://travis-ci.org/BackofenLab/StoatyDive.svg?branch=master)](https://travis-ci.org/BackofenLab/StoatyDive)
 
 StoatyDive is a tool to evaluate and classify predicted peak profiles to assess the binding specificity of a protein to its targets.
 It can be used for sequencing data such as CLIP-seq or ChIP-Seq, or any other type of peak profile data.
@@ -20,7 +20,7 @@ conda install stoatydive
 ### Repository download
 
 ```
-git clone https://github.com/heylf/StoatyDive.git
+git clone https://github.com/BackofenLab/StoatyDive.git
 cd StoatyDive
 sudo apt-get install -y r-base
 python setup.py install
@@ -29,7 +29,7 @@ python setup.py install
 or
 
 ```
-https://github.com/heylf/StoatyDive/archive/v1.0.3.tar.gz
+https://github.com/BackofenLab/StoatyDive/archive/v1.1.0.tar.gz
 ```
 
 Requirements: python >= 3.6, bedtools >= 2.27.1, numpy>=1.13.3, matplotlib>=2.1, scipy >= 1.3, R >= 3.4.4
