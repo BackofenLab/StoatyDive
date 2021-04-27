@@ -143,6 +143,7 @@ Example 3:
 | :-------------: |:-------------:|
 | <img src="test/broad_peaks/CV_Distribution_reads.svg" width="200"> | <img src="test/sharp_peaks/CV_Distribution_reads.svg" width="200"> |
 
+**Figure 1. CV distributions of A: test/broad_peaks/, B: test/sharp_peaks.**
 The diagram will give you a first impression of the binding specificity of your
 protein of interest. The diagram also tells you about the performance/quality
 of your experiment. An experiment with lots of unspecific binding sites will have
@@ -156,6 +157,7 @@ in our example B.
 | :-------------: |:-------------:|
 | <img src="test/broad_peaks/Norm_CV_Distribution_reads.svg" width="200"> | <img src="test/sharp_peaks/Norm_CV_Distribution_reads.svg" width="200"> |
 
+**Figure 2. Normalized CV distributions of A: test/broad_peaks/, B: test/sharp_peaks.**
 The normalized CV distribution helps to identify specific and unspecific sites within
 an experiment. The normalized CV is in a range [0,1]. A specific site will have a value of 1. An unspecific site will have a value of 0.
 
@@ -193,9 +195,8 @@ You will get some plots for the classification, saved in the folder `clustering_
 | :-------------: |:-------------:|
 | <img src="test/mixed_peaks/clustering_reads/cluster_3.svg" width="260"> | <img src="test/mixed_peaks/clustering_reads/cluster_smoothed3.svg" width="260"> |
 
-If you turned on the smoothing you will get four types of cluster sets. The first one shows you
-some example raw peak profiles assigned to the specific cluster (e.g. cluster_1.pdf     
-for cluster 1; Figure A). The second one shows you some example smoothed and sometimes translocated peak profiles to the specific cluster (e.g. cluster_smoothed1.pdf for cluster 1; Figure B). Profile like figure B are used for the classification. The profiles are colored based on the clusters as seen as in the uMAP plot.
+**Figure 3. Example cluster profile for data test/mixed_peaks/; Cluster 3 A: raw profile, B: smoothed profile.**
+If you turned on the smoothing you will get four types of cluster sets. The first one shows you some example raw peak profiles assigned to the specific cluster (e.g. cluster_3.pdf for cluster 3; Figure A). The second one shows you some example smoothed and sometimes translocated peak profiles to the specific cluster (e.g. cluster_smoothed3.pdf for cluster 3; Figure B). Profile like figure B are used for the classification. The profiles are colored based on the clusters as seen as in the uMAP plot.
 
 ### Overview Cluster Profiles (pdf)
 
@@ -207,11 +208,13 @@ for cluster 1; Figure A). The second one shows you some example smoothed and som
 | :-------------: |
 | <img src="test/mixed_peaks/clustering_reads/cluster_average_profiles.svg" width="520"> |
 
+**Figure 4. Cluster profile summary for data test/mixed_peaks/.**
 The third one is an example profile, such as Figure A for each cluster in one plot (overview_cluster.pdf; Figure C). The fourth one are the average profiles of each cluster (e.g. cluster_average_profiles.pdf; Figure D).
 
 ### k-means Optimization
 <img src="test/mixed_peaks/clustering_reads/kmeans_Optimization.svg" width="400">
 
+**Figure 5. Kmeans optimization for data test/mixed_peaks/.**
 The plot `kmeans_Optimization.pdf` shows you the optimization scheme. If you data
 has a very low complexity, that is to say, you have lots of similar peak profiles,
 then the percent of variance explained will be very low (second plot). It is also
@@ -221,6 +224,7 @@ peak profiles, as in our example, then the variance explained will be `> 90%`.
 ### uMAP Plot
 <img src="test/mixed_peaks/clustering_reads/uMAP.svg" width="400">
 
+**Figure 6. uMAP plot for data test/mixed_peaks/.**
 The plot `uMAP.pdf` shows you the data in the new dimension found by the uMAP
 dimensional reduction algorithm. In correspondance to the the k-means optimization,
 highly distinguishable peaks will appear in the plot as very clearly separated
