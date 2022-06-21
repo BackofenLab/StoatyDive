@@ -32,7 +32,19 @@ or
 https://github.com/BackofenLab/StoatyDive/archive/v1.1.0.tar.gz
 ```
 
-Requirements: python >= 3.6, bedtools >= 2.27.1, numpy>=1.13.3, matplotlib>=2.1, scipy >= 1.3, R >= 3.4.4
+Requirements: 
+
+- python >= 3.6
+- bedtools >= 2.27.1
+- numpy>=1.13.3
+- matplotlib>=2.1
+- scipy >= 1.3
+- R >= 3.4.4
+- R packages:
+
+  - umap
+  - data.table
+  - zoo
 
 ## Usage
 
