@@ -550,7 +550,7 @@ def main():
     f1 = plt.figure(figsize=(3, 5), dpi=350)
     plt.violinplot(filtered_varcoeff_coverage_peaks)
     plt.ylim(0.0, scale_max)
-    plt.xticks([], 'none')
+    plt.xticks([])
     plt.ylabel('Coefficient of Variation of the Peak Profiles')
     f1.savefig(args.output_folder + "/CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
@@ -570,7 +570,7 @@ def main():
     f2 = plt.figure(figsize=(3, 5), dpi=350)
     plt.violinplot(filtered_varcoeff_coverage_peaks)
     plt.ylim(0.0, 1.0)
-    plt.xticks([], 'none')
+    plt.xticks([])
     plt.ylabel('Normalized Coefficient of Variation of the Peak Profiles')
     f2.savefig(args.output_folder + "/Norm_CV_Distribution_{}.pdf".format(outfilename), bbox_inches='tight')
 
